@@ -12,7 +12,10 @@ RUN set -eux && \
   docker-php-ext-install bcmath pdo_mysql && \
   curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
   composer config -g repos.packagist composer https://packagist.jp && \
-  composer global require hirak/prestissimo && \
+  composer global require hirak/prestissimo
+  
+RUN set -eux && \
+  apk add --update-cache --no-cache --virtual=.build-dependencies1 nodejs npm && \
   curl -sL https://deb.nodesource.com/setup_13.x | bash - && \
-  apt-get update && \
-  apt-get install -y nodejs
+  npm install npm@latest -g && \
+  apk del .build-dependencies1
