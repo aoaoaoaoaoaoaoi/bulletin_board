@@ -15,7 +15,7 @@ RUN set -eux && \
   composer global require hirak/prestissimo
   
 RUN set -eux && \
-  apk add --update-cache --no-cache --virtual=.build-dependencies1 nodejs npm && \
-  curl -sL https://deb.nodesource.com/setup_13.x | bash - && \
+  apk add --update-cache --no-cache --virtual=.build-dependencies1 nodejs nodejs-npm && \
+  curl -sL https://deb.nodesource.com/setup_13.x | ash - && \
   npm install npm@latest -g && \
   apk del .build-dependencies1
