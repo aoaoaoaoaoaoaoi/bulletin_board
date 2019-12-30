@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Group;
+use DB;
 
 class MakeGroupController extends Controller
 {
@@ -16,8 +18,11 @@ class MakeGroupController extends Controller
         $name = $request->input('name');
         $description = $request->input('description');
 
+        DB::table('groups')->insert([
+            'name' => $name,
+            'description' => $description,
+        ]);
 
-        
         return view('/make_group');
     }
 }

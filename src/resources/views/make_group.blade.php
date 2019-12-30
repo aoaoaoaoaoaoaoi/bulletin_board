@@ -32,7 +32,7 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Group Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" description="description" required>
+                                    <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
