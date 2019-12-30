@@ -25,6 +25,8 @@ Route::get('/login', function () {
 
 Route::get('/make_group', 'MakeGroupController@index');
 
+Route::post('/make_group/make_group', 'MakeGroupController@makeGroup');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
