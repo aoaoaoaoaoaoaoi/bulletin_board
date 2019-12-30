@@ -22,7 +22,14 @@
                         <tr>
                             <th>
                                 <a id="make-group" href="./make_group">
-                                        Make Group
+                                        Make a Group
+                                </a>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <a id="join-group" href="./join_group">
+                                        Join a Group
                                 </a>
                             </th>
                         </tr>
