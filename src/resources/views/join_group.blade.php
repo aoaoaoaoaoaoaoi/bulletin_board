@@ -39,6 +39,10 @@
                             </tr>
                             @endforeach
                         </table>
+
+                        <button type="submit" class="join-group">
+                                        {{ __('Join Groups') }}
+                        </button>
                     </div>
                 </div>
             </div>

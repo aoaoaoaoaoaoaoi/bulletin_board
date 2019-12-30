@@ -29,3 +29,7 @@ tr.join-group {
     text-align: center;
     vertical-align: middle;
 }
+
+button.join-group {
+    width: 100%;
+}
