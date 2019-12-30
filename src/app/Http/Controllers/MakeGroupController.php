@@ -23,6 +23,6 @@ class MakeGroupController extends Controller
             'description' => $description,
         ]);
 
-        return view('/make_group');
+        return view('/make_group_complete');
     }
 }

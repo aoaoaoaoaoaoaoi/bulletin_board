@@ -24,8 +24,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/make_group', 'MakeGroupController@index');
-
-Route::post('/make_group/make_group', 'MakeGroupController@makeGroup');
+Route::post('/make_group_complete', 'MakeGroupController@makeGroup');
 
 Auth::routes();
 
