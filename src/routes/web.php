@@ -23,6 +23,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/make_group', 'MakeGroupController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

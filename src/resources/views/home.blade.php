@@ -13,8 +13,20 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <table border="0">
+                        <tr>
+                            <th>
+                                You are logged in!
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <a id="make-group" href="./make_group">
+                                        Make Group
+                                </a>
+                            </th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
