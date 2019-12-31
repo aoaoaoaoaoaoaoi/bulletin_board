@@ -13,7 +13,7 @@ class JoinGroupController extends Controller
     {
         $groups = DB::table('groups')->get();
         $user = Auth::user();
-        $userJoinGroups = DB::table('player_groups')->where('player_id', '=', $user->id)->get();
+        $userJoinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();
         $data=[];
         foreach ($groups as $group)
         {
