@@ -15,7 +15,8 @@
 
                     <div class="card-body">
                     <!-- テーブルの中の情報をそのまま表示する -->
-                    
+
+                    <form method="POST" action="./join_group_complete">
                     @csrf
 
                         <table class="join-group">
@@ -28,11 +29,15 @@
                             
                             @foreach ($data as $d)
                             <tr class="join-group">
-                                <td>{{ $d -> name }}</td>
-                                <td>{{ $d -> description }}</td>
-                                <td><input type="checkbox" name="isJoin" value={{ $d->id }}></td>
+                                <td>{{ $d['name'] }}</td>
+                                <td>{{ $d['description'] }}</td>
                                 <td>
-                                    <button type="submit" class="btn btn-primary">
+                                    @if (!$d['isJoin'])
+                                        <input type="checkbox" name="isJoin[]" value={{ $d['id'] }}>
+                                    @endif
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
                                         {{ __('View Detail') }}
                                     </button>
                                 </td>
@@ -43,6 +48,7 @@
                         <button type="submit" class="join-group">
                                         {{ __('Join Groups') }}
                         </button>
+                    </form>
                     </div>
                 </div>
             </div>
