@@ -23,7 +23,7 @@ $.ajax({
     var membersList='';
     result['members'].forEach(member => {
       var name = member.name;
-      membersList += '<tr><td class="member-name">'+ name + '</tr>';
+      membersList += name + ' , ';
     });
     document.getElementById('group-detail-members').innerHTML = membersList;
   });

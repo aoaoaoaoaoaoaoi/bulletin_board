@@ -57,26 +57,23 @@
                     </form>
                     </div>
                 </div>
-
-                <div class="card-body">
-                <table>
-                    <tr>
-                        <th>name</th><td id="group-detail-name">{{ @name }}</td>
-                    </tr>
-                    <tr>
-                        <th>description</th><td id="group-detail-description">{{ @description }}</td>
-                    </tr>
-                    <tr>
-                        <th>group member</th>
-                        <td>
-                            <table id="group-detail-members">
-
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+                <div class="card">
+                    <div class="card-header">{{ __('Group Detail') }}</div>
+                    <div class="card-body">
+                        <table class="join-group">
+                            <tr class="join-group">
+                                <th>name</th>
+                                <th>description</th>
+                                <th>group member</th>
+                            </tr>
+                            <tr class="join-group">
+                                <td id="group-detail-name"></td>
+                                <td id="group-detail-description"></td>
+                                <td id="group-detail-members"></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-
             </div>
 <!-- </tr> -->
 <!-- <tr> -->
