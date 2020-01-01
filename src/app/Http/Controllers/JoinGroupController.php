@@ -11,6 +11,7 @@ class JoinGroupController extends Controller
 {
     public function index()
     {
+        \Log::debug('ログ出力');
         $groups = DB::table('groups')->get();
         $user = Auth::user();
         $userJoinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();
@@ -44,5 +45,18 @@ class JoinGroupController extends Controller
         }
         DB::table('player_groups')->insert($insertData);
         return view('/join_group_complete');
+    }
+
+    public function showGroupInfo()
+    {
+        $groupId = $_POST['key'];
+        $group = DB::table('groups')->where('id', '=', $groupId)->first();
+        $members = DB::table('player_groups')->where('group_id', '=', $groupId)->get();
+        $groupData=[
+            'name' => $group->name,
+            'description' => $group->description,
+            'members' => $members,
+        ];
+        echo json_encode($groupData);
     }
 }

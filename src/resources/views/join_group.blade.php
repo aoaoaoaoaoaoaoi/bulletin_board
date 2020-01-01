@@ -43,7 +43,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" id="group-detail-button">
+                                    <button type="button" class="btn btn-primary" id="group-detail-button" onclick="showInfo(this)" value={{ $d['id'] }}>
                                         {{ __('View Detail') }}
                                     </button>
                                 </td>
