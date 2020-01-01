@@ -51,7 +51,8 @@ class JoinGroupController extends Controller
     {
         $groupId = $_POST['key'];
         $group = DB::table('groups')->where('id', '=', $groupId)->first();
-        $members = DB::table('player_groups')->where('group_id', '=', $groupId)->get();
+        $memberIds = DB::table('player_groups')->where('group_id', '=', $groupId)->get()->pluck('player_id');
+        $members = DB::table('users')->whereIn('id', $memberIds)->get();
         $groupData=[
             'name' => $group->name,
             'description' => $group->description,

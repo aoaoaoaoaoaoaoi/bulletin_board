@@ -69,7 +69,9 @@
                     <tr>
                         <th>group member</th>
                         <td>
-                        
+                            <table id="group-detail-members">
+
+                            </table>
                         </td>
                     </tr>
                 </table>

@@ -1,26 +1,30 @@
-/*document.getElementById("group-detail-button").onclick = function() {
-
-    document.getElementById("group-detail-name").innerHTML = "aaaaaa ";// + document.getElementById("name").value + " さん！";
-}*/
-
 var showInfo = function(button) {
+
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-});
-  $.ajax({
+  });
+
+$.ajax({
     type: 'POST',
     url :'/show_group_info',
     data:{ 
       key:button.value,
     }
   }).fail(function(){
-    //alert('error');
+
   }).done(function(re){
-    //alert('success');
     var result = JSON.parse(re);
     document.getElementById("group-detail-name").innerHTML = result['name'];
     document.getElementById("group-detail-description").innerHTML = result['description'];
+    $("#group-detail-members").empty();
+    var members = document.getElementById('group-detail-members');
+    var membersList='';
+    result['members'].forEach(member => {
+      var name = member.name;
+      membersList += '<tr><td class="member-name">'+ name + '</tr>';
+    });
+    document.getElementById('group-detail-members').innerHTML = membersList;
   });
 }
