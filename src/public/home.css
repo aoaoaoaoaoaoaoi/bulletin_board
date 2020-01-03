@@ -1,17 +1,35 @@
- body {
+ /*body {
     background: #696969;
     color : #ff1493;
     font-family: Meiryo;
-}
+}*/
 
-div{
+/*div{
     width : 300px;
-    padding : 10px;
+    padding : 10px;*/
     /*text-align: left;*/
-    margin: 30px auto;
+    /*margin: 30px auto;
 }
 
 td[colspan="2"]{
     top : 100px;
     text-align:center;
+}*/
+
+div.split{
+    position:absolute;
+	
+	height:100%;
+}
+
+div.user-info {
+    left:0;
+    width:30%;
+    background: #696969;
+}
+
+div.user-content {
+    right:0;
+    width:70%;
+	overflow-y:scroll;
 }

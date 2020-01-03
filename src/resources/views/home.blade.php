@@ -1,12 +1,21 @@
 @extends('layouts.app')
 
+@section('style')
+<head>
+<link href="{{ asset('home.css') }}" rel="stylesheet">
+</head>
+@endsection
+
 @section('content')
 <div class="container">
+<div class="split user-info">
+                
+</div>
+<div class="split user-content">
+                
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="user-info">
-                
-            </div>
             <div class="contents">
                 <div class="card">
                     <div class="card-header">Dashboard</div>
@@ -42,6 +51,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection
