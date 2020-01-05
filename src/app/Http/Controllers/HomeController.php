@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $joinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();
+        $data = [
+            'name' => $user->name,
+            'profile' => $user -> profile,
+            'groups' => $joinGroups,
+        ];
+        return view('home', ['data' => $data]);
     }
 }

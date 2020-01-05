@@ -9,7 +9,23 @@
 @section('content')
 <div class="container">
 <div class="split user-info">
-                
+    <table>
+        <tr>
+            <td>{{ $data['name'] }}<td>
+        </tr>
+        <tr>
+            <td>{{ $data['profile'] }}<td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    @foreach($data['groups'] as $group)
+                    <tr>{{ $group }}</tr>
+                    @endforeach
+                </table>
+            <td>
+        </tr>
+    </table>
 </div>
 <div class="split user-content">
                 
