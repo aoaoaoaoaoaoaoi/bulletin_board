@@ -14,7 +14,7 @@ class AlterUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('peofile')->after();
+            $table->text('profile')->after('name');
         });
     }
 
@@ -25,6 +25,8 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('player_groups');
+        Schema::table('users', function (Blueprint $table) {
+            Schema::dropColumn('player_groups');
+        });
     }
 }
