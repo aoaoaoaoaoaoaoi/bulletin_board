@@ -29,6 +29,8 @@ Route::get('/join_group', 'JoinGroupController@index');
 Route::post('/join_group_complete', 'JoinGroupController@joinGroup');
 Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
 
+Route::get('/edit_profile', 'EditProfileController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

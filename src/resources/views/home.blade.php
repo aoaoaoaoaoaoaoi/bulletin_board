@@ -62,6 +62,13 @@
                                     </a>
                                 </th>
                             </tr>
+                            <tr>
+                                <th>
+                                    <a id="edit-profile" href="./edit_profile">
+                                            Edit Profile
+                                    </a>
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>
