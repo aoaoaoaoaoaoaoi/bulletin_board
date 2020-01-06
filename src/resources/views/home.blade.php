@@ -20,7 +20,7 @@
             <td>
                 <table>
                     @foreach($data['groups'] as $group)
-                    <tr>{{ $group }}</tr>
+                    <tr>{{ $group['name'] }}</tr>
                     @endforeach
                 </table>
             <td>

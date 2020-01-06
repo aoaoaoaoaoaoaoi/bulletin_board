@@ -26,11 +26,21 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $joinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();
+        
+        $joinGroupIds = DB::table('player_groups')->where('player_id', '=', $user['id'])->get()->pluck('group_id');
+        $joinGroups = DB::table('groups')->whereIn('id', $joinGroupIds)->get();
+        $groups=[];
+        foreach ($joinGroups as $joinGroup){
+            $g = [
+                'name' => $joinGroup->name,
+            ];
+            $groups[] = $g;
+        }
+        
         $data = [
             'name' => $user->name,
-            'profile' => $user -> profile,
-            'groups' => $joinGroups,
+            'profile' => $user ->profile,
+            'groups' => $groups,
         ];
         return view('home', ['data' => $data]);
     }
