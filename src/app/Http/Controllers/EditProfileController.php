@@ -13,9 +13,9 @@ class EditProfileController extends Controller
     {
         $user = Auth::user();
         $data = [
-            'name' = $user->name,
-            'profile' = $user->profile,
-            'resource' = $user->resource,
+            'name' => $user->name,
+            'profile' => $user->profile,
+            'resource' => $user->resource,
         ];
         return view('edit_profile', ['data' => $data]);
     }
