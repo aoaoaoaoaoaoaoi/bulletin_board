@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('style')
+<head>
+<link href="{{ asset('edit_profile.css') }}" rel="stylesheet">
+</head>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -12,19 +18,22 @@
                     @csrf
                         <table>
                             <tr>
-                                <td><button type="button" class="icon-image"></td>
+                                <!--<td><button type="button" class="icon-image"></td>-->
+                                <td>
+                                <img src="" class="icon-image" onclick="clickIcon()" alt="">
+                                </td>
                             </tr>
                             <tr>
                                 <td>Name</td>
                             </tr>
                             <tr>
-                                <td><input type ="text" name="username" value = ""></td>
+                                <td><input type ="text" name="username" value = "{{ $data['name'] }}"></td>
                             </tr>
                             <tr>
                                 <td>Bio</td>
                             </tr>
                             <tr>
-                                <td><input type ="text" name="profile" value = ""></td>
+                                <td><input type ="text" name="profile" value = "{{ $data['profile'] }}"></td>
                             </tr>
                             <tr>
                                 <td>Tag</td>
