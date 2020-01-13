@@ -1,5 +1,9 @@
-button.icon-image{
-    background-image: url("./icon.png");
+#icon-image{
     width: 200px;
     height:200px;
+}
+
+table.profile{
+        border-collapse: separate;
+        border-spacing: 0px 8px;
 }

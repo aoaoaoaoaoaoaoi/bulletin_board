@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('jssheet')
+<head>
+<script src="{{ asset('edit_profile.js') }}" defer></script>
+</head>
+@endsection
 @section('style')
 <head>
 <link href="{{ asset('edit_profile.css') }}" rel="stylesheet">
@@ -16,24 +21,25 @@
                     <div class="card-body">
                     <form method="POST" action="./edit_profile_complete">
                     @csrf
-                        <table>
+                        <table class="profile">
                             <tr>
-                                <!--<td><button type="button" class="icon-image"></td>-->
                                 <td>
-                                <img src="" class="icon-image" onclick="clickIcon()" alt="">
+                                    <div>Icon</div>
+                                    <div><img src="../../../icon.png" id="icon-image" onClick="$('#icon-file').click()"></div>
+                                    <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>Name</td>
+                                <td>
+                                    <div>Name</div>
+                                    <div><input type ="text" name="username" value = "{{ $data['name'] }}"></div>
+                                </td>
                             </tr>
                             <tr>
-                                <td><input type ="text" name="username" value = "{{ $data['name'] }}"></td>
-                            </tr>
-                            <tr>
-                                <td>Bio</td>
-                            </tr>
-                            <tr>
-                                <td><input type ="text" name="profile" value = "{{ $data['profile'] }}"></td>
+                                <td>
+                                    <div>Bio</div>
+                                    <div><textarea  rows="4" cols="40" name="profile" value = "{{ $data['profile'] }}"></textarea></div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Tag</td>
