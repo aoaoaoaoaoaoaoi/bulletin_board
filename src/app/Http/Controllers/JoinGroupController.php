@@ -11,7 +11,6 @@ class JoinGroupController extends Controller
 {
     public function index()
     {
-        \Log::debug('ログ出力');
         $groups = DB::table('groups')->get();
         $user = Auth::user();
         $userJoinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();

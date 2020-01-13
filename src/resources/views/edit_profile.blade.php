@@ -25,7 +25,7 @@
                             <tr>
                                 <td>
                                     <div>Icon</div>
-                                    <div><img src="../../../icon.png" id="icon-image" onClick="$('#icon-file').click()"></div>
+                                    <div><img src="../../../icon_image/icon.png" id="icon-image" onClick="$('#icon-file').click()"></div>
                                     <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
                                 </td>
                             </tr>
@@ -42,7 +42,24 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Tag</td>
+                                <td>
+                                    <div>Tag</div>
+                                    <div>
+                                        @foreach ($data['user_tag'] as $d)
+                                            <div class="tag" value="{{ $d['name'] }}">
+                                                <button type="button" class="delete-tag" value="×"></buttpn>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div>
+                                        <button type="button" class="make-tag" value="" onclick="makeTag(this)">タグを作成する</button>
+                                        <div class="tag-area">
+                                            @foreach($data['tag'] as $tag)
+                                                <button type="button" class="add-tag" value="×"></buttpn>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
 
