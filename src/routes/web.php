@@ -31,6 +31,7 @@ Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
 
 Route::get('/edit_profile', 'EditProfileController@index');
 Route::get('/edit_profile_complete', 'EditProfileController@saveProfile');
+Route::post('/make_tag', 'EditProfileController@makeTag');
 
 Auth::routes();
 
