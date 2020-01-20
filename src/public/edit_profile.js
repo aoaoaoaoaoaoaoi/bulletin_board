@@ -13,7 +13,7 @@ $('#icon-file').change(function(){
   }
 });
 
-var makeTag = function(button) {
+var makeTag = function() {
 
   $.ajaxSetup({
     headers: {

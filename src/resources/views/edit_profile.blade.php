@@ -52,7 +52,7 @@
                                         @endforeach
                                     </div>
                                     <div>
-                                        <button type="button" class="make-tag" value="" onclick="makeTag(this)">タグを作成する</button>
+                                        <button type="button" class="make-tag" value="" onclick="makeTag()">タグを作成する</button>
                                         <div class="tag-area">
                                             @foreach($data['tag'] as $tag)
                                                 <button type="button" class="add-tag" value="×"></buttpn>
