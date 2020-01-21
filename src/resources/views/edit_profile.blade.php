@@ -38,7 +38,7 @@
                             <tr>
                                 <td>
                                     <div>Bio</div>
-                                    <div><textarea  rows="4" cols="40" name="profile" value = "{{ $data['profile'] }}"></textarea></div>
+                                    <div><textarea  rows="4" cols="40" class="bio" name="bio" value = "{{ $data['profile'] }}"></textarea></div>
                                 </td>
                             </tr>
                             <tr>

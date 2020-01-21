@@ -14,3 +14,7 @@ div.tag-area{
     /*background-color: gray;*/
     overflow: scroll;
 }
+
+textarea.bio{
+    resize: both;
+}
