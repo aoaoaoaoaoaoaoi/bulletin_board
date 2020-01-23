@@ -43,13 +43,13 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div>Tag</div>
-                                    <div>
-                                        @foreach ($data['user_tag'] as $d)
-                                            <div class="tag" value="{{ $d['name'] }}">
-                                                <button type="button" class="delete-tag" value="×"></buttpn>
-                                            </div>
+                                    <div>Tag
+                                        <div>
+                                        @foreach($data['user_tag'] as $d)
+                                            <span style="background-color: #D9EAFE">{{ $d['name'] }}</span>
                                         @endforeach
+                                        </div>
+                                        <input type="text" class="user-tag" value="{{ $data['user_tag_value'] }}">
                                     </div>
                                     <!--<div>
                                         <button type="button" class="make-tag" value="" onclick="makeTag()">タグを作成する</button>
@@ -77,5 +77,11 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('jquery')
+<script src="js/jquery-2.1.1.min.js"></script>
+    <script>
+        //$(".user-tag").val()
+    </script>
 @endsection

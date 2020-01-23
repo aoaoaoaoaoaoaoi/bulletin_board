@@ -23,11 +23,14 @@ class EditProfileController extends Controller
 
         $userTagIds = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id');
         $userTagDatas = DB::table('tags')->whereIn('id', $userTagIds)->get();
-        $userTags=[];
+        $userTags = [];
+        $userTagValue = '';
         foreach ($userTagDatas as $d){
-            $userTags[]=[
+            $userTagValue = $userTagValue.' #'.$d->name;
+            $userTag=[
                 'name' => $d->name,
             ];
+            $userTags[] = $userTag;
         }
 
         $resoucePath = "../../../icon_image/".$user->resource;
@@ -36,6 +39,7 @@ class EditProfileController extends Controller
             'profile' => $user->profile,
             'resource' => $resoucePath,
             'user_tag' => $userTags,
+            'user_tag_value' => $userTagValue,
             'tag' => $tags,
         ];
         return view('edit_profile', ['data' => $data]);
