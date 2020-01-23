@@ -51,14 +51,14 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div>
+                                    <!--<div>
                                         <button type="button" class="make-tag" value="" onclick="makeTag()">タグを作成する</button>
                                         <div class="tag-area">
                                             @foreach($data['tag'] as $tag)
                                                 <button type="button" class="add-tag" value="×"></buttpn>
                                             @endforeach
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </td>
                             </tr>
                             <tr>
