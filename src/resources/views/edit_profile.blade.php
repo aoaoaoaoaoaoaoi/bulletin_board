@@ -44,21 +44,15 @@
                             <tr>
                                 <td>
                                     <div>Tag
-                                        <div>
+                                        <div id="user-tag-backs">
                                         @foreach($data['user_tag'] as $d)
                                             <span class="user_tag_back">{{ $d['name'] }}</span>
                                         @endforeach
                                         </div>
-                                        <input class="user-tag" type="text" value="{{ $data['user_tag_value'] }}">
-                                    </div>
-                                    <!--<div>
-                                        <button type="button" class="make-tag" value="" onclick="makeTag()">タグを作成する</button>
-                                        <div class="tag-area">
-                                            @foreach($data['tag'] as $tag)
-                                                <button type="button" class="add-tag" value="×"></buttpn>
-                                            @endforeach
+                                        <div>
+                                            <input class="user-tag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">
                                         </div>
-                                    </div>-->
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -80,7 +74,7 @@
 @endsection
 
 @section('jquery')
-<script src="js/jquery-2.1.1.min.js"></script>
+<!--<script src="js/jquery-2.1.1.min.js"></script>-->
     <script>
         //$(".user-tag").val()
     </script>

@@ -13,23 +13,42 @@ $('#icon-file').change(function(){
   }
 });
 
-var makeTag = function() {
+//ユーザータグの切り替え
+const userTag = document.querySelector('#user-tag');
+userTag.addEventListener('input', updateValue);
+function updateValue(e) {
 
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
+console.log("UPDDATTE");
 
-$.ajax({
-    type: 'POST',
-    url :'/make_tag',
-    data:{ 
-      key:button.value,
-    }
-  }).fail(function(){
-
-  }).done(function(re){
- 
-  });
+    //入力欄のvalue
+    var userTags = document.getElementById("user-tag").value.split(' ');
+    //背景用の要素
+    var userTagBackParent = document.getElementById("user-tag-backs");
+    var userTagBacks = userTagBackParent.children;
+  
+    //valueの変更
+    var index = 1;
+    console.log("userTags");
+    console.log(userTags.length);
+    console.log("userTagBacks");
+    console.log(userTagBacks.length);
+   for( ; index < userTags.length; index++){
+     var tag = userTags[index];
+     console.log("targetTagName");
+     console.log(tag);
+     if(index <= userTagBacks.length){
+        userTagBacks[index-1].innerHTML = tag;
+     }else{
+        var newSpan = document.createElement('span');
+        newSpan.className = 'user_tag_back';
+        newSpan.innerHTML = tag;
+        document.getElementById('user-tag-backs').appendChild(newSpan);
+     }
+   }
+  
+   //余分なタグの削除
+   for(var i = index-1; i < userTagBacks.length; ++i){
+      var deleteTag = userTagBacks[i];
+      userTagBackParent.removeChild(delteTag);
+   }
 }
