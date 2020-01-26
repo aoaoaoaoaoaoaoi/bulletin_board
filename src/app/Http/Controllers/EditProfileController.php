@@ -28,7 +28,7 @@ class EditProfileController extends Controller
         foreach ($userTagDatas as $d){
             $userTagValue = $userTagValue.' #'.$d->name;
             $userTag=[
-                'name' => $d->name,
+                'name' => '#'.$d->name,
             ];
             $userTags[] = $userTag;
         }

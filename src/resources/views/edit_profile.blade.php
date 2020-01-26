@@ -46,10 +46,10 @@
                                     <div>Tag
                                         <div>
                                         @foreach($data['user_tag'] as $d)
-                                            <span style="background-color: #D9EAFE">{{ $d['name'] }}</span>
+                                            <span class="user_tag_back">{{ $d['name'] }}</span>
                                         @endforeach
                                         </div>
-                                        <input type="text" class="user-tag" value="{{ $data['user_tag_value'] }}">
+                                        <input class="user-tag" type="text" value="{{ $data['user_tag_value'] }}">
                                     </div>
                                     <!--<div>
                                         <button type="button" class="make-tag" value="" onclick="makeTag()">タグを作成する</button>

@@ -11,10 +11,24 @@ table.profile{
 div.tag-area{
     width: 200px;
     height: 300px;
-    /*background-color: gray;*/
     overflow: scroll;
 }
 
 textarea.bio{
     resize: both;
+}
+
+span.user_tag_back{
+    z-index: 10;
+    position: relative;
+    left: 6px;
+    color:transparent;
+    background-color: #D9EAFE;
+}
+
+input.user-tag{
+    z-index: 20;
+    position: relative;
+    background-color:transparent;
+    top:-25px;
 }
