@@ -18,8 +18,6 @@ const userTag = document.querySelector('#user-tag');
 userTag.addEventListener('input', updateValue);
 function updateValue(e) {
 
-console.log("UPDDATTE");
-
     //入力欄のvalue
     var userTags = document.getElementById("user-tag").value.split(' ');
     //背景用の要素
@@ -28,21 +26,18 @@ console.log("UPDDATTE");
   
     //valueの変更
     var index = 1;
-    console.log("userTags");
-    console.log(userTags.length);
-    console.log("userTagBacks");
-    console.log(userTagBacks.length);
    for( ; index < userTags.length; index++){
      var tag = userTags[index];
-     console.log("targetTagName");
-     console.log(tag);
      if(index <= userTagBacks.length){
         userTagBacks[index-1].innerHTML = tag;
      }else{
         var newSpan = document.createElement('span');
         newSpan.className = 'user_tag_back';
         newSpan.innerHTML = tag;
-        document.getElementById('user-tag-backs').appendChild(newSpan);
+
+        var userTagBackArea = document.getElementById('user-tag-backs');
+        userTagBackArea.innerHTML += ' ';
+        userTagBackArea.appendChild(newSpan);
      }
    }
   
