@@ -65,9 +65,36 @@ class EditProfileController extends Controller
             }
         }
 
-        $name = $request->input('name');
-        $profile = $request->input('profile');
+        $user = Auth::user();
+        $userData = DB::table('users') -> where('user_id', '=', $user['id']) -> first();
+        $name = $request->input('username');
+        $userData->user_name = $name;
+        
+        $profile = $request->input('bio');
+        $userData->profile = $profile;
 
-        $tag = $request->input('user_tags');
+        $tagsValue = $request->input('usertag');
+        $tags = explode(' ', $tagsValue);
+        sort($tags);
+        $allTags = DB::table('tags')->get()->pluck('name');
+        sort($allTags);
+        $insertTagData = [];
+        $allIndex = 0;
+        foreach($tags as $tag){
+            $isConfirm = false;
+            for(; $allIndex < count($allTags); ++$allIndex;){
+                $cmp = strcmp($allTags[$allIndex], $tag);
+                if($cmp == 0) break;
+                if(0 < $cmp || $allIndex == count($allTags) - 1){
+                    //タグが登録されてない
+                    $data = [
+                        'name' => $tag,
+                    ];
+                    $insertTagData[] = $data;
+                    break;
+                }
+            }
+        }
+        DB::table('player_groups')->insert($insertData);
     }
 }

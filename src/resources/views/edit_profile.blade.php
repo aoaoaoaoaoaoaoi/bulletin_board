@@ -50,7 +50,7 @@
                                         @endforeach
                                         </div>
                                         <div>
-                                            <input class="user-tag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">
+                                            <input class="user-tag" name="usertag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">
                                         </div>
                                     </div>
                                 </td>
