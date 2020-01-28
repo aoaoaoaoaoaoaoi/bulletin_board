@@ -67,5 +67,7 @@ class EditProfileController extends Controller
 
         $name = $request->input('name');
         $profile = $request->input('profile');
+
+        $tag = $request->input('user_tags');
     }
 }
