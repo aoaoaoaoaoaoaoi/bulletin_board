@@ -19,7 +19,7 @@
                 <div class="card-header">{{ __('Edit Profile') }}</div>
 
                     <div class="card-body">
-                    <form method="POST" action="./edit_profile_complete">
+                    <form method="POST" enctype="multipart/form-data" action="./edit_profile_complete">
                     @csrf
                         <table class="profile">
                             <tr>
