@@ -55,28 +55,30 @@ class EditProfileController extends Controller
         $tmp_path = $_FILES['icon-file']['tmp_name'];
         
         // 保存先のパスを設定
-        $upload_path = '/icon-image/';
+        $upload_path = './icon_image/';
         
         if (is_uploaded_file($tmp_path)) {
         // 仮のアップロード場所から保存先にファイルを移動
-            if (move_uploaded_file($tmp_path, $upload_path . $uniq_file_name)) {
+            if (move_uploaded_file($tmp_path, $upload_path.$uniq_file_name)) {
                 // ファイルが読出可能になるようにアクセス権限を変更
                 chmod($upload_path . $uniq_file_name, 0644);
             }
         }
 
-        $user = Auth::user();
-        $userData = DB::table('users') -> where('user_id', '=', $user['id']) -> first();
-
-        $userData->resource = $uniq_file_name;
-
         $name = $request->input('username');
-        $userData->user_name = $name;
-        
         $profile = $request->input('bio');
-        $userData->profile = $profile;
-
-        $userData->save();
+        $user = Auth::user();
+        $userData = DB::table('users') 
+        -> where('id', '=', $user['id']) 
+        -> first()->save();
+        $userData = DB::table('users') 
+                    -> where('id', '=', $user['id']) 
+                    -> first()
+                    -> update([
+                        'user_name' => $name,
+                        'resource' => $uniq_file_name,
+                        'profile' => $profile,
+                    ]);
 
         $tagsValue = $request->input('usertag');
         $tags = explode(' ', $tagsValue);
