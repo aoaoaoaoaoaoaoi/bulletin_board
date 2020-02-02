@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Group;
 use DB;
 use Auth;
+use App\User;
 
 class EditProfileController extends Controller
 {
@@ -68,25 +69,31 @@ class EditProfileController extends Controller
         $name = $request->input('username');
         $profile = $request->input('bio');
         $user = Auth::user();
-        $userData = DB::table('users') 
-        -> where('id', '=', $user['id']) 
-        -> first()->save();
-        $userData = DB::table('users') 
+        $userData = User::where('id', '=', $user['id'])->first();
+        $userData->name = $name;
+        $userData->resource = $uniq_file_name;
+        $userData->profile = $profile;
+        $userData->save();
+        /*$userData = DB::table('users') 
                     -> where('id', '=', $user['id']) 
                     -> first()
                     -> update([
                         'user_name' => $name,
                         'resource' => $uniq_file_name,
                         'profile' => $profile,
-                    ]);
+                    ]);*/
 
         $tagsValue = $request->input('usertag');
-        $tags = explode(' ', $tagsValue);
-        sort($tags);
-        $allTags = DB::table('tags')->get()->pluck('name');
-        sort($allTags);
+        $tagsWithSymbol = explode(' ', $tagsValue);
+        $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
+        //sort($allTags);
         $insertTagData = [];
         $allIndex = 0;
+        $tags=[];
+        foreach($tagsWithSymbol as $tag){
+            $tags[] = ltrim($tag, '#');
+        }
+        sort($tags);
         foreach($tags as $tag){
             $isConfirm = false;
             for(; $allIndex < count($allTags); ++$allIndex){
@@ -102,15 +109,15 @@ class EditProfileController extends Controller
                 }
             }
         }
-        DB::table('tags')->insert($insertData);
+        DB::table('tags')->insert($insertTagData);
 
-        $tagDatas = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id');
-        $userTags = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id');
+        $tagDatas = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id')->toArray();
+        $userTags = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id')->toArray();
         $sameTags = array_intersect($tagDatas, $userTags);
         
         $deleteUserTags = array_diff($sameTags, $userTags);
         $insertUserTags = array_diff($sameTags, $tags);
-        DB::table('user_tags')->where('player_id', '=', $user['id'])->whereIn('tag_id', $deleteUserTags)->delete();
+        DB::table('user_tags')->where('user_id', '=', $user['id'])->whereIn('tag_id', $deleteUserTags)->delete();
         $insertUserTagData=[];
         foreach ($insertUserTags as $insertUserTag){
                 $data=[

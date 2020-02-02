@@ -16,6 +16,7 @@ class CreateUserTagsTable extends Migration
         Schema::create('user_tags', function (Blueprint $table) {
             $table->bigInteger('user_id');
             $table->bigInteger('tag_id');
+            $table->unique(['user_id', 'tag_id']);
         });
     }
 
