@@ -74,14 +74,6 @@ class EditProfileController extends Controller
         $userData->resource = $uniq_file_name;
         $userData->profile = $profile;
         $userData->save();
-        /*$userData = DB::table('users') 
-                    -> where('id', '=', $user['id']) 
-                    -> first()
-                    -> update([
-                        'user_name' => $name,
-                        'resource' => $uniq_file_name,
-                        'profile' => $profile,
-                    ]);*/
 
         $tagsValue = $request->input('usertag');
         $tagsWithSymbol = explode(' ', $tagsValue);
@@ -114,9 +106,10 @@ class EditProfileController extends Controller
         $tagDatas = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id')->toArray();
         $userTags = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id')->toArray();
         $sameTags = array_intersect($tagDatas, $userTags);
-        
+
         $deleteUserTags = array_diff($sameTags, $userTags);
-        $insertUserTags = array_diff($sameTags, $tags);
+        $insertUserTags = array_diff($sameTags, $tagDatas);
+
         DB::table('user_tags')->where('user_id', '=', $user['id'])->whereIn('tag_id', $deleteUserTags)->delete();
         $insertUserTagData=[];
         foreach ($insertUserTags as $insertUserTag){
