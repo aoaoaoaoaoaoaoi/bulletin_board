@@ -25,14 +25,15 @@ class EditProfileController extends Controller
         $userTagIds = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id');
         $userTagDatas = DB::table('tags')->whereIn('id', $userTagIds)->get();
         $userTags = [];
-        $userTagValue = '';
+        $userTagValueWithWhite = '';
         foreach ($userTagDatas as $d){
-            $userTagValue = $userTagValue.' #'.$d->name;
             $userTag=[
                 'name' => '#'.$d->name,
             ];
             $userTags[] = $userTag;
+            $userTagValueWithWhite = $userTagValueWithWhite.'#'.$d->name.' ';
         }
+        $userTagValue = rtrim($userTagValueWithWhite, ' ');
 
         $resoucePath = "../../../icon_image/".$user->resource;
         $data = [

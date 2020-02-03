@@ -25,11 +25,11 @@ function updateValue(e) {
     var userTagBacks = userTagBackParent.children;
   
     //valueの変更
-    var index = 1;
+    var index = 0;
    for( ; index < userTags.length; index++){
      var tag = userTags[index];
-     if(index <= userTagBacks.length){
-        userTagBacks[index-1].innerHTML = tag;
+     if(index < userTagBacks.length){
+        userTagBacks[index].innerHTML = tag;
      }else{
         var newSpan = document.createElement('span');
         newSpan.className = 'user_tag_back';
@@ -42,7 +42,7 @@ function updateValue(e) {
    }
   
    //余分なタグの削除
-   for(var i = index-1; i < userTagBacks.length; ++i){
+   for(var i = index; i < userTagBacks.length; ++i){
       var deleteTag = userTagBacks[i];
       userTagBackParent.removeChild(delteTag);
    }

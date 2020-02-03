@@ -48,10 +48,10 @@
                                         @foreach($data['user_tag'] as $d)
                                             <span class="user_tag_back">{{ $d['name'] }}</span>
                                         @endforeach
-                                        </div>
-                                        <div>
-                                            <input class="user-tag" name="usertag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">
                                         </span>
+                                    </div>
+                                    <div>
+                                        <input class="user-tag" name="usertag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">                                     
                                     </div>
                                 </td>
                             </tr>
