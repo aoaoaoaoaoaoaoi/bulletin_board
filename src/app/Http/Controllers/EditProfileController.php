@@ -64,7 +64,8 @@ class EditProfileController extends Controller
         }
     }
 
-    private function insertTag($tagsValue){
+    private function insertTag($tagsValue)
+    {
         $tagsWithSymbol = explode(' ', $tagsValue);
         $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
         $insertTagData = [];
@@ -90,6 +91,7 @@ class EditProfileController extends Controller
             }
         }
         DB::table('tags')->insert($insertTagData);
+        return $tags;
     }
 
     public function saveProfile(Request $request)
@@ -112,7 +114,7 @@ class EditProfileController extends Controller
         $userData->save();
 
         $tagsValue = $request->input('usertag');
-        self::insertTag($tagsValue);
+        $tags = self::insertTag($tagsValue);
 
         $tagDatas = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id')->toArray();
         $userTags = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id')->toArray();
@@ -131,5 +133,8 @@ class EditProfileController extends Controller
                 $insertUserTagData[] = $data;
         }
         DB::table('user_tags')->insert($insertUserTagData);
+
+        //self::index();
+        //return view('edit_profile', ['data' => $data]);
     }
 }
