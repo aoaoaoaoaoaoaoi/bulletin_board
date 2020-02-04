@@ -25,7 +25,7 @@
                             <tr>
                                 <td>
                                     <div>Icon</div>
-                                    <div><img src="../../../icon_image/icon.png" id="icon-image" onClick="$('#icon-file').click()"></div>
+                                    <div><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()"></div>
                                     <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
                                 </td>
                             </tr>

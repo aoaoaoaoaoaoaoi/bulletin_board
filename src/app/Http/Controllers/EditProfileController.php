@@ -47,12 +47,8 @@ class EditProfileController extends Controller
         return view('edit_profile', ['data' => $data]);
     }
 
-    public function saveProfile(Request $request)
-    {
-        // ファイル名を取得して、ユニークなファイル名に変更
-        $file_name = $_FILES['icon-file']['name'];
-        $uniq_file_name = date("YmdHis") . "_" . $file_name;
-        
+    private function saveIconResouce($uniq_file_name)
+    {       
         // 仮にファイルがアップロードされている場所のパスを取得
         $tmp_path = $_FILES['icon-file']['tmp_name'];
         
@@ -66,20 +62,11 @@ class EditProfileController extends Controller
                 chmod($upload_path . $uniq_file_name, 0644);
             }
         }
+    }
 
-        $name = $request->input('username');
-        $profile = $request->input('bio');
-        $user = Auth::user();
-        $userData = User::where('id', '=', $user['id'])->first();
-        $userData->name = $name;
-        $userData->resource = $uniq_file_name;
-        $userData->profile = $profile;
-        $userData->save();
-
-        $tagsValue = $request->input('usertag');
+    private function insertTag($tagsValue){
         $tagsWithSymbol = explode(' ', $tagsValue);
         $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
-        //sort($allTags);
         $insertTagData = [];
         $allIndex = 0;
         $tags=[];
@@ -103,6 +90,29 @@ class EditProfileController extends Controller
             }
         }
         DB::table('tags')->insert($insertTagData);
+    }
+
+    public function saveProfile(Request $request)
+    {
+        $user = Auth::user();
+        $userData = User::where('id', '=', $user['id'])->first();
+
+        // ファイル名を取得して、ユニークなファイル名に変更
+        $file_name = $_FILES['icon-file']['name'];
+        if($file_name !== "") {            
+            $uniq_file_name = date("YmdHis") . "_" . $file_name;
+            self::saveIconResouce($uniq_file_name);
+            $userData->resource = $uniq_file_name;
+        }
+
+        $name = $request->input('username');
+        $profile = $request->input('bio');
+        $userData->name = $name;
+        $userData->profile = $profile;
+        $userData->save();
+
+        $tagsValue = $request->input('usertag');
+        self::insertTag($tagsValue);
 
         $tagDatas = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id')->toArray();
         $userTags = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id')->toArray();
