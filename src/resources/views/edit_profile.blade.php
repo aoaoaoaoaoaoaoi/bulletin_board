@@ -19,7 +19,7 @@
                 <div class="card-header">{{ __('Edit Profile') }}</div>
 
                     <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="./edit_profile_complete">
+                    <form>
                     @csrf
                         <table class="profile">
                             <tr>
@@ -32,13 +32,13 @@
                             <tr>
                                 <td>
                                     <div>Name</div>
-                                    <div><input type ="text" name="username" value = "{{ $data['name'] }}"></div>
+                                    <div><input type ="text" name="username" id = "username" value = "{{ $data['name'] }}"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div>Bio</div>
-                                    <div><textarea  rows="4" cols="40" class="bio" name="bio" value = "{{ $data['profile'] }}"></textarea></div>
+                                    <div><textarea  rows="4" cols="40" class="bio" name="bio" id = "bio" value = "{{ $data['profile'] }}"></textarea></div>
                                 </td>
                             </tr>
                             <tr>
@@ -59,7 +59,7 @@
 
                             </tr>
                         </table>
-                        <button type="submit" class="edit-profile">
+                        <button type="button" class="edit-profile" onclick="editProfile()">
                                         {{ __('Edit Profile') }}
                         </button>
                     </form>

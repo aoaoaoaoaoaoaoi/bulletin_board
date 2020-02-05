@@ -47,3 +47,40 @@ function updateValue(e) {
       userTagBackParent.removeChild(delteTag);
    }
 }
+
+var editProfile = function(button) {
+
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  var name = document.getElementById("username").innerHTML;
+  var bio = document.getElementById("bio").innerHTML;
+  var tag = document.getElementById("user-tag").innerHTML;
+
+$.ajax({
+    type: 'POST',
+    url :'/edit_profile_do',
+    data:{ 
+      username : name,
+      bio : bio,
+      usertag : tag,
+    }
+  }).fail(function(){
+
+  }).done(function(re){
+    var result = JSON.parse(re);
+    document.getElementById("group-detail-name").innerHTML = result['name'];
+    document.getElementById("group-detail-description").innerHTML = result['description'];
+    $("#group-detail-members").empty();
+    var members = document.getElementById('group-detail-members');
+    var membersList='';
+    result['members'].forEach(member => {
+      var name = member.name;
+      membersList += name + ' , ';
+    });
+    document.getElementById('group-detail-members').innerHTML = membersList;
+  });
+}
