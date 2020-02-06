@@ -19,7 +19,7 @@
                 <div class="card-header">{{ __('Edit Profile') }}</div>
 
                     <div class="card-body">
-                    <form>
+                    <form id = edit_user_data_form>
                     @csrf
                         <table class="profile">
                             <tr>
@@ -59,10 +59,12 @@
 
                             </tr>
                         </table>
-                        <button type="button" class="edit-profile" onclick="editProfile()">
+                        <button type="button" class="edit-profile" onclick="update_user_data()">
                                         {{ __('Edit Profile') }}
                         </button>
                     </form>
+
+                    <iframe name="frametest" style="width:0px;height:0px;border:0px;"></iframe>
                     </div>
                 </div>
                 

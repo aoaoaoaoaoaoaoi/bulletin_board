@@ -30,7 +30,7 @@ Route::post('/join_group_complete', 'JoinGroupController@joinGroup');
 Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
 
 Route::get('/edit_profile', 'EditProfileController@index');
-Route::post('/edit_profile_do', 'EditProfileController@saveProfile');
+Route::post('/edit_profile_complete', 'EditProfileController@saveProfile');
 Route::post('/make_tag', 'EditProfileController@makeTag');
 
 Auth::routes();
