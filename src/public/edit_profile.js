@@ -55,11 +55,7 @@ function update_user_data(){
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-
-  /*var name = document.getElementById("username").innerHTML;
-  var bio = document.getElementById("bio").innerHTML;
-  var tag = document.getElementById("user-tag").innerHTML;*/
-
+  
 $.ajax({
     type: 'POST',
     url : '/edit_profile_complete',
