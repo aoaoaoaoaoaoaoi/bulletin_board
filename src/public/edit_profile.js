@@ -65,6 +65,6 @@ $.ajax({
   }).fail(function(){
 
   }).done(function(re){
-    console.log("Success");
+    alert('complete!! yeah!')
   });
 }
