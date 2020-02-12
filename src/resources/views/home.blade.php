@@ -69,6 +69,13 @@
                                     </a>
                                 </th>
                             </tr>
+                            <tr>
+                                <th>
+                                    <a id="make-thread" href="./make_thread">
+                                            Make a Thread
+                                    </a>
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>

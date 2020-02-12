@@ -25,9 +25,12 @@ Route::get('/login', function () {
 
 Route::get('/make_group', 'MakeGroupController@index');
 Route::post('/make_group_complete', 'MakeGroupController@makeGroup');
+
 Route::get('/join_group', 'JoinGroupController@index');
 Route::post('/join_group_complete', 'JoinGroupController@joinGroup');
 Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
+
+Route::get('/make_thread', 'MakeThreadController@index');
 
 Route::get('/edit_profile', 'EditProfileController@index');
 Route::post('/edit_profile_complete', 'EditProfileController@saveProfile');
