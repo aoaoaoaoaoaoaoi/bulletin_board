@@ -26,6 +26,14 @@
                                 <input type="text" required>
                             </div>
 
+                                <div>タグ
+                                    <span id="tag-backs">
+                                    </span>
+                                </div>
+                                <div>
+                                    <input class="tag" name="tag" id="tag" type="text">                                     
+                                </div>
+
                             <div>
                                 スレッド概要
                                 <inpu type="textarea">
