@@ -2,6 +2,7 @@
 
 @section('jssheet')
 <head>
+<script src="{{ asset('edit_tag.js') }}" defer></script>
 <script src="{{ asset('edit_profile.js') }}" defer></script>
 </head>
 @endsection

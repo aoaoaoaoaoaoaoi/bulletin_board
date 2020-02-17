@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('jssheet')
+<head>
+<script src="{{ asset('edit_profile.js') }}" defer></script>
+</head>
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -26,13 +32,13 @@
                                 <input type="text" required>
                             </div>
 
-                                <div>タグ
-                                    <span id="tag-backs">
-                                    </span>
-                                </div>
-                                <div>
-                                    <input class="tag" name="tag" id="tag" type="text">                                     
-                                </div>
+                            <div>タグ
+                                <span id="user-tag-backs">
+                                </span>
+                            </div>
+                            <div>
+                                <input class="user-tag" name="usertag" id="user-tag" type="text">                                    
+                            </div>
 
                             <div>
                                 スレッド概要
