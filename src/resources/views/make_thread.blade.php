@@ -15,7 +15,7 @@
                 <div class="card-header">{{ __('Make Thread') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="./make_group_complete">
+                        <form method="POST" action="./make_thread">
                             @csrf
 
                             <div>
