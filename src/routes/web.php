@@ -30,7 +30,7 @@ Route::get('/join_group', 'JoinGroupController@index');
 Route::post('/join_group_complete', 'JoinGroupController@joinGroup');
 Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
 
-Route::get('/make_thread', 'MakeThreadController@index');
+Route::get('/make_thread_index', 'MakeThreadController@index');
 Route::post('/make_thread', 'MakeThreadController@makeThread');
 
 Route::get('/edit_profile', 'EditProfileController@index');

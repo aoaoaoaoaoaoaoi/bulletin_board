@@ -2,7 +2,12 @@
 
 @section('jssheet')
 <head>
-<script src="{{ asset('edit_profile.js') }}" defer></script>
+<script src="{{ asset('edit_tag.js') }}" defer></script>
+</head>
+@endsection
+@section('style')
+<head>
+<link href="{{ asset('make_thread.css') }}" rel="stylesheet">
 </head>
 @endsection
 
@@ -17,39 +22,57 @@
                     <div class="card-body">
                         <form method="POST" action="./make_thread">
                             @csrf
+                            <table class="makeThreadTable">
+                                <tr>
+                                    <td>
+                                        グループ
+                                    </td>
+                                    <td>
+                                        <select name="example" required>
+                                            <option value="">グル－プを選択してください</option>
+                                            @foreach($joinGroup as $group)
+                                            <option value="選択肢1">{{ $group['name'] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
 
-                            <div>
-                            <select name="example" required>
-                                <option value="">グル－プを選択してください</option>
-                                @foreach($joinGroup as $group)
-                                <option value="選択肢1">{{ $group['name'] }}</option>
-                                @endforeach
-                            </select>
-                            </div>
+                                <tr>
+                                    <td>
+                                        スレッドタイトル
+                                    </td>
+                                    <td>
+                                        <input type="text" required name="title">
+                                    </td>
+                                </tr>
 
-                            <div>
-                                スレッドタイトル
-                                <input type="text" required>
-                            </div>
+                                <tr>
+                                    <td>
+                                        タグ
+                                    </td>
+                                    <td>
+                                        <span id="user-tag-backs"></span>
+                                        <input class="user-tag" name="usertag" id="user-tag" type="text">                                    
+                                    </td>
+                                </tr>
 
-                            <div>タグ
-                                <span id="user-tag-backs">
-                                </span>
-                            </div>
-                            <div>
-                                <input class="user-tag" name="usertag" id="user-tag" type="text">                                    
-                            </div>
+                                <tr>
+                                    <td>
+                                        スレッド概要
+                                    </td>
+                                    <td>
+                                        <textarea rows="4" cols="40" class="threadOverviewTextArea" type="textarea" name="threadOverview"></textarea>
+                                    </td>
+                                </tr>
 
-                            <div>
-                                スレッド概要
-                                <inpu type="textarea">
-                            </div>
-
-                            <div>
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                            </div>
+                                <tr>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Register') }}
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
                     </div>
 

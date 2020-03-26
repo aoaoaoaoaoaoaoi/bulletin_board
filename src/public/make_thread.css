@@ -1,0 +1,30 @@
+div.tag-area{
+    width: 200px;
+    height: 300px;
+    overflow: scroll;
+}
+
+textarea.threadOverviewTextArea{
+    resize: both;
+}
+
+span.user_tag_back{
+    z-index: 10;
+    position: relative;
+    left: 3px;
+    top: 25px;
+    color:transparent;
+    background-color: #D9EAFE;
+}
+
+input.user-tag{
+    z-index: 20;
+    position: relative;
+    background-color:transparent;
+    width:100%;
+}
+
+table.makeThreadTable{
+    border-collapse: separate;
+    border-spacing: 5x 10px;
+}

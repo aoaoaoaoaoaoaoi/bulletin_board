@@ -17,7 +17,7 @@
                             ユーザーネーム
                         </th>
                         <td>
-                            <input type ="text" name="username" value = ""><br />
+                            <input type ="text" name="username" value = ""><br/>
                         </td>
                     </tr>
                     <tr>
@@ -25,7 +25,7 @@
                             パスワード
                         </th>
                         <td>
-                            <input type = "text" name="pass" value = ""><br />
+                            <input type = "text" name="pass" value = ""><br/>
                         </td>
                     </tr>
                     <tr>

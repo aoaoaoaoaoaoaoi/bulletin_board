@@ -7,25 +7,26 @@ use App\Group;
 use DB;
 use Auth;
 
-class JoinGroupController extends Controller
+class MakeThreadController extends Controller
 {
     public function index()
     {
-        $groups = DB::table('groups')->get();
         $user = Auth::user();
-        $userJoinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();
+        $userJoinGroupIds = DB::table('player_groups')->where('player_id', '=', $user['id'])->get()->pluck('id');
+        $userJoinGroupInfo = DB::table('groups')->whereIn('id', $userJoinGroupIds)->get();
         $data=[];
-        foreach ($groups as $group)
+        foreach ($userJoinGroupInfo as $groupInfo)
         {
-            $isJoin = $userJoinGroups->where('group_id', '=', $group->id)->first();
             $groupData=[
-                'id' => $group->id,
-                'name' => $group->name,
-                'description' => $group->description,
-                'isJoin' => $isJoin !== null,
+                'name' => $groupInfo->name,
             ];
             $data[] = $groupData;
         }
-        return view('make_thread', ['data' => $data]);
+        return view('make_thread_index', ['joinGroup' => $data]);
+    }
+
+    public function makeThread()
+    {
+
     }
 }

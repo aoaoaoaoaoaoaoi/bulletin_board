@@ -71,7 +71,7 @@
                             </tr>
                             <tr>
                                 <th>
-                                    <a id="make-thread" href="./make_thread">
+                                    <a id="make-thread-index" href="./make_thread_index">
                                             Make a Thread
                                     </a>
                                 </th>
