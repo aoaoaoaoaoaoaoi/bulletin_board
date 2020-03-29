@@ -3,6 +3,7 @@
 @section('jssheet')
 <head>
 <script src="{{ asset('edit_tag.js') }}" defer></script>
+<script src="{{ asset('make_thread.js') }}" defer></script>
 </head>
 @endsection
 @section('style')
@@ -17,7 +18,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Make Thread') }}</div>
+                <div class="card-header">{{ __('スレッドの作成') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="./make_thread">
@@ -67,8 +68,36 @@
 
                                 <tr>
                                     <td>
+                                        掲載期間
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="period" value="notSpecifyPeriod" checked="checked">指定なし
+                                        <input type="radio" name="period" value="specifyPeriod">指定あり
+                                    </td>
+                                </tr>
+
+                                <tr class="periodSetting">
+                                    <td>
+                                       掲載開始期間
+                                    </td>
+                                    <td>
+                                        <input type="datetime-local" name="startAt">
+                                    </td>
+                                </tr>
+
+                                <tr class="periodSetting">
+                                    <td>
+                                       掲載終了期間
+                                    </td>
+                                    <td>
+                                        <input type="datetime-local" name="endAt">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Register') }}
+                                            {{ __('登録') }}
                                         </button>
                                     </td>
                                 </tr>

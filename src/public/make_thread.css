@@ -28,3 +28,7 @@ table.makeThreadTable{
     border-collapse: separate;
     border-spacing: 5x 10px;
 }
+
+tr.periodSetting{
+    display:none;
+}

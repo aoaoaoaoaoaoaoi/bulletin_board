@@ -1,30 +1,16 @@
-var showInfo = function(button) {
-
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-
-$.ajax({
-    type: 'POST',
-    url :'/show_group_info',
-    data:{ 
-      key:button.value,
-    }
-  }).fail(function(){
-
-  }).done(function(re){
-    var result = JSON.parse(re);
-    document.getElementById("group-detail-name").innerHTML = result['name'];
-    document.getElementById("group-detail-description").innerHTML = result['description'];
-    $("#group-detail-members").empty();
-    var members = document.getElementById('group-detail-members');
-    var membersList='';
-    result['members'].forEach(member => {
-      var name = member.name;
-      membersList += name + ' , ';
+var periodSettingRadioButton = document.getElementsByName('period');
+periodSettingRadioButton.forEach(function(e) {
+    e.addEventListener("click", function() {   
+      var currentValue = e.value; 
+      var priodSettings = document.getElementsByClassName('periodSetting');
+      if (currentValue == "specifyPeriod"){
+        Object.keys(priodSettings).forEach(function( key ) {
+          this[key].style.display = 'table-row';
+        }, priodSettings);
+      } else{
+        Object.keys(priodSettings).forEach(function( key ) {
+          this[key].style.display = 'none';
+        }, priodSettings);
+      }
     });
-    document.getElementById('group-detail-members').innerHTML = membersList;
-  });
-}
+});
