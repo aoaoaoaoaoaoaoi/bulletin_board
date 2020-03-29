@@ -28,7 +28,7 @@
                                         グループ
                                     </td>
                                     <td>
-                                        <select name="example" required>
+                                        <select name="group" required>
                                             <option value="">グル－プを選択してください</option>
                                             @foreach($joinGroup as $group)
                                             <option value="選択肢1">{{ $group['name'] }}</option>

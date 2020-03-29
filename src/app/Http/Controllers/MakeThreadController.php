@@ -25,8 +25,12 @@ class MakeThreadController extends Controller
         return view('make_thread_index', ['joinGroup' => $data]);
     }
 
-    public function makeThread()
+    public function makeThread(Request $request)
     {
-
+        $title = $request->input('title');
+        $group = $request->input('group');
+        $threadTags = $request->input('usertag');
+        $threadOverview = $request->input('threadOverview');
+        
     }
 }
