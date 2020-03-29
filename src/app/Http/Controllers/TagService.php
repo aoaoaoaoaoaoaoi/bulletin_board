@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Group;
+use DB;
+use Auth;
+use App\User;
+
+class TagService
+{
+    public function insertTag($tagsValue)
+    {
+        $tagsWithSymbol = explode(' ', $tagsValue);
+        $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
+        $insertTagData = [];
+        $allIndex = 0;
+        $tags=[];
+        foreach($tagsWithSymbol as $tag){
+            $tags[] = ltrim($tag, '#');
+        }
+        sort($tags);
+        foreach($tags as $tag){
+            $isConfirm = false;
+            for(; $allIndex < count($allTags); ++$allIndex){
+                $cmp = strcmp($allTags[$allIndex], $tag);
+                if($cmp == 0) break;
+                if(0 < $cmp || $allIndex == count($allTags) - 1){
+                    //タグが登録されてない
+                    $data = [
+                        'name' => $tag,
+                    ];
+                    $insertTagData[] = $data;
+                    break;
+                }
+            }
+        }
+        DB::table('tags')->insert($insertTagData);
+        return $tags;
+    }
+}
