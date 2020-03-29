@@ -17,10 +17,10 @@ class CreateThreadTagsTable extends Migration
             $table->bigInteger('thread_id');
             $table->bigInteger('tag_id');
 
-            $table->unique(['thread_id', 'tag_id']);
-            
             $table->foreign('thread_id')->references('id')->on('threads');
             $table->foreign('tag_id')->references('id')->on('tags');
+
+            $table->unique(['thread_id', 'tag_id']);
         });
     }
 
