@@ -19,8 +19,8 @@ class CreateThreadsTable extends Migration
             $table->bigInteger('group_id')->unsigned();
             $table->string('title');
             $table->text('overview');
-            $table->dateTime('start_at');
-            $table->dateTime('end_at');
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
 
             $table->foreign('created_user_id')->references('id')->on('users');
             $table->foreign('group_id')->references('id')->on('groups');
