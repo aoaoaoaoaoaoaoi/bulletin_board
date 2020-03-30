@@ -32,7 +32,7 @@
                                         <select name="group" required>
                                             <option value="">グル－プを選択してください</option>
                                             @foreach($joinGroup as $group)
-                                            <option value="選択肢1">{{ $group['name'] }}</option>
+                                            <option value={{ $group['id'] }}>{{ $group['name'] }}</option>
                                             @endforeach
                                         </select>
                                     </td>

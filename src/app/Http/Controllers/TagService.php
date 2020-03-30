@@ -10,6 +10,17 @@ use App\User;
 
 class TagService
 {
+    final protected function __construct() {}
+
+    final public static function getInstance()
+    {
+        static $instance;
+        if (!$instance) {
+            $instance = new static;
+        }
+        return $instance;
+    }
+
     public function insertTag($tagsValue)
     {
         $tagsWithSymbol = explode(' ', $tagsValue);

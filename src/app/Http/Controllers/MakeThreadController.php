@@ -20,6 +20,7 @@ class MakeThreadController extends Controller
         {
             $groupData=[
                 'name' => $groupInfo->name,
+                'id' => $groupInfo->id,
             ];
             $data[] = $groupData;
         }
@@ -41,7 +42,7 @@ class MakeThreadController extends Controller
             $threadEndAt = $request->input('endAt');
         }
 
-        DB::table('groups')->insert([
+        $insertResult = DB::table('threads')->insert([
             'created_user_id' => $user->id,
             'group_id' => $group,
             'title' => $title,
@@ -50,13 +51,24 @@ class MakeThreadController extends Controller
             'end_at' => $endAt,
         ]);
 
-        $tags = TagService::insertTag($threadTags);
+        $tags = TagService::getInstance()->insertTag($threadTags);
+        
         foreach($tags as $tag){
-            DB::table('tags')->insert([
-                'name' => $tag,
-            ]);
+            'thread_id' => $insertResult->id,
+            'tag_id' => $tag->id,
         }
+        DB::table('thread_tags')->insert([
+            
+        ]);
 
-        return view('thread_index');
+        $data=[
+          'title' => $title,
+          'createdUser' => $user->name,
+          'overview' => $overview,
+          'tags' => $tags,
+          'endAt' => $endAt,   
+        ];
+
+        return view('thread_index', ['data' => $data]);
     }
 }
