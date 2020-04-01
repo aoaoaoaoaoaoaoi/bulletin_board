@@ -50,16 +50,19 @@ class MakeThreadController extends Controller
             'start_at' => $startAt,
             'end_at' => $endAt,
         ]);
+        $insertId = DB::table('threads')->orderBy('id','Desc')->first();
 
         $tags = TagService::getInstance()->insertTag($threadTags);
-        
-        foreach($tags as $tag){
-            'thread_id' => $insertResult->id,
-            'tag_id' => $tag->id,
+        $tagIds = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id');
+        $insertData = [];
+        foreach($tagIds as $tagId){
+            $data = [
+                'thread_id' => $insertId->id,
+                'tag_id' => $tagId,
+            ];
+            $insertData[] = $data;
         }
-        DB::table('thread_tags')->insert([
-            
-        ]);
+        DB::table('thread_tags')->insert($insertData);
 
         $data=[
           'title' => $title,
