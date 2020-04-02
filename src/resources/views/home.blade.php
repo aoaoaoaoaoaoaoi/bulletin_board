@@ -76,6 +76,15 @@
                                     </a>
                                 </th>
                             </tr>
+                            <tr>
+                                <th>
+                                    @foreach($data['threads'] as $thread)
+                                        <a id="thread-index" href="./thread_index?threadId={{$thread->id}}">
+                                               {{$thread->title}} 
+                                        </a>
+                                    @endforeach
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>

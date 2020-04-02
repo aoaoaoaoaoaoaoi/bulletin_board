@@ -37,10 +37,12 @@ class HomeController extends Controller
             $groups[] = $g;
         }
         
+        $threads = DB::table('threads')->get()->toArray();
         $data = [
             'name' => $user->name,
             'profile' => $user ->profile,
             'groups' => $groups,
+            'threads' => $threads,
         ];
         return view('home', ['data' => $data]);
     }
