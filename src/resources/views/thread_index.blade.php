@@ -20,28 +20,39 @@
             <div class="card">
                 <div class="card-header">
                     <div>
-                        {{ $data['title'] }}
+                        <h1>{{ $data['title'] }}</h1>
                     </div>
                     <div>
-                        {{ $data['createdUser'] }}
-                    </div>
-                    <div>
-                        {{ $data['overview'] }}
+                        {{ $data['endAt'] }}まで
                     </div>
                     <div>
                         @foreach($data['tags'] as $tag)
                             {{ $tag }}
                         @endforeach
                     </div>
-                    <div>
-                        書き込み締め切り
-                        {{ $data['endAt'] }}
-                    </div>
                 </div>
 
                     <div class="card-body">
-                        
-                    </div>
+                        <table>
+                            <tr>
+                                <th>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        {{ $data['createdUser'] }}
+                                    </td>
+                                </th>
+                                <th>
+                                     {{ $data['overview'] }}
+                                </th>
+                            </tr>
+                        </table>
+                    <div>
+                    <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage"></textarea>
+                    <button type='button' class='sendMessage'>send</button>
+                      
+                </div>
 
             </div>
         </div>
