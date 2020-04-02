@@ -79,7 +79,7 @@
                             <tr>
                                 <th>
                                     @foreach($data['threads'] as $thread)
-                                        <a id="thread-index" href="./thread_index?threadId={{$thread->id}}">
+                                        <a id="thread-index" href="./thread?threadId={{$thread->id}}">
                                                {{$thread->title}} 
                                         </a>
                                     @endforeach
