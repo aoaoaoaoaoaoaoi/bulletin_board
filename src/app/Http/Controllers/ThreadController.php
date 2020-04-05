@@ -24,6 +24,21 @@ class ThreadController extends Controller
         foreach($tags as $tag){
             $tagName[]=$tag->name;
         }
+
+        $currentMessages = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','asc')->get();
+        $messages=[];
+        foreach($currentMessages as $message){
+            $user = User::where('id','=',$message['user_id'])->first();
+            $userName = $user['name'];
+            $message=[
+                'user_name' => $userName,
+                'thread_order' => $message['thread_order'],
+                'message' => $message['message'],
+                'posted_time' => $message['posted_time'],
+            ];
+            $messages[] = $message;
+        }
+
         $data=[
             'title' => $thread->title,
             'createdUser' => $createdUser->name,
@@ -31,6 +46,7 @@ class ThreadController extends Controller
             'tags' => $tagName,
             'endAt' => $thread->end_at, 
             'threadId' => $threadId,  
+            'message' => $messages,
         ];
         return view('thread_index', ['data' => $data]);
     }
@@ -43,10 +59,11 @@ class ThreadController extends Controller
         
         //TODO:ロック必要
         $currentLastMessage = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first();
+        $nextthreadOrder = $currentLastMessage == null ? 1 : $currentLastMessage['thread_order']+1;
 
         ThreadMessage::insert([
             'thread_id' => $threadId,
-            'thread_order' => $currentLastMessage['thread_order']+1,
+            'thread_order' => $nextthreadOrder,
             'user_id' => $user->id,
             'message' => $message,
             'posted_time' => Carbon::now(),

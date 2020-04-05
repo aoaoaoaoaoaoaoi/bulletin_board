@@ -3,7 +3,10 @@ var sendMessage = function(button) {
   var threadId = param.replace("?threadId=", "");
   console.log(threadId);
   var message = document.getElementById("messageText").value;
-
+  if(message == ""){
+    return;
+  }
+  
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

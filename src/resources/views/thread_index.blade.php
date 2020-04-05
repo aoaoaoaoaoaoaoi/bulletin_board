@@ -49,6 +49,22 @@
                                      {{ $data['overview'] }}
                                 </th>
                             </tr>
+                            @foreach($data['message'] as $message)
+                            <tr>
+                                <th>
+                                    <td>
+                                        {{ $message['thread_order'] }}
+                                    </td>
+                                    <td>
+                                        {{ $message['user_name'] }}
+                                        {{ $message['posted_time'] }}
+                                    </td>
+                                </th>
+                                <th>
+                                     {{ $message['message'] }}
+                                </th>
+                            </tr>
+                            @endforeach
                         </table>
                     <div>
                     <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage" id = "messageText"></textarea>
