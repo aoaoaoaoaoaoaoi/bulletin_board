@@ -2,13 +2,13 @@
 
 @section('jssheet')
 <head>
-<script src="{{ asset('edit_tag.js') }}" defer></script>
+<!-- <script src="{{ asset('edit_tag.js') }}" defer></script> -->
 <script src="{{ asset('thread.js') }}" defer></script>
 </head>
 @endsection
 @section('style')
 <head>
-<link href="{{ asset('thread.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('thread.css') }}" rel="stylesheet"> -->
 </head>
 @endsection
 

@@ -9,6 +9,7 @@ use Auth;
 use \App\Http\Controllers\TagService;
 use App\User;
 use App\ThreadMessage;
+use Carbon\Carbon;
 
 class ThreadController extends Controller
 {
@@ -37,15 +38,15 @@ class ThreadController extends Controller
     public function sendMessage(Request $request)
     {
         $user = Auth::user();
-        $threadId = $request->input('message');
+        $threadId = $request->input('threadId');
         $message = $request->input('message');
         
         //TODO:ロック必要
-        $currentMaxOrder = ThereadMessages::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first()->thread_order;
+        $currentLastMessage = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first();
 
-        ThreadMessages::insert([
+        ThreadMessage::insert([
             'thread_id' => $threadId,
-            'thread_order' => $currentMaxOrder+1,
+            'thread_order' => $currentLastMessage['thread_order']+1,
             'user_id' => $user->id,
             'message' => $message,
             'posted_time' => Carbon::now(),

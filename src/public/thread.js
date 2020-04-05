@@ -1,7 +1,8 @@
 var sendMessage = function(button) {
-  
+  var param = location.search;
+  var threadId = param.replace("?threadId=", "");
+  console.log(threadId);
   var message = document.getElementById("messageText").value;
-  var threadId = <?php echo json_encode($data['thread_id']); ?>;
 
   $.ajaxSetup({
     headers: {
@@ -18,7 +19,7 @@ var sendMessage = function(button) {
       }
     }).fail(function(){
 
-    }).done(function(re){
-      var result = JSON.parse(re);
-    }
+    }).done(function(){
+        location.reload();
+    });
 }

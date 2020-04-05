@@ -16,7 +16,7 @@ class CreateThreadMessagesTable extends Migration
         Schema::create('thread_messages', function (Blueprint $table) {
             $table->bigInteger('thread_id');
             $table->integer('thread_order');
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->text('message');
             $table->dateTime('posted_time');
 
