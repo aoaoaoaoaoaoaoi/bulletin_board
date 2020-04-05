@@ -32,7 +32,9 @@ Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
 
 Route::get('/make_thread_index', 'MakeThreadController@index');
 Route::post('/make_thread', 'MakeThreadController@makeThread');
+
 Route::get('/thread', 'ThreadController@index');
+Route::post('/send_message', 'ThreadController@sendMessage');
 
 Route::get('/edit_profile', 'EditProfileController@index');
 Route::post('/edit_profile_complete', 'EditProfileController@saveProfile');

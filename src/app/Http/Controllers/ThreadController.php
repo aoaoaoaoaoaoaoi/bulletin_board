@@ -8,6 +8,7 @@ use DB;
 use Auth;
 use \App\Http\Controllers\TagService;
 use App\User;
+use App\ThreadMessage;
 
 class ThreadController extends Controller
 {
@@ -27,8 +28,27 @@ class ThreadController extends Controller
             'createdUser' => $createdUser->name,
             'overview' => $thread->overview,
             'tags' => $tagName,
-            'endAt' => $thread->end_at,   
+            'endAt' => $thread->end_at, 
+            'threadId' => $threadId,  
         ];
         return view('thread_index', ['data' => $data]);
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+        $threadId = $request->input('message');
+        $message = $request->input('message');
+        
+        //TODO:ロック必要
+        $currentMaxOrder = ThereadMessages::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first()->thread_order;
+
+        ThreadMessages::insert([
+            'thread_id' => $threadId,
+            'thread_order' => $currentMaxOrder+1,
+            'user_id' => $user->id,
+            'message' => $message,
+            'posted_time' => Carbon::now(),
+        ]);
     }
 }

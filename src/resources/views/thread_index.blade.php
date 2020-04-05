@@ -23,7 +23,9 @@
                         <h1>{{ $data['title'] }}</h1>
                     </div>
                     <div>
-                        {{ $data['endAt'] }}まで
+                        @if($data['endAt'] != "")
+                            {{ $data['endAt'] }}まで
+                        @endif
                     </div>
                     <div>
                         @foreach($data['tags'] as $tag)
@@ -49,8 +51,8 @@
                             </tr>
                         </table>
                     <div>
-                    <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage"></textarea>
-                    <button type='button' class='sendMessage'>send</button>
+                    <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage" id = "messageText"></textarea>
+                    <button type='button' class='sendMessage' onclick="sendMessage(this)">send</button>
                       
                 </div>
 
