@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Group;
 use DB;
 use Auth;
-use \App\Http\Controllers\TagService;
 use App\User;
 use App\ThreadMessage;
 use Carbon\Carbon;
