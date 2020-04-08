@@ -20,8 +20,14 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
+            div.fish-body {
+                position: absolute;
+                right: 100px;
+                top: 100px;
+                width: 50px;
+                height: 80px;
+                background: rgb(246, 156, 85);
+                border-radius: 50%;
             }
 
             .flex-center {
@@ -81,6 +87,8 @@
 
             <div class="content">
                 <div id = "fish">
+                    <div id = "fish-body">
+                    </div>
                 <div>
             </div>
         </div>
