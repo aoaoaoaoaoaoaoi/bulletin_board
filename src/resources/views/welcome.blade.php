@@ -16,18 +16,72 @@
                 color: #2080C0;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
-                margin: 0;
+                /*height: 100vh;
+                margin: 0;*/
             }
 
-            div.fish-body {
+            div.fish{
                 position: absolute;
                 right: 100px;
                 top: 100px;
-                width: 50px;
-                height: 80px;
+            }
+
+            div.fish-body {
+                width: 100px;
+                height: 100px;
                 background: rgb(246, 156, 85);
+                border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+                transform: rotate( -45deg );
+            }
+
+            div.fish-tail {
+                position: relative;
+                right: -40px;
+                top: 85px;
+                border-top: 35px solid transparent;
+                border-right: 40px solid #f6da69;
+                border-bottom: 35px solid transparent;
+            }
+
+            div.fish-white-eye {
+                position: relative;
+                top: -63px;
+                width: 17px;
+                height: 17px;
+                background: #FFFFFF;
                 border-radius: 50%;
+            }
+
+            div.fish-black-eye {
+                position: relative;
+                right: -3px;
+                top: 3px;
+                width: 10px;
+                height: 10px;
+                background: #000000;
+                border-radius: 50%;
+            }
+
+             div.fish-head-gills {
+                position: relative;
+                right: 50px;
+                top: -77px;
+                border-top: 10px solid transparent;
+                border-right: 15px solid #f6da69;
+                border-bottom: 10px solid transparent;
+                height: 10px;
+            }
+            
+            div.fish-dorsal-fin{
+                position: relative;
+                top: -140px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 25px 20px 15px;
+                border-color: transparent transparent #f6da69 transparent;
+                right: -45px;
+                transform: rotate(7deg);
             }
 
             .flex-center {
@@ -86,8 +140,21 @@
             @endif
 
             <div class="content">
-                <div id = "fish">
-                    <div id = "fish-body">
+                <div class = "fish">
+                    <div class = "fish-tail">
+                    </div>
+                    <div class = "fish-dorsal-fin">
+                    </div>
+                    <div class = "fish-body">
+                    </div>
+                    <div class = "fish-head">
+                        <div class = "fish-white-eye">
+                            <div class = "fish-black-eye">
+                            </div>
+                        </div>
+                        <div class = "fish-head-gills">
+
+                        </div>
                     </div>
                 <div>
             </div>
