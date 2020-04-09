@@ -156,6 +156,13 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .link:hover{
+                color: #6fb5e3;
+	            text-shadow: 0px 2px 10px rgba(111, 181, 227, 0.8),
+                0px 5px 50px rgba(111, 181, 227, 0.8),
+                0px 8px 80px rgba(111, 181, 227, 0.6),
+                0px 8px 120px rgba(111, 181, 227, 0.6);
+            }
 
             .m-b-md {
                 margin-bottom: 30px;
@@ -167,12 +174,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">ホーム</a>
+                        <a class = "link" href="{{ url('/home') }}">ホーム</a>
                     @else
-                        <a href="{{ route('login') }}">ログイン</a>
+                        <a class = "link" href="{{ route('login') }}">ログイン</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">アカウント作成</a>
+                            <a class = "link" href="{{ route('register') }}">アカウント作成</a>
                         @endif
                     @endauth
                 </div>
