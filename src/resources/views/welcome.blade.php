@@ -24,6 +24,21 @@
                 position: absolute;
                 right: 100px;
                 top: 100px;
+                /*animation: move 10s ease 0s infinite alternate none running;*/
+            }
+
+            @keyframes move {
+                0% {
+                    transform: translateX(300px);
+                }
+
+                50% {
+                    transform: translateY(300px);
+                }
+
+                100% {
+                    transform: translateX(10px);
+                }
             }
 
             div.fish-body {
