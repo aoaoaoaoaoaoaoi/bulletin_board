@@ -37,7 +37,7 @@
             div.fish-tail {
                 position: relative;
                 right: -40px;
-                top: 85px;
+                top: 105px;
                 border-top: 35px solid transparent;
                 border-right: 40px solid #f6da69;
                 border-bottom: 35px solid transparent;
@@ -74,7 +74,7 @@
             
             div.fish-dorsal-fin{
                 position: relative;
-                top: -140px;
+                top: 24px;
                 width: 0;
                 height: 0;
                 border-style: solid;
