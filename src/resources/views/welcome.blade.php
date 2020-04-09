@@ -34,10 +34,10 @@
                 transform: rotate( -45deg );
             }
 
-            div.fish-tail {
+            div.fish-tail-fin {
                 position: relative;
                 right: -40px;
-                top: 105px;
+                top: 130px;
                 border-top: 35px solid transparent;
                 border-right: 40px solid #f6da69;
                 border-bottom: 35px solid transparent;
@@ -62,7 +62,7 @@
                 border-radius: 50%;
             }
 
-             div.fish-head-gills {
+             div.fish-pectoral-fin {
                 position: relative;
                 right: 50px;
                 top: -77px;
@@ -74,14 +74,38 @@
             
             div.fish-dorsal-fin{
                 position: relative;
-                top: 24px;
+                top: 49px;
                 width: 0;
                 height: 0;
                 border-style: solid;
                 border-width: 0 25px 20px 15px;
                 border-color: transparent transparent #f6da69 transparent;
                 right: -45px;
-                transform: rotate(7deg);
+                transform: rotate(8deg);
+            }
+
+            div.fish-pelvic-fin{
+                position: relative;
+                top: 102px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 10px 10px 0 17px;
+                border-color: #f6da69 transparent transparent transparent;
+                right: -20px;
+                transform: rotate(10deg);
+            }
+
+            div.fish-anal-fin{
+                position: relative;
+                top: 84px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 15px 20px 0 25px;
+                border-color: #f6da69 transparent transparent transparent;
+                right: -65px;
+                transform: rotate(-20deg);
             }
 
             .flex-center {
@@ -141,9 +165,13 @@
 
             <div class="content">
                 <div class = "fish">
-                    <div class = "fish-tail">
+                    <div class = "fish-tail-fin">
                     </div>
                     <div class = "fish-dorsal-fin">
+                    </div>
+                    <div class = "fish-pelvic-fin">
+                    </div>
+                    <div class = "fish-anal-fin">
                     </div>
                     <div class = "fish-body">
                     </div>
@@ -152,8 +180,7 @@
                             <div class = "fish-black-eye">
                             </div>
                         </div>
-                        <div class = "fish-head-gills">
-
+                        <div class = "fish-pectoral-fin">
                         </div>
                     </div>
                 <div>
