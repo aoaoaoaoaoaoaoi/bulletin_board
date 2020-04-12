@@ -121,6 +121,74 @@
                 transform: rotate(-20deg);
             }
 
+            .bubbles {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+            }
+            
+            .bubble {
+                position: absolute;
+                bottom: 0;
+                width: 40px;
+                height: 40px;
+                overflow: hidden;
+                background-color: transparent;
+                border: 1px solid #fff;
+                border-radius: 50%;
+                animation: bubble 10s ease-in infinite;
+            }
+            
+            .bubble:nth-child(1) {
+                width: 20px;
+                height: 20px;
+                left: 30%;
+                animation-duration: 6s;
+            }
+            
+            .bubble:nth-child(2) {
+                left: 20%;
+                animation-duration: 3.5s;
+            }
+            
+            .bubble:nth-child(3) {
+                width: 30px;
+                height: 30px;
+                left: 30%;
+                animation-duration: 7s;
+            }
+            
+            .bubble:nth-child(4) {
+                width: 50px;
+                height: 50px;
+                left: 67%;
+                animation-duration: 6s;
+            }
+            
+            .bubble:nth-child(5) {
+                width: 20px;
+                height: 20px;
+                left: 70%;
+                animation-duration: 4.5s;
+            }
+            
+            @keyframes bubble {
+                0% {
+                    bottom: -625px;
+                    transform: translateX(0);
+                }
+                50% {
+                    transform: translateX(100px);
+                }
+                100% {
+                    bottom: 25px;
+                }
+            }
+
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -203,7 +271,14 @@
                         <div class = "fish-pectoral-fin">
                         </div>
                     </div>
-                <div>
+                </div>
+                <div class="bubbles">
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                </div>
             </div>
         </div>
     </body>
