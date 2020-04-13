@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ja">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,8 @@
                 color: #2080C0;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
+                width: 100%;
+                height: 100vh;
             }
 
             div.fish{
@@ -125,7 +127,6 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                z-index: 0;
                 overflow: hidden;
                 top: 0;
                 left: 0;
@@ -178,18 +179,20 @@
             
             @keyframes bubble {
                 0% {
-                    bottom: -625px;
+                    bottom: -100px;
                     transform: translateX(0);
                 }
                 50% {
                     transform: translateX(100px);
                 }
                 100% {
-                    bottom: 25px;
+                    bottom: 1000px;
                 }
             }
 
             .flex-center {
+                width: 100%;
+                height: 100%;
                 align-items: center;
                 display: flex;
                 justify-content: center;
@@ -203,6 +206,7 @@
                 position: absolute;
                 right: 10px;
                 top: 18px;
+                z-index: 1;
             }
 
             .content {
