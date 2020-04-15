@@ -7,22 +7,39 @@ html, body {
   font-weight: 200;
 }
 
-.container {
-  width: 100%;
+.head-container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
   display: flex;
+  height:50px;
+}
+
+.navbar-brand{
+  position: absolute;
+  width:100px;
+  top:25px;
+  font-weight: 600;
+  text-decoration:none;
 }
 
 .head-righit-link{
-  /*display: inline-block;
-  position: relative;
+  position: absolute;
   right: 10px;
-  top: 18px;
-  z-index: 1;*/
-  flex-direction: row;
+  display:-webkit-flex;
+  display:flex;
+  list-style-type:none;
+}
+
+.nav-link{
+  margin:2px;
+  padding:10px;
+  text-decoration:none;
+}
+
+.collapse{
+  width: 100%;
 }
 
 .flex-center {
@@ -44,7 +61,7 @@ html, body {
   z-index: 1;
 }
 
-.content {
+.main-content {
   text-align: center;
 }
 
@@ -52,14 +69,19 @@ html, body {
   font-size: 84px;
 }
 
-.links > a {
+.container {
+  display: inline-block;
+  text-align: left;
+}
+
+.link{
   color: #2080C0;
-  padding: 0 25px;
+  /*+padding: 0 25px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: .1rem;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: uppercase;**/
 }
 .link:hover{
   color: #6fb5e3;
