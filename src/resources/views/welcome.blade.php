@@ -237,10 +237,22 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .head{
+                position: relative;
+                width:100%;
+                height:100%;
+            }
+
+            #svg-bg {
+                position: absolute;
+            }
+
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            <div class = "head">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -254,6 +266,10 @@
                     @endauth
                 </div>
             @endif
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 200 100" preserveAspectRatio="none" id="svg-bg">
+                <path d="M0,0 v10 q10,5 20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 v-50 Z" fill="none" stroke="#2080C0" stroke-width="0.05"></path>
+            </svg>
+            </div>
 
             <div class="content">
                 <div class = "fish">

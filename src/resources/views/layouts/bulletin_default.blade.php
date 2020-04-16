@@ -67,6 +67,9 @@
                     </ul>
                 </div>
             </div>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 200 100" preserveAspectRatio="none" id="svg-bg">
+                <path d="M0,0 v3 q10,2 20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 v-50 Z" fill="none" stroke="#2080C0" stroke-width="0.05"></path>
+            </svg>
         </nav>
 
         <main class="main-content">
