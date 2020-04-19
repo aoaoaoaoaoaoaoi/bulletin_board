@@ -52,10 +52,10 @@ html, body {
     position: absolute;
   }
   
-  .container {
+  /*.container {
     display: inline-block;
     text-align: left;
-  }
+  }*/
 
 .collapse{
   width: 100%;
@@ -85,13 +85,3 @@ text-shadow: 0px 2px 10px rgba(111, 181, 227, 0.8),
 }
 
 /*共通*/
-input{
-  border:none;
-  border-radius:10px;
-  box-shadow: none;
-  padding: 2px 8px;
-}
-
-input:focus {
-  outline: none;
-}

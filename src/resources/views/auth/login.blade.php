@@ -9,7 +9,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <h2>ログインページ</h2>
+        <h2>ログイン</h2>
 
             <div class="login-body">
                 <form method="POST" action="{{ route('login') }}">
@@ -48,31 +48,33 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                            <label class="form-check-label" for="remember">
-                                                パスワードを記憶する
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <label class="form-check-label" for="remember">
+                                        パスワードを記憶する
+                                    </label>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div class="form-group row mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            ログイン
-                                        </button>
-
+                                <div class="submit-btn">
+                                    <button type="submit" class="login-btn">
+                                        ログイン
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class = "dummy"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    <div class="forget-paswd">
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 パスワードを忘れた？
