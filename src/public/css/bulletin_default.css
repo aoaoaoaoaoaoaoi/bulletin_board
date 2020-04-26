@@ -56,6 +56,10 @@ html, body {
   width: 100%;
 }
 
+.right-link{
+  padding: 5px;
+}
+
 /*下に伸びるリスト*/
 .dropdown-toggle::after {
   display: inline-block;
