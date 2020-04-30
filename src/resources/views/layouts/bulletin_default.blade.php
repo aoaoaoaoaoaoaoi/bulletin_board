@@ -9,7 +9,8 @@
     <title>けいじばん</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
+    <script src="{{ asset('bulletin_default.js') }}" defer></script>
     @yield('jssheet')
 
     <!-- Fonts -->
@@ -48,7 +49,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div id=dropDown class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <ul>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -62,7 +63,10 @@
                                             </form>
                                         </li>
                                         <li>
-
+aaaaaa
+                                        </li>
+                                        <li>
+aaaaaa
                                         </li>
                                     </ul>
                                 </div>

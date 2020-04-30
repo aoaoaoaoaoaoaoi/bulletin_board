@@ -29,6 +29,7 @@ html, body {
   /*右にあるリンク*/
   .head-righit-link{
     position: absolute;
+    top: -10px;
     right: 10px;
     display:-webkit-flex;
     display:flex;
@@ -37,8 +38,6 @@ html, body {
 
   /*ヘッダーリンク*/
   .nav-link{
-    margin:2px;
-    padding:10px;
     text-decoration:none;
   }
 
@@ -57,7 +56,8 @@ html, body {
 }
 
 .right-link{
-  padding: 15px;
+  text-align: center;
+  padding: 20px;
 }
 
 /*下に伸びるリスト*/
@@ -73,7 +73,14 @@ html, body {
 }*/
 
 .dropdown-menu{
-  display: none;
+  visibility: hidden;
+  text-align: center;
+}
+
+.right-link:hover > .dropdown-menu{
+  top: 10px;
+  visibility: visible; /*表示*/
+  opacity: 1;
 }
 
 /*メインコンテンツ*/
@@ -100,3 +107,7 @@ text-shadow: 0px 2px 10px rgba(111, 181, 227, 0.8),
 }
 
 /*共通*/
+ul{
+  padding: 0;
+  list-style: none;
+}
