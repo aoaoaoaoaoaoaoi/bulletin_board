@@ -58,6 +58,7 @@ html, body {
 .right-link{
   text-align: center;
   padding: 20px;
+  z-index: 1;
 }
 
 /*下に伸びるリスト*/
