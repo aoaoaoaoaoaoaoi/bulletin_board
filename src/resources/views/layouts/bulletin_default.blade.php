@@ -63,10 +63,9 @@
                                             </form>
                                         </li>
                                         <li>
-aaaaaa
-                                        </li>
-                                        <li>
-aaaaaa
+                                        <a id="edit-profile" href="./edit_profile">
+                                            Edit Profile
+                                        </a>
                                         </li>
                                     </ul>
                                 </div>
