@@ -75,13 +75,30 @@ html, body {
 
 .dropdown-menu{
   visibility: hidden;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .right-link:hover > .dropdown-menu{
   top: 10px;
   visibility: visible; /*表示*/
   opacity: 1;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.table-dropdown{
+  background-color:rgba(4, 4, 36, 1);
+  border-spacing: 0px 5px;
+}
+
+.dropdown-item:link,
+.dropdown-item:visited,
+.dropdown-item:hover,
+.dropdown-item:active{
+  text-decoration:none;
+  color : #2080C0;
 }
 
 /*メインコンテンツ*/

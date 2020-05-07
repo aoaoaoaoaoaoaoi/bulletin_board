@@ -50,31 +50,55 @@
                                 </a>
 
                                 <div id=dropDown class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <ul>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                                ログアウト
-                                            </a>
+                                    <table class="table-dropdown">
+                                        <tr>
+                                            <td class="align-left">
+                                                <a class="dropdown-item" id="edit-profile" href="./edit_profile">
+                                                    プロフィールの編集
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-left">
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                    ログアウト
+                                                </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </li>
-                                        <li>
-                                        <a id="edit-profile" href="./edit_profile">
-                                            Edit Profile
-                                        </a>
-                                        </li>
-                                    </ul>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </li>
                             <li class="right-link">
-                                スレを作成
+                                <a class="dropdown-item" id="make-thread-index" href="./make_thread_index">
+                                    スレを作成
+                                </a>
                             </li>
                             <li class="right-link">
                                 グループ
+                                <div id=dropDown class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <table class="table-dropdown">
+                                        <tr>
+                                            <td class="align-left">
+                                                <a class="dropdown-item" id="join-group" href="./join_group">
+                                                    グループに参加する
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-left">
+                                                <a class="dropdown-item" id="make-group" href="./make_group">
+                                                    グループを作成する
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </li>
                         @endguest
                     </ul>
