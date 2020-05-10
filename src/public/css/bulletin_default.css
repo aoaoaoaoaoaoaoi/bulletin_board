@@ -90,7 +90,11 @@ html, body {
 
 .table-dropdown{
   background-color:rgba(4, 4, 36, 1);
-  border-spacing: 0px 5px;
+  border-collapse: collapse;
+}
+
+.table-dropdown td{
+  border: solid 1px #2080C0;
 }
 
 .dropdown-item:link,
