@@ -25,23 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        
-        $joinGroupIds = DB::table('player_groups')->where('player_id', '=', $user['id'])->get()->pluck('group_id');
-        $joinGroups = DB::table('groups')->whereIn('id', $joinGroupIds)->get();
-        $groups=[];
-        foreach ($joinGroups as $joinGroup){
-            $g = [
-                'name' => $joinGroup->name,
-            ];
-            $groups[] = $g;
-        }
-        
-        $threads = DB::table('threads')->get()->toArray();
+        $threads = DB::table('threads')->get()->orderBy('updated_at', 'desc')->toArray();
         $data = [
-            'name' => $user->name,
-            'profile' => $user ->profile,
-            'groups' => $groups,
             'threads' => $threads,
         ];
         return view('home', ['data' => $data]);
