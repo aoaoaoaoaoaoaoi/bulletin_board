@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $threads = DB::table('threads')->get()->orderBy('updated_at', 'desc')->toArray();
+        $threads = DB::table('threads')->orderBy('updated_at', 'desc')->get()->toArray();
         $data = [
             'threads' => $threads,
         ];
