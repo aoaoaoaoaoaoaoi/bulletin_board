@@ -26,24 +26,24 @@
                 開設日時
             </th>
         </tr>
-        @foreach($data['threads'] as $thread)
+        @foreach($data as $thread)
             <tr>
                 <td>
-                    <a id="thread-index" href="./thread?threadId={{$thread->id}}">
-                            {{$thread->title}} 
+                    <a id="thread-index" href="./thread?threadId={{ $thread['id'] }}">
+                            {{ $thread['title'] }} 
                     </a>
                 </td>
                 <td>
-                    <!-- {{$thread->updated_at}} --> 
+                    {{ $thread['updatedAt'] }} 
                 </td>
                 <td>
-                    {{$thread->end_at}} 
+                    {{ $thread['endAt'] }} 
                 </td>
                 <td>
-                    
+                    {{ $thread['wave'] }} 
                 </td>
                 <td>
-                    {{$thread->start_at}} 
+                    {{ $thread['startAt'] }} 
                 </td>
             </tr>
         @endforeach
