@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bulletin_default')
 
 @section('jssheet')
 <head>
@@ -13,67 +13,52 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Edit Profile') }}</div>
+    <form id = edit_user_data_form>
+    @csrf
+        
+            <tr>
+                <td>
+                    <div><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()"></div>
+                    <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
+                </td>
+            </tr>
+        <div class="profile">
+            <table>
+                <tr>
+                    <td>
+                        <div>ユーザー名</div>
+                        <div><input type ="text" name="username" id = "username" value = "{{ $data['name'] }}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>説明</div>
+                        <div><textarea  rows="4" cols="40" class="bio" name="bio" id = "bio" value = "{{ $data['profile'] }}"></textarea></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>タグ
+                            <span id="user-tag-backs">
+                            @foreach($data['user_tag'] as $d)
+                                <span class="user_tag_back">{{ $d['name'] }}</span>
+                            @endforeach
+                            </span>
+                        </div>
+                        <div>
+                            <input class="user-tag" name="usertag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">                                     
+                        </div>
+                    </td>
+                </tr>
+                <tr>
 
-                    <div class="card-body">
-                    <form id = edit_user_data_form>
-                    @csrf
-                        <table class="profile">
-                            <tr>
-                                <td>
-                                    <div>Icon</div>
-                                    <div><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()"></div>
-                                    <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>Name</div>
-                                    <div><input type ="text" name="username" id = "username" value = "{{ $data['name'] }}"></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>Bio</div>
-                                    <div><textarea  rows="4" cols="40" class="bio" name="bio" id = "bio" value = "{{ $data['profile'] }}"></textarea></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>Tag
-                                        <span id="user-tag-backs">
-                                        @foreach($data['user_tag'] as $d)
-                                            <span class="user_tag_back">{{ $d['name'] }}</span>
-                                        @endforeach
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <input class="user-tag" name="usertag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}">                                     
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-
-                            </tr>
-                        </table>
-                        <button type="button" class="edit-profile" onclick="update_user_data()">
-                                        {{ __('Edit Profile') }}
-                        </button>
-                    </form>
-
-                    <iframe name="frametest" style="width:0px;height:0px;border:0px;"></iframe>
-                    </div>
-                </div>
-                
-            </div>
-
+                </tr>
+            </table> 
+            <button type="button" class="edit-profile" onclick="update_user_data()">
+                            保存
+            </button>
         </div>
-    </div>
-</div>
+    </form>
 @endsection
 
 @section('jquery')

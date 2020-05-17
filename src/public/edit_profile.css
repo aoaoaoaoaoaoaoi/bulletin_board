@@ -34,3 +34,8 @@ input.user-tag{
     background-color:transparent;
     width:100%;
 }
+
+div.profile{
+    text-align: center;
+    //margin: auto;
+}

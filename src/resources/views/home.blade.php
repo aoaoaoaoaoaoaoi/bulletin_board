@@ -8,7 +8,7 @@
 
 @section('content')
 <div>
-    <table>
+    <table class="thread_table">
         <tr>
             <th>
                 タイトル
