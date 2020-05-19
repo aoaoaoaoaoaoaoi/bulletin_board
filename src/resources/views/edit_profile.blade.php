@@ -15,15 +15,19 @@
 @section('content')
     <form id = edit_user_data_form>
     @csrf
-        
-            <tr>
-                <td>
-                    <div><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()"></div>
-                    <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
-                </td>
-            </tr>
-        <div class="profile">
-            <table>
+    <ul class="profile-tables">
+        <li>
+            <table>        
+                <tr>
+                    <td>
+                        <div><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()"></div>
+                        <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        <li>
+            <table>     
                 <tr>
                     <td>
                         <div>ユーザー名</div>
@@ -51,13 +55,15 @@
                     </td>
                 </tr>
                 <tr>
-
+                    <td>
+                        <button type="button" class="edit-profile" onclick="update_user_data()">
+                                        保存
+                        </button>
+                    </td>
                 </tr>
             </table> 
-            <button type="button" class="edit-profile" onclick="update_user_data()">
-                            保存
-            </button>
-        </div>
+        </li>
+    </ul>
     </form>
 @endsection
 

@@ -35,7 +35,9 @@ input.user-tag{
     width:100%;
 }
 
-div.profile{
+ul.profile-tables{
     text-align: center;
-    //margin: auto;
+    display:-webkit-flex;
+    display:flex;
+    list-style-type:none;
 }
