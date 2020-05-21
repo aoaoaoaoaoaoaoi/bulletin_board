@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="button" class="edit-profile" onclick="update_user_data()">
+                        <button type="button" class="submit-btn" onclick="update_user_data()">
                                         保存
                         </button>
                     </td>
