@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 html, body {
+  position: fixed;
   background-color: #040424;
   color: #2080C0;
   font-family: 'Nunito', sans-serif;

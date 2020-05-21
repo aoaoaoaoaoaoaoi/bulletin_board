@@ -35,9 +35,23 @@ input.user-tag{
     width:100%;
 }
 
+div.profile-tables{
+    /*margin-right:auto; margin-left:auto; width:1000px;*/
+}
+
 ul.profile-tables{
-    text-align: center;
+    /*padding: auto;*/
     display:-webkit-flex;
     display:flex;
     list-style-type:none;
+}
+
+li.profile-image{
+    position: relative;
+    left: 50px;
+    width: 600px;
+}
+
+li.profile-others{
+    width:1000px;
 }
