@@ -59,8 +59,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="submit-btn">
-                                    <button type="submit" class="login-btn">
+                                <div class="submit-btn-pos">
+                                    <button type="submit" class="submit-btn">
                                         ログイン
                                     </button>
                                 </div>
