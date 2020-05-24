@@ -20,7 +20,7 @@ textarea.bio{
 }
 
 span.user_tag_back{
-    display: inline-block;
+    /*display: inline-block;*/
     z-index: 10;
     font-size: 13.8px;
     position: relative;
@@ -32,9 +32,10 @@ span.user_tag_back{
 }
 
 input.user-tag{
+    /*color:#bcbce8;*/
     z-index: 20;
     position: relative;
-    background-color:transparent;
+    /*background-color:transparent;*/
     width:100%;
 }
 

@@ -144,3 +144,9 @@ button.submit-btn:hover {
   outline-color: rgba(111,181,227,0);
   outline-offset: 15px;
 }
+
+input,textarea{
+  border: none;
+  color:#bcbce8;
+  background-color:rgba(46, 46, 56, 0.5);
+}
