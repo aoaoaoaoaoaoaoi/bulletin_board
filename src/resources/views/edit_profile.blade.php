@@ -22,7 +22,7 @@
                     <tr>
                         <td>
                             <div><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()"></div>
-                            <div><input type="file" name="icon-file" id="icon-file" accept="image/*"></div>
+                            <div><input class="no-back" type="file" name="icon-file" id="icon-file" accept="image/*"></div>
                         </td>
                     </tr>
                 </table>

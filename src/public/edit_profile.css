@@ -20,9 +20,8 @@ textarea.bio{
 }
 
 span.user_tag_back{
-    /*display: inline-block;*/
     z-index: 10;
-    font-size: 13.8px;
+    font-size: 14px;
     position: relative;
     left: -35px;
     top: 24.6px;
@@ -32,10 +31,9 @@ span.user_tag_back{
 }
 
 input.user-tag{
-    /*color:#bcbce8;*/
     z-index: 20;
     position: relative;
-    /*background-color:transparent;*/
+    font-size: 14px;
     width:100%;
 }
 
@@ -57,4 +55,8 @@ li.profile-others{
 
 .no-wrap {
     white-space: nowrap;
+}
+
+input.no-back{
+    background: transparent;
 }

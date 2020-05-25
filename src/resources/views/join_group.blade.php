@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bulletin_default')
 
 @section('jssheet')
 <head>
