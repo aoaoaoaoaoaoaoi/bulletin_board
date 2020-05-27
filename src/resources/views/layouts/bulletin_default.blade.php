@@ -9,7 +9,7 @@
     <title>けいじばん</title>
 
     <!-- Scripts -->
-    <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('bulletin_default.js') }}" defer></script>
     @yield('jssheet')
 
