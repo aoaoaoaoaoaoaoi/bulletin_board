@@ -13,6 +13,19 @@
 
 @section('content')
 <div class="container">
+    <table>
+        <tr>
+            <td>
+                グループ名
+                <input type="text">
+            </td>
+            <td>
+                タグ
+                <input type="text">
+            </td>
+        </tr>
+    </table>
+
     <ul class="group-tables">
         <li class="group-state-select">
             <table border="1px">
