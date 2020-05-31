@@ -1,4 +1,4 @@
-@extends('layouts.bulletin_default')
+@extends('layouts.app')
 
 @section('style')
 <head>
@@ -7,7 +7,36 @@
 @endsection
 
 @section('content')
-<div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <button type="button" onclick="showSerch(this)">
+                        スレッドを検索
+                        </button>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">タイトル</label>
+                        <div class="col-md-6">
+                                <input type="text">
+                        </div>
+                        <label class="col-md-4 col-form-label">タグ</label>
+                        <div class="col-md-6">
+                                <input type="text">
+                        </div>
+                        <label class="col-md-4 col-form-label">開始日時</label>
+                        <div class="col-md-6">
+                                <input type="text">
+                        </div>
+                        <label class="col-md-4 col-form-label">終了日時</label>
+                        <div class="col-md-6">
+                                <input type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
     <table class="thread_table">
         <tr>
             <th>
@@ -48,5 +77,10 @@
             </tr>
         @endforeach
     </table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 @endsection

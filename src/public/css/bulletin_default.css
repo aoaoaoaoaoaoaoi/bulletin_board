@@ -82,3 +82,18 @@ button.submit-btn:hover {
   color: rgba(255,255,255,.7);
   background-color: transparent !important; 
 }
+
+.dropdown-menu{
+  background-color: #040424;
+  border: 1px solid #2080C0;
+  box-shadow: 0 0 8px rgba(111, 181, 227, 0.8) !important;
+}
+
+.dropdown-item{
+  color: #2080C0;
+}
+
+.dropdown-item:hover,.dropdown-item:focus{
+  color: #2080C0;
+  background-color: #040424;
+}
