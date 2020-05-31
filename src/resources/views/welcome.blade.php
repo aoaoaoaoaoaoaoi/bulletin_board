@@ -24,7 +24,6 @@
                 position: absolute;
                 right: 100px;
                 top: 100px;
-                /*animation: move 10s ease 0s infinite alternate none running;*/
             }
 
             @keyframes move {
