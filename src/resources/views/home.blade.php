@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     <div>
-                        <button type="button" onclick="showSerch(this)">
+                        <button type="button" class="no-decoration-button" onclick="showSerch(this)">
                         スレッドを検索
                         </button>
                     </div>

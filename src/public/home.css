@@ -1,5 +1,6 @@
-.thread_table{
-    text-align: center;
-    margin: auto;
-    border-spacing: 10px;
+.no-decoration-button{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
 }

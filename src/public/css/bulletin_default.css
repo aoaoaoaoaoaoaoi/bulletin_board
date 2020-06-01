@@ -97,3 +97,7 @@ button.submit-btn:hover {
   color: #2080C0;
   background-color: #040424;
 }
+
+.no-decoration-button{
+  color: #2080C0;
+}
