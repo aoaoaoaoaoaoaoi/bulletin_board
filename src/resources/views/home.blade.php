@@ -28,11 +28,11 @@
                         </div>
                         <label class="col-md-4 col-form-label">開始日時</label>
                         <div class="col-md-6">
-                                <input type="text">
+                                <input type="date">～<input type="date">
                         </div>
                         <label class="col-md-4 col-form-label">終了日時</label>
                         <div class="col-md-6">
-                                <input type="text">
+                                <input type="date">～<input type="date">
                         </div>
                     </div>
                 </div>
