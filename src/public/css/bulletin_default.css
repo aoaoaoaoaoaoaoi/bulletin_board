@@ -72,13 +72,13 @@ button.submit-btn:hover {
   outline-offset: 15px;
 }
 
-.form-control{
+input{
   color: rgba(255,255,255,.7);
   background-color: rgba(111,181,227,.1) !important;
   border: 1px solid #2080C0;
 }
 
-.form-control:focus{
+input:focus{
   color: rgba(255,255,255,.7);
   background-color: transparent !important; 
 }
@@ -100,4 +100,8 @@ button.submit-btn:hover {
 
 .no-decoration-button{
   color: #2080C0;
+}
+
+.card-header{
+  background-color: rgba(111, 181, 227, 0.1)
 }

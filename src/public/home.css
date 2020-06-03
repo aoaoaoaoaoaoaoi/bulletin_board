@@ -4,3 +4,19 @@
     background: transparent;
     width: 100%;
 }
+
+.no-decoration-button:focus{
+    outline: 0;
+}
+
+#thread-search{
+    display: none;
+}
+
+.text-to-the-left{
+    text-align: left;
+}
+
+.parallel{
+    display:inline-flex;
+}
