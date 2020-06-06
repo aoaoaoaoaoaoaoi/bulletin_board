@@ -25,23 +25,23 @@
                     <div id="thread-search">
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label">タイトル</label>
-                            <div class="col-md-6"><input type="text"></div>
+                            <div class="col-md-6"><input type="text" id="title"></div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label">タグ</label>
-                            <div class="col-md-6"><input type="text"></div>
+                            <div class="col-md-6"><input type="text" id="tag"></div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label">開始日</label>
-                            <div class="col-md-6 parallel"><input type="date">～<input type="date"></div>
+                            <div class="col-md-6 parallel"><input type="date" id="start-date-start">～<input type="date" id="start-date-end"></div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label">終了日</label>
-                            <div class="col-md-6 parallel"><input type="date">～<input type="date"></div>
+                            <div class="col-md-6 parallel"><input type="date" id="end-date-start">～<input type="date" id="end-date-end"></div>
                         </div>
                         <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
-                        <button type="button" id="searchButton" class="btn btn-primary" onclick="showSerch(this)">
+                        <button type="button" id="searchButton" class="btn btn-primary" onclick="search(this)">
                                     検索
                         </button>
 </div>

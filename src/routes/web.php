@@ -43,3 +43,4 @@ Route::post('/make_tag', 'EditProfileController@makeTag');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/search_thread', 'HomeController@searchThread');

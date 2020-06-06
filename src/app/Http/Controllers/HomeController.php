@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Carbon\Carbon;
+use App\Thread;
+use App\Tag;
+use App\ThreadTag;
 
 class HomeController extends Controller
 {
@@ -26,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $threads = DB::table('threads')->orderBy('updated_at', 'desc')->get()->toArray();
+        $threads = Thread::orderBy('updated_at', 'desc')->get()->toArray();
         $data = [];
         
         foreach($threads as $thread){
@@ -46,5 +49,43 @@ class HomeController extends Controller
             $data[] = $threadData;
         }
         return view('home', ['data' => $data]);
+    }
+
+    public function searchThread(Request $request)
+    {    
+        $title = (string)$request->input('title');
+        $tag = (string)$request->input('tag');
+        $startDateFrom = new Carbon($request->input('startDateStart'));
+        $startDateTo = new Carbon($request->input('startDateEnd'));
+        $endDateFrom = new Carbon($request->input('endDateStart'));
+        $endDateTo = new Carbon($request->input('startDateEnd'));
+
+        $threads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title)
+                            ->orderBy('id')->get();
+
+        $responseThreads = [];
+        $isExistTag = false;
+        if(!empty($tag){
+
+            $isExistTag = true;
+            $tag = Tag::where('name', '=', $tag)->first();
+            if(!empty($tag)){
+
+                $threadIdByTags = ThreadTag::where('tag_id', '=', $tag->id)->orderBy('thread_id')->get()->pluck('thread_id');
+                $threadIdByTagMap = [];
+                foreach($threadIdByTags as $threadIdByTag){
+                    $threadIdByTagMap[$threadIdByTag] = true;
+                }
+        
+                foreach($threads as $thread){
+                    isset($threadIdByTagMap[$thread->id]){
+                        $responseThreads[] = $thread;
+                    }
+                }
+            }
+        } 
+        if(!$isExistTag){
+            $responseThreads = $threads->toArray();
+        }      
     }
 }

@@ -25,7 +25,8 @@
     min-width:100px;
     border-collapse: collapse;
     border:1px solid #333;
-    padding: 10px;
+    line-height: 2.5em;
+    text-align: center;
 }
 
 th{
@@ -53,5 +54,5 @@ th{
 } 
 
 .cell-link a:hover {
-    background-color: #f49d9d;
+    background-color: rgba(111, 181, 227, 0.1)
 }
