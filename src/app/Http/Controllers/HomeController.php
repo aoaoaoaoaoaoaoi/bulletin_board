@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Thread;
 use App\Tag;
 use App\ThreadTag;
+use App\Group;
 
 class HomeController extends Controller
 {
@@ -26,15 +27,15 @@ class HomeController extends Controller
     {
         $data = [];
         foreach($threads as $thread){
-            $messageCount = DB::table('thread_messages')->where('thread_id', $thread->id)->count();
-            $groupName = DB::table('groups')->where('id', $thread->group_id)->first()->name;
-            $startAt = new Carbon($thread->start_at);
-            $updateAt = new Carbon($thread->updated_at);
+            $messageCount = DB::table('thread_messages')->where('thread_id', $thread['id'])->count();
+            $groupName = Group::where('id', $thread['group_id'])->first()->name;
+            $startAt = new Carbon($thread['start_at']);
+            $updateAt = new Carbon($thread['updated_at']);
             $diffMinites = $startAt->diffInSeconds($updateAt) / 60;
             $wave = round($messageCount / max(1, $diffMinites) * 60, 2);
             $threadData = [
-                'id' => $thread->id,
-                'title' => $thread->title,
+                'id' => $thread['id'],
+                'title' => $thread['title'],
                 'updatedAt' => $updateAt->year . "年" . $updateAt->month . "月" . $updateAt->day . "日",
                 'wave' => $wave,
                 'groupName' => $groupName,
@@ -70,7 +71,7 @@ class HomeController extends Controller
 
         $responseThreads = [];
         $isExistTag = false;
-        if(!empty($tag){
+        if(!empty($tag)){
 
             $isExistTag = true;
             $tag = Tag::where('name', '=', $tag)->first();
@@ -83,7 +84,7 @@ class HomeController extends Controller
                 }
         
                 foreach($threads as $thread){
-                    isset($threadIdByTagMap[$thread->id]){
+                    if(isset($threadIdByTagMap[$thread->id])){
                         $responseThreads[] = $thread;
                     }
                 }

@@ -7,43 +7,43 @@ use Carbon\Carbon;
 
 class Thread extends Model
 {
-    public searchThread(Carbon $startAtFrom, Carbon $startAtTo, Carbon $endAtFrom, Carbon $endAtTo, string $title){
-        this->StartAtFrom($startAtFrom)
+    public function searchThread(Carbon $startAtFrom, Carbon $startAtTo, Carbon $endAtFrom, Carbon $endAtTo, string $title){
+        self::StartAtFrom($startAtFrom)
             ->StartAtEnd($startAtTo)
             ->EndAtFrom($endAtFrom)
             ->EndAtTo($endAtTo)
             ->Title($titile);
     }
 
-    public scopeStartAtFrom($query, Carbon $startAt){
+    public function scopeStartAtFrom($query, Carbon $startAt){
         if(empty($startAt)){
             return $query;
         }
         return $query->where('start_at', '>=', $startAt);
     }
 
-    public scopeStartAtTo($query, Carbon $startAt){
+    public function scopeStartAtTo($query, Carbon $startAt){
         if(empty($startAt)){
             return $query;
         }
         return $query->where('start_at', '<=', $startAt);
     }
 
-    public scopeEndAtFrom($query, Carbon $endAt){
+    public function scopeEndAtFrom($query, Carbon $endAt){
         if(empty($endAt)){
             return $query;
         }
         return $query->where('end_at', '>=', $endAt);
     }
 
-    public scopeEndAtTo($query, Carbon $endAt){
+    public function scopeEndAtTo($query, Carbon $endAt){
         if(empty($endAt)){
             return $query;
         }
         return $query->where('end_at', '<=', $endAt);
     }
 
-    public scopeTitle($query, String $title){
+    public function scopeTitle($query, String $title){
         if(empty($title)){
             return $query;
         }
