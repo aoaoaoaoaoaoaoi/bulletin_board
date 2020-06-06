@@ -61,10 +61,14 @@ class HomeController extends Controller
     {    
         $title = (string)$request->input('title');
         $tag = (string)$request->input('tag');
-        $startDateFrom = new Carbon($request->input('startDateStart'));
-        $startDateTo = new Carbon($request->input('startDateEnd'));
-        $endDateFrom = new Carbon($request->input('endDateStart'));
-        $endDateTo = new Carbon($request->input('startDateEnd'));
+        $paramStartFrom = $request->input('startDateStart');
+        $startDateFrom = $paramStartFrom != null ? new Carbon($paramStartFrom) : null;
+        $paramStartTo = $request->input('startDateEnd');
+        $startDateTo = $paramStartTo != null ? new Carbon($paramStartTo) : null;
+        $paramEndFrom = $request->input('endDateStart');
+        $endDateFrom = $paramEndFrom != null ? new Carbon($paramEndFrom) : null;
+        $paramEndTo = $request->input('startDateEnd');
+        $endDateTo = $paramEndTo != null ? new Carbon($paramEndTo) : null;
 
         $threads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title)
                             ->orderBy('id')->get();
@@ -94,6 +98,7 @@ class HomeController extends Controller
             $responseThreads = $threads->toArray();
         }
         $data = self::organizeThreadData($responseThreads);  
-        echo json_encode($data);
+        $count = count($data);
+        return json_encode($data);
     }
 }

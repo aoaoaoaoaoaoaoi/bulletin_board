@@ -17,6 +17,8 @@ var search = function(button){
   var endDateStart = document.getElementById('end-date-start').value;
   var endDateEnd = document.getElementById('end-date-end').value;
 
+console.log(startDateStart);
+
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -40,12 +42,12 @@ $.ajax({
 
   }).done(function(re){
     var result = JSON.parse(re);
-    var table = document.getElementById("thread_table").innerHTML = result['name'];
+    var table = document.getElementById("thread_table");
 
     var rowCount = table.rows.length;
     var columnCount = table.rows[0].cells.length;
     
-    var loopCount = min(rowCount - 1, result.rength);
+    var loopCount = Math.min(rowCount - 1, result.rength);
     for(let i = 1; i <= loopCount; ++i){
       for(let j = 0; j< columnCount; ++j){
         table.rows[i].cells[j].innerHTML = result[i - 1]['updatedAt'];
@@ -60,7 +62,7 @@ $.ajax({
     }
     
     //行の追加
-    if(rowCount - 1 < result.rength){
+    if(rowCount - 1 < result.length){
       for(let i = rowCount; i < resultCount; ++i){
         var row = table.insertRow(-1);
         var cell = row.insertCell(0);
@@ -79,8 +81,8 @@ $.ajax({
         var cell = row.insertCell(3);
         cell.innerHTML = result[i]['groupName'];
       }
-    }else if(result.rength < rowCount - 1){
-      for(let i = rowCount; result.length < i; --i){
+    }else if(result.length < rowCount - 1){
+      for(let i = rowCount - 1; result.length < i; --i){
         table.deleteRow(i);
       }
     }
