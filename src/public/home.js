@@ -11,13 +11,11 @@ var showSerch = function(button) {
 var search = function(button){
 
   var title = document.getElementById('title').value;
-  var tags = document.getElementById('tag').value;
+  var tag = document.getElementById('tag').value;
   var startDateStart = document.getElementById('start-date-start').value;
   var startDateEnd = document.getElementById('start-date-end').value;
   var endDateStart = document.getElementById('end-date-start').value;
   var endDateEnd = document.getElementById('end-date-end').value;
-
-console.log(startDateStart);
 
   $.ajaxSetup({
     headers: {
@@ -28,16 +26,14 @@ console.log(startDateStart);
 $.ajax({
     type: 'POST',
     url : '/search_thread',
-    processData: false,
     data: {
-      title : title,
-      tag : tags,
-      startDateStart : startDateStart,
-      startDateEnd : startDateEnd,
-      endDateStart : endDateStart,
-      endDateEnd : endDateEnd,
+      'title' : title,
+      'tag' : tag,
+      'startDateStart' : startDateStart,
+      'startDateEnd' : startDateEnd,
+      'endDateStart' : endDateStart,
+      'endDateEnd' : endDateEnd,
     },
-    contentType : false,
   }).fail(function(){
 
   }).done(function(re){
@@ -86,7 +82,5 @@ $.ajax({
         table.deleteRow(i);
       }
     }
-
-    alert('complete!! yeah!')
   });
 }
