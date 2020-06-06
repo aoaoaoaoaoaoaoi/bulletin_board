@@ -49,7 +49,7 @@
                     </div>
                     </div>
                 <div class="card-body">
-    <table class="thread_table">
+    <table id="thread_table" class="thread_table">
         <tr>
             <th class="width-little-bigger" align="center">
                 更新日
@@ -70,7 +70,7 @@
                     {{ $thread['updatedAt'] }} 
                 </td>
                 <td class="cell-link">
-                    <a id="thread-index" href="./thread?threadId={{ $thread['id'] }}">
+                    <a id="thread-index-{{ $loop->index }}" href="./thread?threadId={{ $thread['id'] }}">
                         {{ $thread['title'] }} 
                     </a>
                 </td>

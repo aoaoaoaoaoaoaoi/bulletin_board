@@ -39,6 +39,52 @@ $.ajax({
   }).fail(function(){
 
   }).done(function(re){
+    var result = JSON.parse(re);
+    var table = document.getElementById("thread_table").innerHTML = result['name'];
+
+    var rowCount = table.rows.length;
+    var columnCount = table.rows[0].cells.length;
+    
+    var loopCount = min(rowCount - 1, result.rength);
+    for(let i = 1; i <= loopCount; ++i){
+      for(let j = 0; j< columnCount; ++j){
+        table.rows[i].cells[j].innerHTML = result[i - 1]['updatedAt'];
+        table.rows[i].cells[j].innerHTML = result[i - 1]['title'];
+        table.rows[i].cells[j].innerHTML = result[i - 1]['wave'];
+        table.rows[i].cells[j].innerHTML = result[i - 1]['groupName'];
+        var id = "thread-index-" + (i - 1);
+        var link = document.getElementById(id);
+        var newLink = "./thread?threadId=" + result[i - 1]['id'];
+        link.href = newLink;
+      }
+    }
+    
+    //行の追加
+    if(rowCount - 1 < result.rength){
+      for(let i = rowCount; i < resultCount; ++i){
+        var row = table.insertRow(-1);
+        var cell = row.insertCell(0);
+        cell.innerHTML = result[i]['updatedAt'];
+        
+        var cell = row.insertCell(1);
+        cell.innerHTML = result[i]['title'];
+        var link = document.createElement('a');
+        var id = "thread-index-" + (i);
+        var newLink = "./thread?threadId=" + result[i]['id'];
+        link.href = newLink;
+        document.cell.appendChild(link);
+
+        var cell = row.insertCell(2);
+        cell.innerHTML = result[i]['wave'];
+        var cell = row.insertCell(3);
+        cell.innerHTML = result[i]['groupName'];
+      }
+    }else if(result.rength < rowCount - 1){
+      for(let i = rowCount; result.length < i; --i){
+        table.deleteRow(i);
+      }
+    }
+
     alert('complete!! yeah!')
   });
 }

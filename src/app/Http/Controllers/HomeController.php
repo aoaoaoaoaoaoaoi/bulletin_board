@@ -22,16 +22,9 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    private function  organizeThreadData(array $threads) : array
     {
-        $threads = Thread::orderBy('updated_at', 'desc')->get()->toArray();
         $data = [];
-        
         foreach($threads as $thread){
             $messageCount = DB::table('thread_messages')->where('thread_id', $thread->id)->count();
             $groupName = DB::table('groups')->where('id', $thread->group_id)->first()->name;
@@ -48,6 +41,18 @@ class HomeController extends Controller
             ];
             $data[] = $threadData;
         }
+        return $data;
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $threads = Thread::orderBy('updated_at', 'desc')->get()->toArray();
+        $data = self::organizeThreadData($threads);
         return view('home', ['data' => $data]);
     }
 
@@ -86,6 +91,8 @@ class HomeController extends Controller
         } 
         if(!$isExistTag){
             $responseThreads = $threads->toArray();
-        }      
+        }
+        $data = self::organizeThreadData($responseThreads);  
+        echo json_encode($data);
     }
 }
