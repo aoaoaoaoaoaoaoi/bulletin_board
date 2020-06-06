@@ -51,40 +51,34 @@
                 <div class="card-body">
     <table class="thread_table">
         <tr>
-            <th>
+            <th class="width-little-bigger" align="center">
+                更新日
+            </th>
+            <th class="width-bigger" align="center">
                 タイトル
             </th>
-            <th>
-                更新日時
-            </th>
-            <th>
-                終了日時
-            </th>
-            <th>
+            <th align="center">
                 波
             </th>
-            <th>
-                開設日時
+            <th align="center">
+                グループ
             </th>
         </tr>
         @foreach($data as $thread)
             <tr>
                 <td>
-                    <a id="thread-index" href="./thread?threadId={{ $thread['id'] }}">
-                            {{ $thread['title'] }} 
-                    </a>
-                </td>
-                <td>
                     {{ $thread['updatedAt'] }} 
                 </td>
-                <td>
-                    {{ $thread['endAt'] }} 
+                <td class="cell-link">
+                    <a id="thread-index" href="./thread?threadId={{ $thread['id'] }}">
+                        {{ $thread['title'] }} 
+                    </a>
                 </td>
                 <td>
                     {{ $thread['wave'] }} 
                 </td>
                 <td>
-                    {{ $thread['startAt'] }} 
+                    {{ $thread['groupName'] }} 
                 </td>
             </tr>
         @endforeach

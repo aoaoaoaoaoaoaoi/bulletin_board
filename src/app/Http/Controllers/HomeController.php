@@ -31,17 +31,17 @@ class HomeController extends Controller
         
         foreach($threads as $thread){
             $messageCount = DB::table('thread_messages')->where('thread_id', $thread->id)->count();
-            $updateAt = new Carbon($thread->updated_at);
+            $groupName = DB::table('groups')->where('id', $thread->group_id)->first()->name;
             $startAt = new Carbon($thread->start_at);
+            $updateAt = new Carbon($thread->updated_at);
             $diffMinites = $startAt->diffInSeconds($updateAt) / 60;
             $wave = round($messageCount / max(1, $diffMinites) * 60, 2);
             $threadData = [
                 'id' => $thread->id,
                 'title' => $thread->title,
-                'updatedAt' => $thread->updated_at,
-                'endAt' => $thread->end_at,
+                'updatedAt' => $updateAt->year . "年" . $updateAt->month . "月" . $updateAt->day . "日",
                 'wave' => $wave,
-                'startAt' => $thread->start_at,
+                'groupName' => $groupName,
             ];
             $data[] = $threadData;
         }
