@@ -77,7 +77,9 @@ $.ajax({
         var cell = row.insertCell(3);
         cell.innerHTML = result[i]['groupName'];
       }
-    }else if(result.length < rowCount - 1){
+    }
+    //行の削除
+    else if(result.length < rowCount - 1){
       for(let i = rowCount - 1; result.length < i; --i){
         table.deleteRow(i);
       }
