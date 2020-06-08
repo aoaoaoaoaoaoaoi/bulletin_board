@@ -59,18 +59,19 @@ $.ajax({
     
     //行の追加
     if(rowCount - 1 < result.length){
-      for(let i = rowCount; i < resultCount; ++i){
+      for(let i = rowCount; i < result.length; ++i){
         var row = table.insertRow(-1);
         var cell = row.insertCell(0);
         cell.innerHTML = result[i]['updatedAt'];
         
         var cell = row.insertCell(1);
-        cell.innerHTML = result[i]['title'];
         var link = document.createElement('a');
+        link.textContent = result[i]['title'];
         var id = "thread-index-" + (i);
         var newLink = "./thread?threadId=" + result[i]['id'];
         link.href = newLink;
-        document.cell.appendChild(link);
+        cell.classList.add("cell-link");
+        cell.appendChild(link);
 
         var cell = row.insertCell(2);
         cell.innerHTML = result[i]['wave'];
