@@ -83,9 +83,11 @@
             </tr>
         @endforeach
     </table>
-    <table>
+    <table class="pager_table">
         <tr>
-            <th></th>
+            @foreach($pageCount as $page)
+                <th>{{ $page }}</th>
+            @endforeach
         <tr>
     </table>
 </div>

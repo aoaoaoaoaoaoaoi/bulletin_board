@@ -54,7 +54,8 @@ class HomeController extends Controller
     {
         $threads = Thread::orderBy('updated_at', 'desc')->get()->toArray();
         $data = self::organizeThreadData($threads);
-        return view('home', ['data' => $data]);
+        $pageCount = range(1, (int)((count($threads) + 19) / 20));
+        return view('home', ['data' => $data, 'pageCount' => $pageCount]);
     }
 
     public function searchThread(Request $request)
