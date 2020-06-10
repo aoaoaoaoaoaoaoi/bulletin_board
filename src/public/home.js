@@ -40,10 +40,10 @@ $.ajax({
     var result = JSON.parse(re);
     var table = document.getElementById("thread_table");
 
-    var rowCount = table.rows.length;
+    var rowCount = table.rows.length - 1;
     var columnCount = table.rows[0].cells.length;
     
-    var loopCount = Math.min(rowCount - 1, result.rength);
+    var loopCount = Math.min(rowCount, result.rength);
     for(let i = 1; i <= loopCount; ++i){
       for(let j = 0; j< columnCount; ++j){
         table.rows[i].cells[j].innerHTML = result[i - 1]['updatedAt'];
@@ -56,9 +56,9 @@ $.ajax({
         link.href = newLink;
       }
     }
-    
+
     //行の追加
-    if(rowCount - 1 < result.length){
+    if(rowCount < result.length){
       for(let i = rowCount; i < result.length; ++i){
         var row = table.insertRow(-1);
         var cell = row.insertCell(0);
@@ -80,8 +80,8 @@ $.ajax({
       }
     }
     //行の削除
-    else if(result.length < rowCount - 1){
-      for(let i = rowCount - 1; result.length < i; --i){
+    else if(result.length < rowCount){
+      for(let i = rowCount; result.length < i; --i){
         table.deleteRow(i);
       }
     }
