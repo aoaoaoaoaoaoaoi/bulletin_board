@@ -58,7 +58,7 @@ th{
 }
 
 .pager_table > th{
-    /*min-width:10px;*/
+    min-width: 50px;
     border-collapse: collapse;
     border:1px solid #333;
     line-height: 2.5em;

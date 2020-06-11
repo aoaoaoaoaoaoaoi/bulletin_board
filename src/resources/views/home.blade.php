@@ -49,7 +49,7 @@
                     </div>
                     </div>
                 <div class="card-body">
-    <table id="thread_table" class="thread_table">
+    <table id="thread_table" class="thread_table" align="center">
         <tr>
             <th class="width-little-bigger" align="center">
                 更新日
@@ -83,10 +83,10 @@
             </tr>
         @endforeach
     </table>
-    <table class="pager_table">
+    <table class="pager_table" align="center">
         <tr>
             @foreach($pageCount as $page)
-                <th>{{ $page }}</th>
+                <th><button type="button" class="no-decoration-button" onclick="goNextPage(this)">{{ $page }}</button></th>
             @endforeach
         <tr>
     </table>

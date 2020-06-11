@@ -52,7 +52,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $threads = Thread::orderBy('updated_at', 'desc')->get()->toArray();
+        $threads = Thread::orderBy('updated_at', 'desc')->limit(20)->get()->toArray();
         $data = self::organizeThreadData($threads);
         $pageCount = range(1, (int)((count($threads) + 19) / 20));
         return view('home', ['data' => $data, 'pageCount' => $pageCount]);

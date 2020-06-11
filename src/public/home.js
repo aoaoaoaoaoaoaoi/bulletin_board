@@ -1,3 +1,6 @@
+//グローバル変数
+var currentPage = 1;
+
 var showSerch = function(button) {
 
     var obj = document.getElementById('thread-search');
@@ -85,5 +88,29 @@ $.ajax({
         table.deleteRow(i);
       }
     }
+  });
+}
+
+var goNextPage = function(button){
+  var nextPage = button.innerHTML;
+  if(currentPage == nextPage){
+    return;
+  }
+    //searchにページ数を指定する
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  
+$.ajax({
+    type: 'POST',
+    url : '/search_thread',
+    data: {
+    },
+  }).fail(function(){
+
+  }).done(function(re){
+
   });
 }
