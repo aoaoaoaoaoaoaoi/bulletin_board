@@ -1,5 +1,6 @@
 //グローバル変数
 var currentPage = 1;
+var threadData;
 
 var showSerch = function(button) {
 
@@ -41,6 +42,7 @@ $.ajax({
 
   }).done(function(re){
     var result = JSON.parse(re);
+    threadData = result;
     var table = document.getElementById("thread_table");
 
     var rowCount = table.rows.length - 1;
@@ -96,21 +98,11 @@ var goNextPage = function(button){
   if(currentPage == nextPage){
     return;
   }
-    //searchにページ数を指定する
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-  
-$.ajax({
-    type: 'POST',
-    url : '/search_thread',
-    data: {
-    },
-  }).fail(function(){
-
-  }).done(function(re){
-
-  });
+  var startIndex = (currentPage - 1) * 20;
+  var newIndex = 0;
+  var newThreadData;
+  for(let i = startIndex; i < startIndex + 20; ++i){
+    newThreadData[newIndex++] = threadData[i];
+  }
+  //データを入れる
 }

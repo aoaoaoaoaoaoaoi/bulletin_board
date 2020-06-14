@@ -99,7 +99,6 @@ class HomeController extends Controller
             $responseThreads = $threads->toArray();
         }
         $data = self::organizeThreadData($responseThreads);  
-        $count = count($data);
         return json_encode($data);
     }
 }
