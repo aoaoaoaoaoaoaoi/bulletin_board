@@ -2,6 +2,10 @@
 var currentPage = 1;
 var threadData;
 
+/**
+ * 検索窓を出し入れする
+ * @param {*} button 
+ */
 var showSerch = function(button) {
 
     var obj = document.getElementById('thread-search');
@@ -12,6 +16,17 @@ var showSerch = function(button) {
     }
 }
 
+/**
+ * 読み込み時の処理
+ */
+window.onload = function(){
+  setThreadData(null, null, null, null, null, null);
+}
+
+/**
+ * スレッドを検索する
+ * @param {*} button 
+ */
 var search = function(button){
 
   var title = document.getElementById('title').value;
@@ -20,6 +35,20 @@ var search = function(button){
   var startDateEnd = document.getElementById('start-date-end').value;
   var endDateStart = document.getElementById('end-date-start').value;
   var endDateEnd = document.getElementById('end-date-end').value;
+
+  setThreadData(title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd);
+}
+
+/**
+ * スレッドのデータを取得する
+ * @param {*} title 
+ * @param {*} tag 
+ * @param {*} startDateStart 
+ * @param {*} startDateEnd 
+ * @param {*} endDateStart 
+ * @param {*} endDateEnd 
+ */
+var setThreadData = function(title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd){
 
   $.ajaxSetup({
     headers: {
@@ -43,66 +72,91 @@ $.ajax({
   }).done(function(re){
     var result = JSON.parse(re);
     threadData = result;
-    var table = document.getElementById("thread_table");
-
-    var rowCount = table.rows.length - 1;
-    var columnCount = table.rows[0].cells.length;
-    
-    var loopCount = Math.min(rowCount, result.rength);
-    for(let i = 1; i <= loopCount; ++i){
-      for(let j = 0; j< columnCount; ++j){
-        table.rows[i].cells[j].innerHTML = result[i - 1]['updatedAt'];
-        table.rows[i].cells[j].innerHTML = result[i - 1]['title'];
-        table.rows[i].cells[j].innerHTML = result[i - 1]['wave'];
-        table.rows[i].cells[j].innerHTML = result[i - 1]['groupName'];
-        var id = "thread-index-" + (i - 1);
-        var link = document.getElementById(id);
-        var newLink = "./thread?threadId=" + result[i - 1]['id'];
-        link.href = newLink;
-      }
-    }
-
-    //行の追加
-    if(rowCount < result.length){
-      for(let i = rowCount; i < result.length; ++i){
-        var row = table.insertRow(-1);
-        var cell = row.insertCell(0);
-        cell.innerHTML = result[i]['updatedAt'];
-        
-        var cell = row.insertCell(1);
-        var link = document.createElement('a');
-        link.textContent = result[i]['title'];
-        var id = "thread-index-" + (i);
-        var newLink = "./thread?threadId=" + result[i]['id'];
-        link.href = newLink;
-        cell.classList.add("cell-link");
-        cell.appendChild(link);
-
-        var cell = row.insertCell(2);
-        cell.innerHTML = result[i]['wave'];
-        var cell = row.insertCell(3);
-        cell.innerHTML = result[i]['groupName'];
-      }
-    }
-    //行の削除
-    else if(result.length < rowCount){
-      for(let i = rowCount; result.length < i; --i){
-        table.deleteRow(i);
-      }
-    }
+    var newThreadData = getCurrentThreads();
+    setThreads(newThreadData);
   });
 }
 
+/**
+ * ページを切り替える
+ * @param {*} button 
+ */
 var goNextPage = function(button){
   var nextPage = button.innerHTML;
   if(currentPage == nextPage){
     return;
   }
-  var startIndex = (currentPage - 1) * 20;
-  var newIndex = 0;
-  var newThreadData;
-  for(let i = startIndex; i < startIndex + 20; ++i){
-    newThreadData[newIndex++] = threadData[i];
-  }
+  var newThreadData = getCurrentThreads();
   //データを入れる
+  setThreads(newThreadData);
+  currentPage = nextPage;
+}
+
+/**
+ * 表示するスレッドを取り出す
+ */
+var getCurrentThreads = function(){
+  var startIndex = (currentPage - 1) * 20;
+  var newThreadData = [];
+  for(let i = startIndex; i < startIndex + 20; ++i){
+    if(threadData.length <= i){
+      break;
+    }
+    newThreadData.push(threadData[i]);
+  }
+  return newThreadData;
+}
+
+/**
+ * スレッドをセットする
+ * @param {*} threads 
+ */
+var setThreads = function(threads){
+  var table = document.getElementById("thread_table");
+
+  var rowCount = table.rows.length - 1;
+  var columnCount = table.rows[0].cells.length;
+  
+  var loopCount = Math.min(rowCount, threads.length);
+  for(let i = 1; i <= loopCount; ++i){
+    for(let j = 0; j< columnCount; ++j){
+      table.rows[i].cells[j].innerHTML = threads[i - 1]['updatedAt'];
+      table.rows[i].cells[j].innerHTML = threads[i - 1]['title'];
+      table.rows[i].cells[j].innerHTML = threads[i - 1]['wave'];
+      table.rows[i].cells[j].innerHTML = threads[i - 1]['groupName'];
+      var id = "thread-index-" + (i - 1);
+      var link = document.getElementById(id);
+      var newLink = "./thread?threadId=" + threads[i - 1]['id'];
+      link.href = newLink;
+    }
+  }
+
+  //行の追加
+  if(rowCount < threads.length){
+    for(let i = rowCount; i < threads.length; ++i){
+      var row = table.insertRow(-1);
+      var cell = row.insertCell(0);
+      cell.innerHTML = threads[i]['updatedAt'];
+      
+      var cell = row.insertCell(1);
+      var link = document.createElement('a');
+      link.textContent = threads[i]['title'];
+      var id = "thread-index-" + (i);
+      var newLink = "./thread?threadId=" + threads[i]['id'];
+      link.href = newLink;
+      cell.classList.add("cell-link");
+      cell.appendChild(link);
+
+      var cell = row.insertCell(2);
+      cell.innerHTML = threads[i]['wave'];
+      var cell = row.insertCell(3);
+      cell.innerHTML = threads[i]['groupName'];
+    }
+  }
+  //行の削除
+  else if(threads.length < rowCount){
+    for(let i = rowCount; threads.length < i; --i){
+      table.deleteRow(i);
+    }
+  }
 }

@@ -64,7 +64,7 @@
                 グループ
             </th>
         </tr>
-        @foreach($data as $thread)
+        <!--@foreach($data as $thread)
             <tr>
                 <td>
                     {{ $thread['updatedAt'] }} 
@@ -81,7 +81,7 @@
                     {{ $thread['groupName'] }} 
                 </td>
             </tr>
-        @endforeach
+        @endforeach-->
     </table>
     <table class="pager_table" align="center">
         <tr>
