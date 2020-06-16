@@ -68,11 +68,12 @@
     <div id="loading-message" align="center">
         <h1>Now Loading ...</h1>
     </div>
-    <table class="pager_table" align="center">
+    <div class="dummy">blank </div>
+    <table id="pager_table" class="pager_table" align="center">
         <tr>
-            @foreach($pageCount as $page)
+            <!--@foreach($pageCount as $page)
                 <th><button type="button" class="no-decoration-button" onclick="goNextPage(this)">{{ $page }}</button></th>
-            @endforeach
+            @endforeach-->
         <tr>
     </table>
 </div>

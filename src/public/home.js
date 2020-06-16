@@ -70,11 +70,48 @@ $.ajax({
   }).fail(function(){
 
   }).done(function(re){
+    currentPage = 1;
+
     var result = JSON.parse(re);
     threadData = result;
+
+    //ページ数
+    var pageCount = Math.floor((result.length + 19) / 20);
+    makePager(pageCount);
+
+    //スレッド
     var newThreadData = getCurrentThreads();
     setThreads(newThreadData);
   });
+}
+
+/**
+ * ページャーを作成する
+ * @param {*} pageCount 
+ */
+var makePager = function(pageCount){
+  var table = document.getElementById("pager_table");
+
+  var rowCount = table.rows.length
+  if(rowCount < 1){
+    table.insertRow(-1);
+  }
+  var columnCount = table.rows[0].cells.length;
+  if(columnCount < pageCount){
+    for(let i = columnCount; i < pageCount; ++i){
+      var cell = table.rows[0].insertCell(i);
+      cell.innerHTML = i + 1;
+
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.classList.add("no-decoration-button");
+      button.setAttribute("onClick","goNextPage");
+    }
+  }else if(pageCount < columnCount){
+    for(let i = columnCount - 1; pageCount <= i; --i){
+      var cell = table.rows[0].deleteCell(i);
+    }
+  }
 }
 
 /**
@@ -159,7 +196,7 @@ var setThreads = function(threads){
       table.deleteRow(i);
     }
   }
-  
+
   var obj = document.getElementById('loading-message');
   obj.style.display = "none";
 }

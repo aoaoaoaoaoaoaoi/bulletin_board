@@ -35,6 +35,10 @@ th{
     border:1px solid #333;
 }
 
+.width-super-little-bigger{
+    min-width:30px;
+}
+
 .width-little-little-bigger{
     min-width:100px;
 }
@@ -61,10 +65,14 @@ th{
     background-color: rgba(111, 181, 227, 0.1)
 }
 
-.pager_table > th{
-    min-width: 50px;
+.pager_table > th, td{
+    min-width:30px;
     border-collapse: collapse;
     border:1px solid #333;
     line-height: 2.5em;
     text-align: center;
+}
+
+.dummy{
+    color: rgba(111, 181, 227, 0);
 }
