@@ -159,4 +159,7 @@ var setThreads = function(threads){
       table.deleteRow(i);
     }
   }
+  
+  var obj = document.getElementById('loading-message');
+  obj.style.display = "none";
 }

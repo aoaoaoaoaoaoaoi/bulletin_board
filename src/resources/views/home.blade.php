@@ -57,32 +57,17 @@
             <th class="width-bigger" align="center">
                 タイトル
             </th>
-            <th align="center">
+            <th class="width-little-little-bigger" align="center">
                 波
             </th>
-            <th align="center">
+            <th class="width-little-little-bigger" align="center">
                 グループ
             </th>
         </tr>
-        <!--@foreach($data as $thread)
-            <tr>
-                <td>
-                    {{ $thread['updatedAt'] }} 
-                </td>
-                <td class="cell-link">
-                    <a id="thread-index-{{ $loop->index }}" href="./thread?threadId={{ $thread['id'] }}">
-                        {{ $thread['title'] }} 
-                    </a>
-                </td>
-                <td>
-                    {{ $thread['wave'] }} 
-                </td>
-                <td>
-                    {{ $thread['groupName'] }} 
-                </td>
-            </tr>
-        @endforeach-->
     </table>
+    <div id="loading-message" align="center">
+        <h1>Now Loading ...</h1>
+    </div>
     <table class="pager_table" align="center">
         <tr>
             @foreach($pageCount as $page)
