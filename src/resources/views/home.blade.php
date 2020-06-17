@@ -69,12 +69,11 @@
         <h1>Now Loading ...</h1>
     </div>
     <div class="dummy">blank </div>
-    <table id="pager_table" class="pager_table" align="center">
-        <tr>
-            <!--@foreach($pageCount as $page)
-                <th><button type="button" class="no-decoration-button" onclick="goNextPage(this)">{{ $page }}</button></th>
-            @endforeach-->
-        <tr>
+    
+    <!-- ページャーコピー用 -->
+    <a id="pager-table-th-clone" class="pager_table_th" href="#" onclick="goNextPage(this);">0</a>
+    
+    <table id="pager_table" class="pager_table cell-link" align="center">
     </table>
 </div>
 </div>

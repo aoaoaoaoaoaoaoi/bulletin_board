@@ -98,14 +98,14 @@ var makePager = function(pageCount){
   }
   var columnCount = table.rows[0].cells.length;
   if(columnCount < pageCount){
+    let original = document.getElementById("pager-table-th-clone");
     for(let i = columnCount; i < pageCount; ++i){
       var cell = table.rows[0].insertCell(i);
 
-      var link = document.createElement('a');
-      link.textContent = i + 1;
-      link.href = "#";
-      cell.classList.add("cell-link");
-      cell.appendChild(link);
+      let clone = original.cloneNode(true);
+      clone.textContent = i + 1;
+      cell.appendChild(clone);
+      clone.style.display = "block";
     }
   }else if(pageCount < columnCount){
     for(let i = columnCount - 1; pageCount <= i; --i){
@@ -118,8 +118,8 @@ var makePager = function(pageCount){
  * ページを切り替える
  * @param {*} button 
  */
-var goNextPage = function(button){
-  var nextPage = button.innerHTML;
+var goNextPage = function(link){
+  var nextPage = link.textContent;
   if(currentPage == nextPage){
     return;
   }

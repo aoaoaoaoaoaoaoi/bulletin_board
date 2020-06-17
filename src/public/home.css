@@ -65,12 +65,13 @@ th{
     background-color: rgba(111, 181, 227, 0.1)
 }
 
-.pager_table > th, td{
+.pager_table_th{
     min-width:30px;
-    border-collapse: collapse;
-    border:1px solid #333;
-    line-height: 2.5em;
-    text-align: center;
+    display: none;
+}
+
+#pager-table-th-clone{
+    display: none;
 }
 
 .dummy{
