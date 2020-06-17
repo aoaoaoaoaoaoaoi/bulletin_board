@@ -100,12 +100,12 @@ var makePager = function(pageCount){
   if(columnCount < pageCount){
     for(let i = columnCount; i < pageCount; ++i){
       var cell = table.rows[0].insertCell(i);
-      cell.innerHTML = i + 1;
 
-      var button = document.createElement('button');
-      button.type = 'button';
-      button.classList.add("no-decoration-button");
-      button.setAttribute("onClick","goNextPage");
+      var link = document.createElement('a');
+      link.textContent = i + 1;
+      link.href = "#";
+      cell.classList.add("cell-link");
+      cell.appendChild(link);
     }
   }else if(pageCount < columnCount){
     for(let i = columnCount - 1; pageCount <= i; --i){
