@@ -21,11 +21,17 @@
     display:inline-flex;
 }
 
-.thread_table > th, td{
+.thread_table{
     min-width:100px;
     border-collapse: collapse;
     border:1px solid #333;
     line-height: 2.5em;
+    text-align: center;
+}
+
+td{
+    border-collapse: collapse;
+    border:1px solid #333;
     text-align: center;
 }
 
