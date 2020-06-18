@@ -83,6 +83,17 @@ input:focus{
   background-color: transparent !important; 
 }
 
+textarea{
+  color: rgba(255,255,255,.7);
+  background-color: rgba(111,181,227,.1) !important;
+  border: 1px solid #2080C0;
+}
+
+textarea:focus{
+  color: rgba(255,255,255,.7);
+  background-color: transparent !important; 
+}
+
 .dropdown-menu{
   background-color: #040424;
   border: 1px solid #2080C0;

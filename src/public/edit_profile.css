@@ -1,6 +1,6 @@
 #icon-image{
-    width: 200px;
-    height:200px;
+    width: 100px;
+    height:100px;
 }
 
 table.profile{
@@ -59,4 +59,8 @@ li.profile-others{
 
 input.no-back{
     background: transparent;
+}
+
+.width-large{
+    width: 100px;
 }

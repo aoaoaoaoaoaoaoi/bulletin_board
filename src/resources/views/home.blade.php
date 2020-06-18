@@ -40,14 +40,14 @@
                             <div class="col-md-6 parallel"><input type="date" id="end-date-start">～<input type="date" id="end-date-end"></div>
                         </div>
                         <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-4">
-                        <button type="button" id="searchButton" class="btn btn-primary" onclick="search(this)">
-                                    検索
-                        </button>
-</div>
-</div>
+                            <div class="col-md-8 offset-md-4">
+                                <button type="button" id="searchButton" class="btn btn-primary" onclick="search(this)">
+                                            検索
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    </div>
+                </div>
                 <div class="card-body">
     <table id="thread_table" class="thread_table" align="center">
         <tr>
