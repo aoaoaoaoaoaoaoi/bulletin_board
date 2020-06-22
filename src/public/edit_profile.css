@@ -58,7 +58,8 @@ li.profile-others{
 }
 
 input.no-back{
-    background: transparent;
+    background-color: transparent;
+    border: none;
 }
 
 .width-large{
