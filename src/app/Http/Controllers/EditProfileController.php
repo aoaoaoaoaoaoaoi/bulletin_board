@@ -23,24 +23,14 @@ class EditProfileController extends Controller
         }
 
         $userTagIds = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id');
-        $userTagDatas = DB::table('tags')->whereIn('id', $userTagIds)->get();
-        $userTags = [];
-        $userTagValueWithWhite = '';
-        foreach ($userTagDatas as $d){
-            $userTag=[
-                'name' => '#'.$d->name,
-            ];
-            $userTags[] = $userTag;
-            $userTagValueWithWhite = $userTagValueWithWhite.'#'.$d->name.' ';
-        }
-        $userTagValue = rtrim($userTagValueWithWhite, ' ');
+        $userTagData = DB::table('tags')->whereIn('id', $userTagIds)->pluck('name')->toArray();
+        $userTagValue = implode(",", $userTagData);
 
         $resoucePath = "../../../icon_image/".$user->resource;
         $data = [
             'name' => $user->name,
             'profile' => $user->profile,
             'resource' => $resoucePath,
-            'user_tag' => $userTags,
             'user_tag_value' => $userTagValue,
             'tag' => $tags,
         ];
@@ -66,14 +56,10 @@ class EditProfileController extends Controller
 
     private function insertTag($tagsValue)
     {
-        $tagsWithSymbol = explode(' ', $tagsValue);
+        $tags = explode(',', $tagsValue);
         $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
         $insertTagData = [];
         $allIndex = 0;
-        $tags=[];
-        foreach($tagsWithSymbol as $tag){
-            $tags[] = ltrim($tag, '#');
-        }
         sort($tags);
         foreach($tags as $tag){
             $isConfirm = false;

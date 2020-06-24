@@ -26,8 +26,8 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label">イメージ</label>
-                        <div class="col-md-6"><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()">
-                        <input class="no-back" type="file" name="icon-file" id="icon-file" accept="image/*"></div>
+                        <div class="col-md-6 originalFileBtn"><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()">
+                        <input class="no-back" type="file" name="icon-file" id="icon-file" accept="image/*" style="display:none;"></div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label">ユーザー名</label>
