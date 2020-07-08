@@ -10,7 +10,7 @@ class MakeGroupController extends Controller
 {
     public function index()
     {
-        return view('make_group');
+        return view('make_group', ['resource' => ""]);
     }
 
     public function makeGroup(Request $request)
