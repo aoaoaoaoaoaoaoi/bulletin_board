@@ -20,17 +20,13 @@ class TagService
         }
         return $instance;
     }
-
-    public function insertTag($tagsValue)
+    
+    private function insertTag($tagsValue)
     {
-        $tagsWithSymbol = explode(' ', $tagsValue);
+        $tags = explode(',', $tagsValue);
         $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
         $insertTagData = [];
         $allIndex = 0;
-        $tags=[];
-        foreach($tagsWithSymbol as $tag){
-            $tags[] = ltrim($tag, '#');
-        }
         sort($tags);
         foreach($tags as $tag){
             $isConfirm = false;

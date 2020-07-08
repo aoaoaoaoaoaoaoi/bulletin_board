@@ -41,7 +41,7 @@
 
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label">タグ</label>
-                                <div class="col-md-6"><input type="text" id="user-tag"></div>
+                                <div class="col-md-6"><input type="text" id="user-tag" name="usertag"></div>
                             </div>
                             
                             <div class="form-group row">

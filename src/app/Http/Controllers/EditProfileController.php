@@ -100,7 +100,7 @@ class EditProfileController extends Controller
         $userData->save();
 
         $tagsValue = $request->input('usertag');
-        $tags = self::insertTag($tagsValue);
+        $tags = TagService::getInstance()->insertTag($threadTags);
 
         $tagDatas = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id')->toArray();
         $userTags = DB::table('user_tags') -> where('user_id', '=', $user['id'])->get()->pluck('tag_id')->toArray();
@@ -119,8 +119,5 @@ class EditProfileController extends Controller
                 $insertUserTagData[] = $data;
         }
         DB::table('user_tags')->insert($insertUserTagData);
-
-        //self::index();
-        //return view('edit_profile', ['data' => $data]);
     }
 }
