@@ -2,7 +2,6 @@
 
 @section('jssheet')
 <head>
-<script src="{{ asset('edit_tag.js') }}" defer></script>
 <script src="{{ asset('make_thread.js') }}" defer></script>
 </head>
 @endsection
@@ -23,88 +22,65 @@
                     <div class="card-body">
                         <form method="POST" action="./make_thread">
                             @csrf
-                            <table class="makeThreadTable">
-                                <tr>
-                                    <td>
-                                        グループ
-                                    </td>
-                                    <td>
-                                        <select name="group" required>
-                                            <option value="">グル－プを選択してください</option>
-                                            @foreach($joinGroup as $group)
-                                            <option value={{ $group['id'] }}>{{ $group['name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                </tr>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">グループ</label>
+                                <div class="col-md-6">
+                                    <select name="group" required>
+                                        <option value="">グル－プを選択してください</option>
+                                        @foreach($joinGroup as $group)
+                                        <option value={{ $group['id'] }}>{{ $group['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
-                                <tr>
-                                    <td>
-                                        スレッドタイトル
-                                    </td>
-                                    <td>
-                                        <input type="text" required name="title">
-                                    </td>
-                                </tr>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">スレッドタイトル</label>
+                                <div class="col-md-6"><input type="text" required name="title"></div>
+                            </div>
 
-                                <tr>
-                                    <td>
-                                        タグ
-                                    </td>
-                                    <td>
-                                        <span id="user-tag-backs"></span>
-                                        <input class="user-tag" name="usertag" id="user-tag" type="text">                                    
-                                    </td>
-                                </tr>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">タグ</label>
+                                <div class="col-md-6"><input type="text" id="user-tag"></div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">スレッド概要</label>
+                                <div class="col-md-6">
+                                    <textarea rows="4" cols="40" class="threadOverviewTextArea" type="textarea" name="threadOverview"></textarea>
+                                </div>
+                            </div>
 
-                                <tr>
-                                    <td>
-                                        スレッド概要
-                                    </td>
-                                    <td>
-                                        <textarea rows="4" cols="40" class="threadOverviewTextArea" type="textarea" name="threadOverview"></textarea>
-                                    </td>
-                                </tr>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label">掲載期間</label>
+                                <div class="col-md-6">
+                                    <input type="radio" name="period" value="notSpecifyPeriod" checked="checked">指定なし
+                                    <input type="radio" name="period" value="specifyPeriod">指定あり
+                                </div>
+                            </div>
 
-                                <tr>
-                                    <td>
-                                        掲載期間
-                                    </td>
-                                    <td>
-                                        <input type="radio" name="period" value="notSpecifyPeriod" checked="checked">指定なし
-                                        <input type="radio" name="period" value="specifyPeriod">指定あり
-                                    </td>
-                                </tr>
+                            <div class="periodSetting">
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">掲載開始期間</label>
+                                    <div class="col-md-6"><input type="datetime-local" name="startAt"></div>
+                                </div>
 
-                                <tr class="periodSetting">
-                                    <td>
-                                       掲載開始期間
-                                    </td>
-                                    <td>
-                                        <input type="datetime-local" name="startAt">
-                                    </td>
-                                </tr>
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">掲載終了期間</label>
+                                    <div class="col-md-6"><input type="datetime-local" name="endAt"></div>
+                                </div>
+                            </div>
 
-                                <tr class="periodSetting">
-                                    <td>
-                                       掲載終了期間
-                                    </td>
-                                    <td>
-                                        <input type="datetime-local" name="endAt">
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('登録') }}
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('登録') }}
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
-
+                </div>
             </div>
         </div>
     </div>

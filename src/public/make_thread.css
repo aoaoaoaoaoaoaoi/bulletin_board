@@ -29,6 +29,6 @@ table.makeThreadTable{
     border-spacing: 5px 10px;
 }
 
-tr.periodSetting{
+.periodSetting{
     display:none;
 }
