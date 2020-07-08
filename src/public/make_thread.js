@@ -5,7 +5,7 @@ periodSettingRadioButton.forEach(function(e) {
       var priodSettings = document.getElementsByClassName('periodSetting');
       if (currentValue == "specifyPeriod"){
         Object.keys(priodSettings).forEach(function( key ) {
-          this[key].style.display = 'table-row';
+          this[key].style.display = 'flex';
         }, priodSettings);
       } else{
         Object.keys(priodSettings).forEach(function( key ) {

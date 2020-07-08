@@ -58,17 +58,15 @@
                                     <input type="radio" name="period" value="specifyPeriod">指定あり
                                 </div>
                             </div>
+                            
+                            <div class="form-group row periodSetting">
+                                <label class="col-md-4 col-form-label">掲載開始期間</label>
+                                <div class="col-md-6"><input type="datetime-local" name="startAt"></div>
+                            </div>
 
-                            <div class="periodSetting">
-                                <div class="form-group row">
-                                    <label class="col-md-4 col-form-label">掲載開始期間</label>
-                                    <div class="col-md-6"><input type="datetime-local" name="startAt"></div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-md-4 col-form-label">掲載終了期間</label>
-                                    <div class="col-md-6"><input type="datetime-local" name="endAt"></div>
-                                </div>
+                            <div class="form-group row periodSetting">
+                                <label class="col-md-4 col-form-label">掲載終了期間</label>
+                                <div class="col-md-6"><input type="datetime-local" name="endAt"></div>
                             </div>
 
                             <div class="form-group row mb-0">

@@ -116,3 +116,20 @@ textarea:focus{
 .card-header{
   background-color: rgba(111, 181, 227, 0.1)
 }
+
+select{
+  background-color: rgba(111, 181, 227, 0.1);
+  color: #2080C0;
+  border: 1px solid #2080C0;
+}
+
+select:focus {
+  outline: none;
+}
+
+option{
+  background-color: #040424;
+  color: #2080C0;
+  border: 1px solid #2080C0;
+  box-shadow: 0 0 8px rgba(111, 181, 227, 0.8) !important;
+}
