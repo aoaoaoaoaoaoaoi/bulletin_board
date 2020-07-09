@@ -54,32 +54,6 @@ class EditProfileController extends Controller
         }
     }
 
-    private function insertTag($tagsValue)
-    {
-        $tags = explode(',', $tagsValue);
-        $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
-        $insertTagData = [];
-        $allIndex = 0;
-        sort($tags);
-        foreach($tags as $tag){
-            $isConfirm = false;
-            for(; $allIndex < count($allTags); ++$allIndex){
-                $cmp = strcmp($allTags[$allIndex], $tag);
-                if($cmp == 0) break;
-                if(0 < $cmp || $allIndex == count($allTags) - 1){
-                    //タグが登録されてない
-                    $data = [
-                        'name' => $tag,
-                    ];
-                    $insertTagData[] = $data;
-                    break;
-                }
-            }
-        }
-        DB::table('tags')->insert($insertTagData);
-        return $tags;
-    }
-
     public function saveProfile(Request $request)
     {
         $user = Auth::user();
@@ -89,7 +63,7 @@ class EditProfileController extends Controller
         $file_name = $_FILES['icon-file']['name'];
         if($file_name !== "") {            
             $uniq_file_name = date("YmdHis") . "_" . $file_name;
-            self::saveIconResouce($uniq_file_name);
+            ResourceService::getInstance()->saveIconResouce($uniq_file_name);
             $userData->resource = $uniq_file_name;
         }
 

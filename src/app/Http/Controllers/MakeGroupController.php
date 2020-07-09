@@ -18,9 +18,18 @@ class MakeGroupController extends Controller
         $name = $request->input('name');
         $description = $request->input('description');
 
+        // ファイル名を取得して、ユニークなファイル名に変更
+        $file_name = $_FILES['icon-file']['name'];
+        $uniq_file_name = "";
+        if($file_name !== "") {            
+            $uniq_file_name = date("YmdHis") . "_" . $file_name;
+            ResourceService::getInstance()->saveIconResouce($uniq_file_name);
+        }
+
         DB::table('groups')->insert([
             'name' => $name,
             'description' => $description,
+            'resource' => $uniq_file_name,
         ]);
 
         return view('/make_group_complete');

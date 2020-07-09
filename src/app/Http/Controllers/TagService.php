@@ -21,7 +21,7 @@ class TagService
         return $instance;
     }
     
-    private function insertTag($tagsValue)
+    public function insertTag($tagsValue)
     {
         $tags = explode(',', $tagsValue);
         $allTags = DB::table('tags')->orderBy('name')->get()->pluck('name');
