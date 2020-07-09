@@ -24,20 +24,20 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label">イメージ</label>
+                        <label class="col-md-4 col-form-label  text-md-right">イメージ</label>
                         <div class="col-md-6 originalFileBtn"><img src="{{ $data['resource'] }}" id="icon-image" onClick="$('#icon-file').click()">
                         <input class="no-back" type="file" name="icon-file" id="icon-file" accept="image/*" style="display:none;"></div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label">ユーザー名</label>
+                        <label class="col-md-4 col-form-label  text-md-right">ユーザー名</label>
                         <div class="col-md-6"><input type ="text" name="username" id = "username" value = "{{ $data['name'] }}"></div>
                     </div>
                     <div class="form-group row">    
-                        <label class="col-md-4 col-form-label">説明</label>
+                        <label class="col-md-4 col-form-label  text-md-right">説明</label>
                         <div class="col-md-6"><textarea rows="4" cols="40" class="bio" name="bio" id = "bio" value = "{{ $data['profile'] }}"></textarea></div>
                     </div>        
                     <div class="form-group row"> 
-                        <label class="col-md-4 col-form-label">タグ</label>
+                        <label class="col-md-4 col-form-label  text-md-right">タグ</label>
                         <div class="col-md-6"><input class="user-tag" name="usertag" id="user-tag" type="text" value="{{ $data['user_tag_value'] }}"></div>                                
                     </div>
                     <div class="form-group row mb-0">

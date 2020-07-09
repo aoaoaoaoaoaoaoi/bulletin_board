@@ -15,7 +15,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label">イメージ</label>
+                                <label class="col-md-4 col-form-label text-md-right">イメージ</label>
                                 <div class="col-md-6 originalFileBtn"><img src="{{ $resource }}" id="icon-image" onClick="$('#icon-file').click()">
                                 <input class="no-back" type="file" name="icon-file" id="icon-file" accept="image/*" style="display:none;"></div>
                             </div>

@@ -1,4 +1,4 @@
-$('#icon-file').change(function(){
+/*$('#icon-file').change(function(){
   if (this.files.length > 0) {
     // 選択されたファイル情報を取得
     var file = this.files[0];
@@ -11,7 +11,7 @@ $('#icon-file').change(function(){
       $('#icon-image').attr('src', reader.result );
     }
   }
-});
+});*/
 
 function update_user_data(){
   var formdata = new FormData($('#edit_user_data_form').get(0));
