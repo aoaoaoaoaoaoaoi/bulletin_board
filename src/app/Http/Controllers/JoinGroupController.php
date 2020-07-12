@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PlayerGroup;
 use App\Group;
 use DB;
 use Auth;
@@ -50,12 +51,12 @@ class JoinGroupController extends Controller
         $groupName = (string)$request->input('groupName');
         $tag = (string)$request->input('tag');
 
-        $groups = collect(Group::whereRaw('replace(groupName, "　", "") = ?', [$groupName])->get());
+        $groups = collect(Group::whereRaw('replace(name, "　", "") = ?', [$groupName])->get());
         $data = self::organizeGroupData($groups);  
         return json_encode($data);
     }
 
-    private function  organizeGroupData(array $groups) : array
+    private function  organizeGroupData(\Illuminate\Support\Collection $groups) : array
     {
         $data = [];
 
@@ -64,19 +65,19 @@ class JoinGroupController extends Controller
         $joinGroupIds = PlayerGroup::where('player_id', '=', $user->id)->get(['group_id']);
         $joinGroups = [];
         foreach($joinGroupIds as $id){
-            $joinGroups[$id] = true;
+            $joinGroups[$id['group_id']] = true;
         }
 
         //グループの参加人数
-        $groupIds = $groups->pluck('id');
-        $joinCounts = PlayerGroup::whereIn('group_id', '=', $groupIds)->select(DB::raw('count(*) as user_count, status'))->groupBy('group_id')->get();
-        
+        $groupIds = $groups->pluck('id')->toArray();
+        $joinCounts = PlayerGroup::whereIn('group_id', $groupIds)->select(DB::raw('count(*) as group_count, group_id'))->groupBy('group_id')->get();
+
         foreach($groups as $group){
             $groupData = [
-                'resource' => $group['resource'],
-                'name' => $group['name'],
-                'id' => $group['id'],
-                'desctiption' => $group['desctiption'],
+                'resource' => $group->resource,
+                'name' => $group->name,
+                'id' => $group->id,
+                'desctiption' => $group->desctiption,
                 'joinCount' => $joinCounts[$group['id']],
                 'isJoin' => isset($joinGroups[$group['id']]),
             ];
