@@ -1,7 +1,3 @@
-//グローバル変数
-var currentPage = 1;
-var threadData;
-
 /**
  * 読み込み時の処理
  */
@@ -59,14 +55,14 @@ $.ajax({
     currentPage = 1;
 
     var result = JSON.parse(re);
-    threadData = result;
+    listData = result;
 
     //ページ数
     var pageCount = Math.floor((result.length + 19) / 20);
     makePager(pageCount);
 
     //スレッド
-    var newThreadData = getCurrentThreads();
+    var newThreadData = getCurrentList();
     setThreads(newThreadData);
   });
 }
@@ -80,25 +76,10 @@ var goNextPage = function(link){
   if(currentPage == nextPage){
     return;
   }
-  var newThreadData = getCurrentThreads();
+  var newThreadData = getCurrentList();
   //データを入れる
   setThreads(newThreadData);
   currentPage = nextPage;
-}
-
-/**
- * 表示するスレッドを取り出す
- */
-var getCurrentThreads = function(){
-  var startIndex = (currentPage - 1) * 20;
-  var newThreadData = [];
-  for(let i = startIndex; i < startIndex + 20; ++i){
-    if(threadData.length <= i){
-      break;
-    }
-    newThreadData.push(threadData[i]);
-  }
-  return newThreadData;
 }
 
 /**

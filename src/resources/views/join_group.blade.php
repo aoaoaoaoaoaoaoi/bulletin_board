@@ -46,6 +46,9 @@
                             <th class="width-bigger" align="center">
                                 グループ名
                             </th>
+                            <th class="width-bigger" align="center">
+                                人数
+                            </th>
                             <th class="width-little-little-bigger" align="center">
                                 詳細
                             </th>

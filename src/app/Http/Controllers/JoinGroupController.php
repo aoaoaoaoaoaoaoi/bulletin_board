@@ -11,22 +11,7 @@ class JoinGroupController extends Controller
 {
     public function index()
     {
-        $groups = DB::table('groups')->get();
-        $user = Auth::user();
-        $userJoinGroups = DB::table('player_groups')->where('player_id', '=', $user['id'])->get();
-        $data=[];
-        foreach ($groups as $group)
-        {
-            $isJoin = $userJoinGroups->where('group_id', '=', $group->id)->first();
-            $groupData=[
-                'id' => $group->id,
-                'name' => $group->name,
-                'description' => $group->description,
-                'isJoin' => $isJoin !== null,
-            ];
-            $data[] = $groupData;
-        }
-        return view('join_group', ['data' => $data]);
+        return view('join_group');
     }
 
     public function joinGroup(Request $request)
@@ -90,6 +75,7 @@ class JoinGroupController extends Controller
             $groupData = [
                 'resource' => $group['resource'],
                 'name' => $group['name'],
+                'id' => $group['id'],
                 'desctiption' => $group['desctiption'],
                 'joinCount' => $joinCounts[$group['id']],
                 'isJoin' => isset($joinGroups[$group['id']]),

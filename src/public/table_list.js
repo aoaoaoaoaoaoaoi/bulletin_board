@@ -1,3 +1,7 @@
+//グローバル変数
+var currentPage = 1;
+var listData;
+
 /**
  * ページャーを作成する
  * @param {*} pageCount 
@@ -25,4 +29,19 @@ var makePager = function(pageCount){
         var cell = table.rows[0].deleteCell(i);
       }
     }
+  }
+
+  /**
+ * 表示するリストを取り出す
+ */
+var getCurrentList = function(){
+    var startIndex = (currentPage - 1) * 20;
+    var newListData = [];
+    for(let i = startIndex; i < startIndex + 20; ++i){
+      if(listData.length <= i){
+        break;
+      }
+      newListData.push(listData[i]);
+    }
+    return newListData;
   }

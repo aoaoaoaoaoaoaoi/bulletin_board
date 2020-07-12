@@ -1,12 +1,11 @@
 //グローバル変数
 var currentPage = 1;
-var threadData;
 
 /**
  * 読み込み時の処理
  */
 window.onload = function(){
-  setThreadData(null);
+  setgroupData(null);
 }
 
 /**
@@ -18,7 +17,7 @@ window.onload = function(){
  * @param {*} endDateStart 
  * @param {*} endDateEnd 
  */
-var setThreadData = function(groupName){
+var setgroupData = function(groupName){
 
   $.ajaxSetup({
     headers: {
@@ -38,15 +37,15 @@ $.ajax({
     currentPage = 1;
 
     var result = JSON.parse(re);
-    threadData = result;
+    listData = result;
 
     //ページ数
     var pageCount = Math.floor((result.length + 19) / 20);
     makePager(pageCount);
 
     //グループ
-    var newThreadData = getCurrentThreads();
-    setGroups(newThreadData);
+    var newgroupData = getCurrentList();
+    setGroups(newgroupData);
   });
 }
 
@@ -54,51 +53,58 @@ $.ajax({
  * グループをセットする
  * @param {*} threads 
  */
-var setGroups = function(threads){
+var setGroups = function(groups){
   var table = document.getElementById("group_table");
 
   var rowCount = table.rows.length - 1;
   var columnCount = table.rows[0].cells.length;
   
-  var loopCount = Math.min(rowCount, threads.length);
+  var loopCount = Math.min(rowCount, groups.length);
   for(let i = 1; i <= loopCount; ++i){
-    for(let j = 0; j< columnCount; ++j){
-      table.rows[i].cells[j].innerHTML = threads[i - 1]['updatedAt'];
-      table.rows[i].cells[j].innerHTML = threads[i - 1]['title'];
-      table.rows[i].cells[j].innerHTML = threads[i - 1]['wave'];
-      table.rows[i].cells[j].innerHTML = threads[i - 1]['groupName'];
-      var id = "thread-index-" + (i - 1);
+    for(let j = 0; j < columnCount; ++j){
+      table.rows[i].cells[j].innerHTML = groups[i - 1]['groupName'];
+      table.rows[i].cells[j].innerHTML = groups[i - 1]['joinCount'];
+      table.rows[i].cells[j].innerHTML = groups[i - 1]['description'];
+      table.rows[i].cells[j].innerHTML = groups[i - 1]['isJoin'];
+      var id = "group-index-" + (i - 1);
       var link = document.getElementById(id);
-      var newLink = "./thread?threadId=" + threads[i - 1]['id'];
+      var newLink = "./group?groupId=" + groups[i - 1]['id'];
       link.href = newLink;
     }
   }
 
   //行の追加
-  if(rowCount < threads.length){
-    for(let i = rowCount; i < threads.length; ++i){
+  if(rowCount < groups.length){
+    for(let i = rowCount; i < groups.length; ++i){
       var row = table.insertRow(-1);
       var cell = row.insertCell(0);
-      cell.innerHTML = threads[i]['updatedAt'];
+      var image = document.createElement('img');
+      image.src = groups[i]['resource'];
+      var id = "group-image-" + (i);
+      
+      image.setAttribute("id", "icon-image");
+      cell.appendChild(image);
       
       var cell = row.insertCell(1);
       var link = document.createElement('a');
-      link.textContent = threads[i]['title'];
-      var id = "thread-index-" + (i);
-      var newLink = "./thread?threadId=" + threads[i]['id'];
+      link.textContent = groups[i]['groupName'];
+      var id = "group-index-" + (i);
+      var newLink = "./group?groupId=" + groups[i]['id'];
       link.href = newLink;
       cell.classList.add("cell-link");
       cell.appendChild(link);
 
       var cell = row.insertCell(2);
-      cell.innerHTML = threads[i]['wave'];
+      cell.innerHTML = groups[i]['joinCount'];
       var cell = row.insertCell(3);
-      cell.innerHTML = threads[i]['groupName'];
+      cell.innerHTML = groups[i]['description'];
+      var cell = row.insertCell(4);
+      cell.innerHTML = groups[i]['isJoin'];
     }
   }
   //行の削除
-  else if(threads.length < rowCount){
-    for(let i = rowCount; threads.length < i; --i){
+  else if(groups.length < rowCount){
+    for(let i = rowCount; groups.length < i; --i){
       table.deleteRow(i);
     }
   }
