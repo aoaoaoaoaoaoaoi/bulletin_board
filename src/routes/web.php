@@ -29,6 +29,7 @@ Route::post('/make_group_complete', 'MakeGroupController@makeGroup');
 Route::get('/join_group', 'JoinGroupController@index');
 Route::post('/join_group_complete', 'JoinGroupController@joinGroup');
 Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
+Route::post('/search_group', 'JoinGroupController@searchGroup');
 
 Route::get('/make_thread_index', 'MakeThreadController@index');
 Route::post('/make_thread', 'MakeThreadController@makeThread');

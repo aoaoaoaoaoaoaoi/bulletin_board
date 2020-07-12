@@ -59,4 +59,43 @@ class JoinGroupController extends Controller
         ];
         echo json_encode($groupData);
     }
+
+    public function searchGroup(Request $request)
+    {
+        $groupName = (string)$request->input('groupName');
+        $tag = (string)$request->input('tag');
+
+        $groups = collect(Group::whereRaw('replace(groupName, "　", "") = ?', [$groupName])->get());
+        $data = self::organizeGroupData($groups);  
+        return json_encode($data);
+    }
+
+    private function  organizeGroupData(array $groups) : array
+    {
+        $data = [];
+
+        //ユーザーの参加しているグループ
+        $user = Auth::user();
+        $joinGroupIds = PlayerGroup::where('player_id', '=', $user->id)->get(['group_id']);
+        $joinGroups = [];
+        foreach($joinGroupIds as $id){
+            $joinGroups[$id] = true;
+        }
+
+        //グループの参加人数
+        $groupIds = $groups->pluck('id');
+        $joinCounts = PlayerGroup::whereIn('group_id', '=', $groupIds)->select(DB::raw('count(*) as user_count, status'))->groupBy('group_id')->get();
+        
+        foreach($groups as $group){
+            $groupData = [
+                'resource' => $group['resource'],
+                'name' => $group['name'],
+                'desctiption' => $group['desctiption'],
+                'joinCount' => $joinCounts[$group['id']],
+                'isJoin' => isset($joinGroups[$group['id']]),
+            ];
+            $data[] = $groupData;
+        }
+        return $data;
+    }
 }

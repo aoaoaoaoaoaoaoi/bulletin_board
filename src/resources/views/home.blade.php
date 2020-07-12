@@ -3,6 +3,7 @@
 @section('jssheet')
 <head>
 <script src="{{ asset('home.js') }}" defer></script>
+<script src="{{ asset('table_list.js') }}" defer></script>
 </head>
 @endsection
 @section('style')
@@ -18,7 +19,7 @@
             <div class="card">
                 <div class="card-header">
                     <div>
-                        <button type="button" class="no-decoration-button text-to-the-left dropdown-toggle" onclick="showSerch(this)">
+                        <button type="button" class="no-decoration-button text-to-the-left dropdown-toggle" onclick="showSerch(this, 'thread-search')">
                         スレッドを検索
                         </button>
                     </div>
@@ -49,7 +50,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-    <table id="thread_table" class="thread_table" align="center">
+    <table id="thread_table" class="list_table" align="center">
         <tr>
             <th class="width-little-bigger" align="center">
                 更新日
