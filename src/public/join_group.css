@@ -58,3 +58,23 @@ li.others{
   input[type="checkbox"]:checked + #popup{
     display:block;
   }
+
+.width-50{
+    width:50px;
+}
+
+.width-60{
+  width:60px;
+}
+
+.width-100{
+  width:100px;
+}
+
+.width-150{
+  width:150px;
+}
+
+.width-200{
+  width:200px;
+}

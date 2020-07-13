@@ -98,8 +98,15 @@ var setGroups = function(groups){
       cell.innerHTML = groups[i]['joinCount'];
       var cell = row.insertCell(3);
       cell.innerHTML = groups[i]['description'];
+      
       var cell = row.insertCell(4);
-      cell.innerHTML = groups[i]['isJoin'];
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.value = groups[i]['id'];
+      button.classList.add("btn");
+      button.classList.add("btn-primary");
+      cell.appendChild(button);
+      //cell.innerHTML = groups[i]['isJoin'];
     }
   }
   //行の削除
@@ -111,4 +118,35 @@ var setGroups = function(groups){
 
   var obj = document.getElementById('loading-message');
   obj.style.display = "none";
+}
+
+$('#group_table').on('click', 'button', function(){
+  var groupId = $(this).value;
+  ReverseParticipation(groupId);
+});
+
+/**
+ * グループへの参加を逆にする
+ * @param {*} groupId 
+ */
+var ReverseParticipation = function(groupId){
+console.log("aaaaa");
+return;
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  
+$.ajax({
+    type: 'POST',
+    url : '/search_group',
+    data: {
+      'groupId' : groupId,
+    },
+  }).fail(function(){
+
+  }).done(function(re){
+   
+  });
 }
