@@ -49,10 +49,10 @@ class JoinGroupController extends Controller
     public function searchGroup(Request $request)
     {
         $groupName = (string)$request->input('groupName');
-        $tag = (string)$request->input('tag');
 
-        $groups = collect(Group::whereRaw('replace(name, "　", "") = ?', [$groupName])->get());
-        $data = self::organizeGroupData($groups);  
+        $groups = Group::GroupName($groupName);
+       
+        $data = self::organizeGroupData($groups);
         return json_encode($data);
     }
 
@@ -70,16 +70,20 @@ class JoinGroupController extends Controller
 
         //グループの参加人数
         $groupIds = $groups->pluck('id')->toArray();
-        $joinCounts = PlayerGroup::whereIn('group_id', $groupIds)->select(DB::raw('count(*) as group_count, group_id'))->groupBy('group_id')->get();
-
+        $joinCountData = PlayerGroup::whereIn('group_id', $groupIds)->select(DB::raw('count(*) as number_of_people, group_id'))->groupBy('group_id')->get();
+        $joinCounts = [];
+        foreach($joinCountData as $countData){
+            $joinCounts[$countData->group_id] = $countData->number_of_people;
+        }
+        
         foreach($groups as $group){
             $groupData = [
                 'resource' => $group->resource,
                 'name' => $group->name,
                 'id' => $group->id,
                 'desctiption' => $group->desctiption,
-                'joinCount' => $joinCounts[$group['id']],
-                'isJoin' => isset($joinGroups[$group['id']]),
+                'joinCount' => isset($joinCounts[$group->id]) ? $joinCounts[$group->id] : 0,
+                'isJoin' => isset($joinGroups[$group->id]),
             ];
             $data[] = $groupData;
         }

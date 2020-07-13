@@ -37,6 +37,9 @@ $.ajax({
     currentPage = 1;
 
     var result = JSON.parse(re);
+var c = result.length;
+console.log(c);
+
     listData = result;
 
     //ページ数
