@@ -37,9 +37,6 @@ $.ajax({
     currentPage = 1;
 
     var result = JSON.parse(re);
-var c = result.length;
-console.log(c);
-
     listData = result;
 
     //ページ数
@@ -65,7 +62,7 @@ var setGroups = function(groups){
   var loopCount = Math.min(rowCount, groups.length);
   for(let i = 1; i <= loopCount; ++i){
     for(let j = 0; j < columnCount; ++j){
-      table.rows[i].cells[j].innerHTML = groups[i - 1]['groupName'];
+      table.rows[i].cells[j].innerHTML = groups[i - 1]['name'];
       table.rows[i].cells[j].innerHTML = groups[i - 1]['joinCount'];
       table.rows[i].cells[j].innerHTML = groups[i - 1]['description'];
       table.rows[i].cells[j].innerHTML = groups[i - 1]['isJoin'];
@@ -90,7 +87,7 @@ var setGroups = function(groups){
       
       var cell = row.insertCell(1);
       var link = document.createElement('a');
-      link.textContent = groups[i]['groupName'];
+      link.textContent = groups[i]['name'];
       var id = "group-index-" + (i);
       var newLink = "./group?groupId=" + groups[i]['id'];
       link.href = newLink;

@@ -81,7 +81,7 @@ class JoinGroupController extends Controller
                 'resource' => $group->resource,
                 'name' => $group->name,
                 'id' => $group->id,
-                'desctiption' => $group->desctiption,
+                'description' => $group->description,
                 'joinCount' => isset($joinCounts[$group->id]) ? $joinCounts[$group->id] : 0,
                 'isJoin' => isset($joinGroups[$group->id]),
             ];
