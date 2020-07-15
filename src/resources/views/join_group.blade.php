@@ -49,10 +49,10 @@
                             <th class="width-50" align="center">
                                 人数
                             </th>
-                            <th class="width-200" align="center">
+                            <th class="width-250" align="center">
                                 詳細
                             </th>
-                            <th class="width-super-little-bigger" align="center">
+                            <th class="width-100" align="center">
                                 状態
                             </th>
                         </tr>

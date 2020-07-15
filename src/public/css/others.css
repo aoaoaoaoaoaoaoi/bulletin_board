@@ -84,3 +84,18 @@ th{
 .dummy{
     color: rgba(111, 181, 227, 0);
 }
+
+.see-through-btn{
+    background-color: transparent;
+    color: #2080C0;
+  }
+
+  .see-through-btn:hover{
+    background-color: rgba(111, 181, 227, 0.1);
+    color: #2080C0;
+  }
+
+  .small-btn{
+    padding: 0.3rem 0.6rem;
+    font-size: 0.72rem;
+  }

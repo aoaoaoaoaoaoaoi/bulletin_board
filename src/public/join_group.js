@@ -105,7 +105,13 @@ var setGroups = function(groups){
       button.value = groups[i]['id'];
       button.classList.add("btn");
       button.classList.add("btn-primary");
-      button.innerHTML = groups[i]['isJoin'] ? "参加中" : "参加";
+      button.classList.add("small-btn");
+      if(groups[i]['isJoin']){
+        button.innerHTML = "参加中";
+      }else{
+        button.classList.add("see-through-btn");
+        button.innerHTML = "参加";
+      }
       cell.appendChild(button);
     }
   }
