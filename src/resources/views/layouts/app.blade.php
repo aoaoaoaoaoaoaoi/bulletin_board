@@ -97,7 +97,7 @@
                                     <a class="dropdown-item" href="./make_group">
                                         グループを作成する
                                     </a>
-                                    <a class="dropdown-item" href="./join_group">
+                                    <a class="dropdown-item" href="./search_group_index">
                                         グループを検索する
                                     </a>
                                 </div>

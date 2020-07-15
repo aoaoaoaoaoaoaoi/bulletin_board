@@ -15,21 +15,19 @@ class JoinGroupController extends Controller
         return view('join_group');
     }
 
-    public function joinGroup(Request $request)
+    public function reverseParticipation(Request $request)
     {
         $user = Auth::user();
-        $joinGroups = $request->input('isJoin');
-        $insertData=[];
-        foreach ($joinGroups as $group) 
-        {
-            $data = [
-                'player_id' => $user->id,
-                'group_id' => $group,
-            ];
-            $insertData[] = $data;
+        $groupId = (int)$request->input('groupId');
+        $joinData = PlayerGroup::UserAndGroup($user->id, $groupId);
+        $isJoin = false;
+        if($joinData->count() <= 0){
+            PlayerGroup::insert(['player_id' => $user->id, 'group_id' => $groupId]);
+            $isJoin = true;
+        }else{
+            $joinData->delete();
         }
-        DB::table('player_groups')->insert($insertData);
-        return view('/join_group_complete');
+        return json_encode(['isJoin' => $isJoin]);
     }
 
     public function showGroupInfo()

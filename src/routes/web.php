@@ -26,8 +26,8 @@ Route::get('/login', function () {
 Route::get('/make_group', 'MakeGroupController@index');
 Route::post('/make_group_complete', 'MakeGroupController@makeGroup');
 
-Route::get('/join_group', 'JoinGroupController@index');
-Route::post('/join_group_complete', 'JoinGroupController@joinGroup');
+Route::get('/search_group_index', 'JoinGroupController@index');
+Route::post('/reverse_group_participation', 'JoinGroupController@reverseParticipation');
 Route::post('/show_group_info', 'JoinGroupController@showGroupInfo');
 Route::post('/search_group', 'JoinGroupController@searchGroup');
 

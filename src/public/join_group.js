@@ -127,17 +127,15 @@ var setGroups = function(groups){
 }
 
 $('#group_table').on('click', 'button', function(){
-  var groupId = $(this).value;
-  ReverseParticipation(groupId);
+  ReverseParticipation($(this));
 });
 
 /**
  * グループへの参加を逆にする
  * @param {*} groupId 
  */
-var ReverseParticipation = function(groupId){
-console.log("aaaaa");
-return;
+var ReverseParticipation = function(button){
+  var groupId = button.val();
   $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -146,13 +144,20 @@ return;
   
 $.ajax({
     type: 'POST',
-    url : '/search_group',
+    url : '/reverse_group_participation',
     data: {
       'groupId' : groupId,
     },
   }).fail(function(){
 
   }).done(function(re){
-   
+    var isJoin = JSON.parse(re);
+    if(isJoin['isJoin']){
+      button.innerHTML = "参加中";
+      button.removeClass("see-through-btn");
+    }else{
+      button.innerHTML = "参加";
+      button.addClass("see-through-btn");
+    }
   });
 }
