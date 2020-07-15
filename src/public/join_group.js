@@ -105,8 +105,8 @@ var setGroups = function(groups){
       button.value = groups[i]['id'];
       button.classList.add("btn");
       button.classList.add("btn-primary");
+      button.innerHTML = groups[i]['isJoin'] ? "参加中" : "参加";
       cell.appendChild(button);
-      //cell.innerHTML = groups[i]['isJoin'];
     }
   }
   //行の削除
