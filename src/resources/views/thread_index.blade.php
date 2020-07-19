@@ -8,7 +8,7 @@
 @endsection
 @section('style')
 <head>
-<!-- <link href="{{ asset('thread.css') }}" rel="stylesheet"> -->
+<link href="{{ asset('thread_index.css') }}" rel="stylesheet">
 </head>
 @endsection
 
@@ -35,6 +35,27 @@
                 </div>
 
                     <div class="card-body">
+                        <table>
+                            <tr>
+                                <td rowspan="3">
+                                    <img src="{{ $data['createdUserResource'] }}" id="icon-image">
+                                </td>
+                                <td class="align-left" width ="600px"　height="20px">
+                                    <div>1 : {{ $data['createdUser'] }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-left">
+                                    <div>{{ $data['overview'] }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-left" height="20px">
+                                    ✩
+                                </td>
+                            </tr>
+                        </table>
+
                         <table>
                             <tr>
                                 <th>
@@ -68,10 +89,8 @@
                         </table>
                     <div>
                     <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage" id = "messageText"></textarea>
-                    <button type='button' class='sendMessage' onclick="sendMessage(this)">send</button>
-                      
+                    <button type='button' class='sendMessage' onclick="sendMessage(this)">send</button>   
                 </div>
-
             </div>
         </div>
     </div>

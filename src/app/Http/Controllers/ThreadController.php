@@ -40,6 +40,8 @@ class ThreadController extends Controller
         $data=[
             'title' => $thread->title,
             'createdUser' => $createdUser->name,
+            'createdUserResource' => $createdUser->resource,
+            'startAt' => $thread->start_at,
             'overview' => $thread->overview,
             'tags' => $tagName,
             'endAt' => $thread->end_at, 
