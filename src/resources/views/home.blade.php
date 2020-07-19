@@ -27,7 +27,7 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label">グループ</label>
                                 <div class="col-md-6">
-                                    <select name="group">
+                                    <select name="group" id="groupId">
                                         <option value="">グル－プを選択してください</option>
                                         @foreach($groups as $group)
                                         <option value={{ $group['id'] }}>{{ $group['name'] }}</option>

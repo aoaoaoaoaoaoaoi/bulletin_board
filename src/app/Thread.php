@@ -7,12 +7,13 @@ use Carbon\Carbon;
 
 class Thread extends Model
 {
-    public static function searchThread(?Carbon $startAtFrom, ?Carbon $startAtTo, ?Carbon $endAtFrom, ?Carbon $endAtTo, string $title){
+    public static function searchThread(?Carbon $startAtFrom, ?Carbon $startAtTo, ?Carbon $endAtFrom, ?Carbon $endAtTo, string $title, ?int $groupId){
         return self::StartAtFrom($startAtFrom)
             ->StartAtTo($startAtTo)
             ->EndAtFrom($endAtFrom)
             ->EndAtTo($endAtTo)
-            ->Title($title);
+            ->Title($title)
+            ->GroupId($groupId);
     }
 
     public function scopeStartAtFrom($query, ?Carbon $startAt){
@@ -48,5 +49,12 @@ class Thread extends Model
             return $query;
         }
         return $query->where('title', 'LIKE', "%$title%");
+    }
+
+    public function scopeGroupId($query, ?int $groupId){
+        if(empty($groupId)){
+            return $query;
+        }
+        return $query->where('group_id', '=', $groupId);
     }
 }

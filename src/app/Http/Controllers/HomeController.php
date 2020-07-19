@@ -72,6 +72,8 @@ class HomeController extends Controller
 
     public function searchThread(Request $request)
     {    
+        $paramGroupId = $request->input('groupId');
+        $groupId = $paramGroupId != null ? (int)$paramGroupId : null;
         $title = (string)$request->input('title');
         $tag = (string)$request->input('tag');
         $paramStartFrom = $request->input('startDateStart');
@@ -83,7 +85,7 @@ class HomeController extends Controller
         $paramEndTo = $request->input('startDateEnd');
         $endDateTo = $paramEndTo != null ? new Carbon($paramEndTo) : null;
 
-        $threads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title)
+        $threads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)
                             ->orderBy('id')->get();
 
         $responseThreads = [];
