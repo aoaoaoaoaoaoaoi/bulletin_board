@@ -11,6 +11,6 @@ class UserGroup extends Model
      */
     public function scopeUserAndGroup($query, int $userId, int $groupId) : \Illuminate\Database\Eloquent\Builder
     {
-        return $query->where('player_id', '=', $userId)->where('group_id', '=', $groupId);
+        return $query->where('user_id', '=', $userId)->where('group_id', '=', $groupId);
     }
 }

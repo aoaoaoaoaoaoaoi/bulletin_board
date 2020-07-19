@@ -22,7 +22,7 @@ class JoinGroupController extends Controller
         $joinData = UserGroup::UserAndGroup($user->id, $groupId);
         $isJoin = false;
         if($joinData->count() <= 0){
-            UserGroup::insert(['player_id' => $user->id, 'group_id' => $groupId]);
+            UserGroup::insert(['user_id' => $user->id, 'group_id' => $groupId]);
             $isJoin = true;
         }else{
             $joinData->delete();
@@ -34,7 +34,7 @@ class JoinGroupController extends Controller
     {
         $groupId = $_POST['key'];
         $group = DB::table('groups')->where('id', '=', $groupId)->first();
-        $memberIds = DB::table('player_groups')->where('group_id', '=', $groupId)->get()->pluck('player_id');
+        $memberIds = UserGroup->where('group_id', '=', $groupId)->get()->pluck('user_id');
         $members = DB::table('users')->whereIn('id', $memberIds)->get();
         $groupData=[
             'name' => $group->name,
@@ -60,7 +60,7 @@ class JoinGroupController extends Controller
 
         //ユーザーの参加しているグループ
         $user = Auth::user();
-        $joinGroupIds = UserGroup::where('player_id', '=', $user->id)->get(['group_id']);
+        $joinGroupIds = UserGroup::where('user_id', '=', $user->id)->get(['group_id']);
         $joinGroups = [];
         foreach($joinGroupIds as $id){
             $joinGroups[$id['group_id']] = true;
