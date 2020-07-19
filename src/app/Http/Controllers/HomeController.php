@@ -10,6 +10,7 @@ use App\Thread;
 use App\Tag;
 use App\ThreadTag;
 use App\Group;
+use App\UserGroup;
 
 class HomeController extends Controller
 {
@@ -52,9 +53,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $userJoinGroupIds = UserGroup::where('user_id', '=', $user['id'])->get()->pluck('group_id');
+        $userJoinGroups = Group::whereIn('id', $userJoinGroupIds)->get();
+        $groupsData=[];
+        foreach ($userJoinGroups as $group)
+        {
+            $groupData=[
+                'name' => $group->name,
+                'id' => $group->id,
+            ];
+            $groupsData[] = $groupData;
+        }
         $threadCount = Thread::orderBy('updated_at', 'desc')->count();
         $pageCount = range(1, (int)(($threadCount + 19) / 20));
-        return view('home', ['pageCount' => $pageCount]);
+        return view('home', ['pageCount' => $pageCount, 'groups' => $groupsData]);
     }
 
     public function searchThread(Request $request)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Group;
+use App\UserGroup;
 use DB;
 use Auth;
 use \App\Http\Controllers\TagService;
@@ -13,8 +14,8 @@ class MakeThreadController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userJoinGroupIds = DB::table('player_groups')->where('player_id', '=', $user['id'])->get()->pluck('group_id');
-        $userJoinGroupInfo = DB::table('groups')->whereIn('id', $userJoinGroupIds)->get();
+        $userJoinGroupIds = UserGroup::where('user_id', '=', $user['id'])->get()->pluck('group_id');
+        $userJoinGroupInfo = Group::whereIn('id', $userJoinGroupIds)->get();
         $data=[];
         foreach ($userJoinGroupInfo as $groupInfo)
         {
