@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PlayerGroup extends Model
+class UserGroup extends Model
 {
     /**
      * ユーザーIDとグループのフィルター

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PlayerGroup;
+use App\UserGroup;
 use App\Group;
 use DB;
 use Auth;
@@ -19,10 +19,10 @@ class JoinGroupController extends Controller
     {
         $user = Auth::user();
         $groupId = (int)$request->input('groupId');
-        $joinData = PlayerGroup::UserAndGroup($user->id, $groupId);
+        $joinData = UserGroup::UserAndGroup($user->id, $groupId);
         $isJoin = false;
         if($joinData->count() <= 0){
-            PlayerGroup::insert(['player_id' => $user->id, 'group_id' => $groupId]);
+            UserGroup::insert(['player_id' => $user->id, 'group_id' => $groupId]);
             $isJoin = true;
         }else{
             $joinData->delete();
@@ -60,7 +60,7 @@ class JoinGroupController extends Controller
 
         //ユーザーの参加しているグループ
         $user = Auth::user();
-        $joinGroupIds = PlayerGroup::where('player_id', '=', $user->id)->get(['group_id']);
+        $joinGroupIds = UserGroup::where('player_id', '=', $user->id)->get(['group_id']);
         $joinGroups = [];
         foreach($joinGroupIds as $id){
             $joinGroups[$id['group_id']] = true;
@@ -68,7 +68,7 @@ class JoinGroupController extends Controller
 
         //グループの参加人数
         $groupIds = $groups->pluck('id')->toArray();
-        $joinCountData = PlayerGroup::whereIn('group_id', $groupIds)->select(DB::raw('count(*) as number_of_people, group_id'))->groupBy('group_id')->get();
+        $joinCountData = UserGroup::whereIn('group_id', $groupIds)->select(DB::raw('count(*) as number_of_people, group_id'))->groupBy('group_id')->get();
         $joinCounts = [];
         foreach($joinCountData as $countData){
             $joinCounts[$countData->group_id] = $countData->number_of_people;
