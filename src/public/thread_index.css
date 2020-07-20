@@ -19,3 +19,27 @@ table, th, td {
 .name{
     font-weight: 700;
 }
+
+.flex{
+    justify-content: flex-start;
+}
+
+.box {
+    margin: 10px 0;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #2080C0;
+  }
+
+  .box img {
+    max-width: 40%;
+    float: left;
+  }
+  .right div {
+    margin: 0;
+    padding-left: 10px;
+  }
+  .right {
+    width: 60%;
+    float: left;
+  } 

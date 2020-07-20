@@ -33,60 +33,43 @@
                         @endforeach
                     </div>
 
-                    <table>
-                            <tr>
-                                <td rowspan="3">
-                                    <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
-                                </td>
-                                <td class="align-left name" width ="600px"　height="20px">
-                                    <div>1 : {{ $data['createdUser'] }}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="align-left overview">
-                                    <div>{{ $data['overview'] }}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="align-left" height="20px">
-                                    ✩
-                                </td>
-                            </tr>
-                    </table>
+                    <div class="box">
+                        <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
+                        <div class="right">
+                            <div class="name">
+                                1 : {{ $data['createdUser'] }}
+                            </div>
+                            <div class="overview">
+                                {{ $data['overview'] }}
+                            </div>
+                            <div>
+                                ✩
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                    <div class="card-body">
-
-                        <table>
-                            @foreach($data['message'] as $message)
-                            <tr>
-                                <td rowspan="3">
-                                    <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
-                                </td>
-                                <td class="align-left name" width ="600px"　height="20px">
-                                    <div>{{ $loop->iteration }} : {{ $message['user_name'] }} {{ $message['posted_time'] }}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="align-left">
-                                    <div>{{ $message['message'] }}</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="align-left" height="20px">
-                                    ✩
-                                </td>
-                            </tr>
-                            @if (!$loop->last)
-                            <tr>
-                                <hr>
-                            </tr>
-                            @endif
-                            @endforeach
-                        </table>
+                <div class="card-body">
+                    @foreach($data['message'] as $message)
+                    <div class="box">
+                        <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
+                        <div class="right">
+                            <div class="name">
+                                {{ $loop->iteration }} : {{ $message['user_name'] }} {{ $message['posted_time'] }}
+                            </div>
+                            <div>
+                                {{ $message['message'] }}
+                            </div>
+                            <div>
+                                ✩
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                     <div>
-                    <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage" id = "messageText"></textarea>
-                    <button type='button' class='sendMessage' onclick="sendMessage(this)">send</button>   
+                        <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage" id = "messageText"></textarea>
+                        <button type='button' class='sendMessage' onclick="sendMessage(this)">send</button>   
+                    </div>
                 </div>
             </div>
         </div>
