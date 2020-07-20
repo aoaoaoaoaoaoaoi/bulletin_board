@@ -32,20 +32,18 @@
                             {{ $tag }}
                         @endforeach
                     </div>
-                </div>
 
-                    <div class="card-body">
-                        <table>
+                    <table>
                             <tr>
                                 <td rowspan="3">
-                                    <img src="{{ $data['createdUserResource'] }}" id="icon-image">
+                                    <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
                                 </td>
-                                <td class="align-left" width ="600px"　height="20px">
+                                <td class="align-left name" width ="600px"　height="20px">
                                     <div>1 : {{ $data['createdUser'] }}</div>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="align-left">
+                                <td class="align-left overview">
                                     <div>{{ $data['overview'] }}</div>
                                 </td>
                             </tr>
@@ -54,37 +52,36 @@
                                     ✩
                                 </td>
                             </tr>
-                        </table>
+                    </table>
+                </div>
+
+                    <div class="card-body">
 
                         <table>
-                            <tr>
-                                <th>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        {{ $data['createdUser'] }}
-                                    </td>
-                                </th>
-                                <th>
-                                     {{ $data['overview'] }}
-                                </th>
-                            </tr>
                             @foreach($data['message'] as $message)
                             <tr>
-                                <th>
-                                    <td>
-                                        {{ $message['thread_order'] }}
-                                    </td>
-                                    <td>
-                                        {{ $message['user_name'] }}
-                                        {{ $message['posted_time'] }}
-                                    </td>
-                                </th>
-                                <th>
-                                     {{ $message['message'] }}
-                                </th>
+                                <td rowspan="3">
+                                    <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
+                                </td>
+                                <td class="align-left name" width ="600px"　height="20px">
+                                    <div>{{ $loop->iteration }} : {{ $message['user_name'] }} {{ $message['posted_time'] }}</div>
+                                </td>
                             </tr>
+                            <tr>
+                                <td class="align-left">
+                                    <div>{{ $message['message'] }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-left" height="20px">
+                                    ✩
+                                </td>
+                            </tr>
+                            @if (!$loop->last)
+                            <tr>
+                                <hr>
+                            </tr>
+                            @endif
                             @endforeach
                         </table>
                     <div>
