@@ -57,8 +57,9 @@
                             <div>
                                 {{ $message['message'] }}
                             </div>
-                            <div>
-                                <button type="button" class="great-good-button no-decoration-button">✩</button>
+                            <div class="reaction-button">
+                                <div class="first-reaction-button"><button type="button" class="good-button no-decoration-button">♡</button></div>
+                                <div class="second-reaction-button"><button type="button" class="great-good-button no-decoration-button">✩</button></div>
                             </div>
                         </div>
                     </div>
