@@ -31,12 +31,12 @@ var sendMessage = function(button) {
     });
 }
 
-$('#good-button').on('click', 'button', function(){
+$('.good-button').on('click', function(){
   console.log("aaaa");
   ReverseReaction($(this), good);
 });
 
-$('#great-good-button').on('click', 'button', function(){
+$('.great-good-button').on('click', function(){
   ReverseReaction($(this), greatGood);
 });
 
@@ -56,13 +56,13 @@ var ReverseReaction = function(button, reactionType){
       }
     }).fail(function(){
 
-    }).done(function(){
+    }).done(function(re){
       var isReaction = JSON.parse(re);
-      var class = (reactionType == good) ? "good-button-color" : "great-good-button-color";
+      var changeClass = (reactionType == good) ? "good-button-color" : "great-good-button-color";
       if(isReaction['isReaction']){
-          button.addClass(class);
+          button.addClass(changeClass);
       }else{
-          button.removeClass(class);
+          button.removeClass(changeClass);
       }
     });
 }

@@ -14,6 +14,8 @@ class ThreadController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
+
         $threadId = $request->input('threadId');
         $thread = DB::table('threads')->where('id','=',$threadId)->first();
         $createdUserId = $thread->created_user_id;
@@ -32,6 +34,12 @@ class ThreadController extends Controller
             $reactionCounts[$countData->thread_message_id][$countData->reaction_type] =  $countData->number_of_people;
         }
         
+        $userReactionData = UserThreadMessageReaction::whereIn('thread_message_id', $messageIds)->where('user_id', '=', $user->id)->get();
+        $userReaction = [];
+        foreach($userReactionData as $reaction){
+            $userReaction[$reaction->thread_message_id][$reaction->reaction_type] = true;
+        }
+
         $messages=[];
         foreach($currentMessages as $message){
             //TODO:処理はループの外でする
@@ -45,6 +53,8 @@ class ThreadController extends Controller
                 'posted_time' => $message['posted_time'],
                 'good_reaction' => isset($reactionCounts[$message['id']][1]) ? $reactionCounts[$message['id']][1] : null,
                 'great_good_reaction' => isset($reactionCounts[$message['id']][2]) ? $reactionCounts[$message['id']][2] : null,
+                'is_good_reaction' => isset($userReaction[$message['id']][1]),
+                'is_great_good_reaction' => isset($userReaction[$message['id']][2]),
             ];
             $messages[] = $message;
         }
@@ -91,7 +101,7 @@ class ThreadController extends Controller
         $reactionData = UserThreadMessageReaction::ThreadMessageIdAndReactionType($threadMessageId, $reactionType);
 
         $isReaction = false;
-        if($reactionData->isEmpty()){
+        if($reactionData->count() <= 0){
             UserThreadMessageReaction::insert([
                 'user_id' => $user->id,
                 'thread_message_id' => $threadMessageId,

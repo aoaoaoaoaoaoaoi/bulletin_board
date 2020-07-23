@@ -58,8 +58,16 @@
                                 {{ $message['message'] }}
                             </div>
                             <div class="reaction-button">
-                                <div class="first-reaction-button good-button no-decoration-button"><button type="button" value={{ $message['thread_message_id'] }}>♡{{ $message['good_reaction'] }}</button></div>
-                                <div class="second-reaction-button great-good-button no-decoration-button"><button type="button" value={{ $message['thread_message_id'] }}>✩{{ $message['great_good_reaction'] }}</button></div>
+                            @if($message['is_good_reaction'])
+                                <div class="first-reaction-button"><button type="button" class="good-button good-button-color no-decoration-button" value={{ $message['thread_message_id'] }}>♡{{ $message['good_reaction'] }}</button></div>
+                            @else
+                                <div class="first-reaction-button"><button type="button" class="good-button no-decoration-button" value={{ $message['thread_message_id'] }}>♡{{ $message['good_reaction'] }}</button></div>
+                            @endif
+                            @if($message['is_great_good_reaction'])
+                                <div class="second-reaction-button"><button type="button" class="great-good-button great-good-button-color no-decoration-button" value={{ $message['thread_message_id'] }}>✩{{ $message['great_good_reaction'] }}</button></div>
+                            @else   
+                                <div class="second-reaction-button"><button type="button" class="great-good-button no-decoration-button" value={{ $message['thread_message_id'] }}>✩{{ $message['great_good_reaction'] }}</button></div>
+                            @endif
                             </div>
                         </div>
                     </div>
