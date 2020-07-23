@@ -43,8 +43,8 @@ class ThreadController extends Controller
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
                 'posted_time' => $message['posted_time'],
-                'good_reaction' => $reactionCounts[$message['id']][1],
-                'great_good_reaction' => $reactionCounts[$message['id']][2],
+                'good_reaction' => isset($reactionCounts[$message['id']][1]) ? $reactionCounts[$message['id']][1] : null,
+                'great_good_reaction' => isset($reactionCounts[$message['id']][2]) ? $reactionCounts[$message['id']][2] : null,
             ];
             $messages[] = $message;
         }

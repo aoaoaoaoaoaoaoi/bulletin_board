@@ -32,6 +32,7 @@ var sendMessage = function(button) {
 }
 
 $('#good-button').on('click', 'button', function(){
+  console.log("aaaa");
   ReverseReaction($(this), good);
 });
 
