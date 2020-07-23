@@ -57,10 +57,11 @@ var ReverseReaction = function(button, reactionType){
 
     }).done(function(){
       var isReaction = JSON.parse(re);
+      var class = (reactionType == good) ? "good-button-color" : "great-good-button-color";
       if(isReaction['isReaction']){
-        button.removeClass("");
+          button.addClass(class);
       }else{
-        button.addClass("");
+          button.removeClass(class);
       }
     });
 }
