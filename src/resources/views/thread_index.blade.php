@@ -42,16 +42,13 @@
                             <div class="overview">
                                 {{ $data['overview'] }}
                             </div>
-                            <div>
-                                ✩
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-body">
                     @foreach($data['message'] as $message)
-                    <div class="box">
+                    <div class="box bottom-line">
                         <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
                         <div class="right">
                             <div class="name">
@@ -61,7 +58,7 @@
                                 {{ $message['message'] }}
                             </div>
                             <div>
-                                ✩
+                                <button type="button" class="great-good-button no-decoration-button">✩</button>
                             </div>
                         </div>
                     </div>
