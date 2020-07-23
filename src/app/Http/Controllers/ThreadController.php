@@ -71,7 +71,12 @@ class ThreadController extends Controller
         ]);
     }
 
-    public function reverseReaction(Request $request){
+    public function reverseReaction(Request $request)
+    {
+        $user = Auth::user();
+        $threadId = $request->input('threadId');
+        $message = $request->input('reactionType');
+
 
     }
 }

@@ -58,8 +58,8 @@
                                 {{ $message['message'] }}
                             </div>
                             <div class="reaction-button">
-                                <div class="first-reaction-button"><button type="button" class="good-button no-decoration-button">♡</button></div>
-                                <div class="second-reaction-button"><button type="button" class="great-good-button no-decoration-button">✩</button></div>
+                                <div class="first-reaction-button"><button type="button" class="good-button no-decoration-button" value={{ $message['message_id'] }}>♡</button></div>
+                                <div class="second-reaction-button"><button type="button" class="great-good-button no-decoration-button" value={{ $message['message_id'] }}>✩</button></div>
                             </div>
                         </div>
                     </div>
