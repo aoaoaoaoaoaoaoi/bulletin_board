@@ -7,7 +7,7 @@ use DB;
 use Auth;
 use App\ThreadMessage;
 use App\User;
-use App\UserThreadReaction;
+use App\UserThreadMessageReaction;
 use Carbon\Carbon;
 
 class ThreadController extends Controller
@@ -30,6 +30,7 @@ class ThreadController extends Controller
             $user = User::where('id','=',$message['user_id'])->first();
             $userName = $user['name'];
             $message=[
+                'thread_message_id' => $message['id'],
                 'user_name' => $userName,
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
@@ -74,9 +75,23 @@ class ThreadController extends Controller
     public function reverseReaction(Request $request)
     {
         $user = Auth::user();
-        $threadId = $request->input('threadId');
-        $message = $request->input('reactionType');
+        $threadMessageId = $request->input('threadMessageId');
+        $reactionType = $request->input('reactionType');
 
+        $reactionData = UserThreadMessageReaction::ThreadMessageIdAndReactionType($threadMessageId, $reactionType);
 
+        $isReaction = false;
+        if($reactionData->isEmpty()){
+            UserThreadMessageReaction::insert([
+                'user_id' => $user->id,
+                'thread_message_id' => $threadMessageId,
+                'reaction_type' => $reactionType,
+            ]);
+            $isReaction = true;
+        }else{
+            $reactionData->delete();
+        }
+
+        return json_encode(['isReaction' => $isReaction]);
     }
 }

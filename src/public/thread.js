@@ -50,7 +50,7 @@ var ReverseReaction = function(button, reactionType){
       type: 'POST',
       url :'/reverse_reaction',
       data:{ 
-        threadId : button.val(),
+        threadMessageId : button.val(),
         reactionType : reactionType,
       }
     }).fail(function(){
