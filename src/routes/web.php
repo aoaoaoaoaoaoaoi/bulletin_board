@@ -36,6 +36,7 @@ Route::post('/make_thread', 'MakeThreadController@makeThread');
 
 Route::get('/thread', 'ThreadController@index');
 Route::post('/send_message', 'ThreadController@sendMessage');
+Route::post('/reverse_reaction', 'ThreadController@reverseReaction');
 
 Route::get('/edit_profile', 'EditProfileController@index');
 Route::post('/edit_profile_complete', 'EditProfileController@saveProfile');

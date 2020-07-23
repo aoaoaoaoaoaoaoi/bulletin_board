@@ -69,4 +69,8 @@ class ThreadController extends Controller
             'posted_time' => Carbon::now(),
         ]);
     }
+
+    public function reverseReaction(Request $request){
+
+    }
 }
