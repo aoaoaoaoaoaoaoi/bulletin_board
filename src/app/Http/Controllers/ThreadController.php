@@ -25,8 +25,16 @@ class ThreadController extends Controller
         }
 
         $currentMessages = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','asc')->get();
+        $messageIds = $currentMessages->pluck('id');
+        $reactionCounts = [];
+        $reactionCountData = UserThreadMessageReaction::whereIn('thread_message_id', $messageIds)->select(DB::raw('count(*) as number_of_people'))->groupBy('thread_message_id', 'reaction_type')->get();
+        foreach($reactionCountData as $countData){
+            $reactionCounts[$countData->thread_message_id][$countData->reaction_type] =  $countData->number_of_people;
+        }
+        
         $messages=[];
         foreach($currentMessages as $message){
+            //TODO:処理はループの外でする
             $user = User::where('id','=',$message['user_id'])->first();
             $userName = $user['name'];
             $message=[
@@ -35,6 +43,8 @@ class ThreadController extends Controller
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
                 'posted_time' => $message['posted_time'],
+                'good_reaction' => $reactionCounts[$message['id']][1],
+                'great_good_reaction' => $reactionCounts[$message['id']][2],
             ];
             $messages[] = $message;
         }
