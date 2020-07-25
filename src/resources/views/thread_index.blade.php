@@ -73,8 +73,8 @@
                     </div>
                     @endforeach
                     <div>
-                        <textarea rows="4" cols="40" class="sendMessage" type="textarea" name="sendMessage" id = "messageText"></textarea>
-                        <button type='button' class='sendMessage' onclick="sendMessage(this)">send</button>   
+                        <textarea rows="4" cols="40" class="message-textarea" type="textarea" name="sendMessage" id = "messageText"></textarea>
+                        <button type='button' onclick="sendMessage(this)">send</button>   
                     </div>
                 </div>
             </div>

@@ -85,13 +85,13 @@ input:focus{
 
 textarea{
   color: rgba(255,255,255,.7);
-  background-color: rgba(111,181,227,.1) !important;
+  background-color: rgba(111,181,227,.1);
   border: 1px solid #2080C0;
 }
 
 textarea:focus{
   color: rgba(255,255,255,.7);
-  background-color: transparent !important; 
+  background-color: transparent; 
 }
 
 .dropdown-menu{
