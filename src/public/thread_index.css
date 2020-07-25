@@ -124,3 +124,8 @@ table, th, td {
 .send-message-button{
   float: right;
 }
+
+#message-image{
+  width: 100%;
+  height: 200px;
+}

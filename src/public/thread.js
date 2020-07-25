@@ -66,3 +66,28 @@ var ReverseReaction = function(button, reactionType){
       }
     });
 }
+
+let fileCount = 0;
+const fileMaxCount = 3;
+
+$('#message-file').change(function(){
+
+  if(fileMaxCount < fileCount + this.files.length){
+   alert("添付は3つまでです"); 
+   return;
+  }
+
+  for(let i = 0; i < this.files.length; ++i){
+    // 選択されたファイル情報を取得
+    let file = this.files[i];
+    
+    let reader = new FileReader();    
+    reader.onload = function() {
+      let image = $('<img>').attr('src', reader.result);
+      $('#message-images').append(image);
+    }
+    reader.readAsDataURL(file);
+
+    fileCount++;
+  }
+});
