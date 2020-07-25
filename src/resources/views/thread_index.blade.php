@@ -73,8 +73,12 @@
                     </div>
                     @endforeach
                     <div>
-                        <textarea rows="4" cols="40" class="message-textarea" type="textarea" name="sendMessage" id = "messageText"></textarea>
-                        <button type='button' onclick="sendMessage(this)">send</button>   
+                        <textarea rows="4" cols="40" class="message-textarea" type="textarea" name="sendMessage" id = "messageText" placeholder="スレに投稿" ></textarea>
+                        <label for="message-file">
+                            ＋ファイルを選択
+                            <input class="add-image-button no-decoration-button" type="file" name="message-file" id="message-file" accept="image/*" style="display:none;">
+                        </label>
+                        <button type='button' class="btn btn-primary send-message-button" onclick="sendMessage(this)">送信</button>   
                     </div>
                 </div>
             </div>

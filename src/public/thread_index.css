@@ -102,6 +102,7 @@ table, th, td {
   .message-textarea{
     border: none;
     background-color: transparent;
+    width: 100%;
     /*resize: none;*/
   }
 
@@ -111,4 +112,15 @@ table, th, td {
 
   ::-webkit-resizer {
     display: none;
+}
+
+.add-image-button{
+  margin: 0 0px;
+  width: 130px;
+  float: left;
+  text-align: left;
+}
+
+.send-message-button{
+  float: right;
 }
