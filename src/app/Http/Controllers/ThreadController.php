@@ -90,10 +90,16 @@ class ThreadController extends Controller
         }
 
         //TODO:ロック必要
-        $currentLastMessage = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first();
-        $nextthreadOrder = $currentLastMessage == null ? 1 : $currentLastMessage['thread_order']+1;
+        //$currentLastMessage = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first();
+        //$nextthreadOrder = $currentLastMessage == null ? 1 : $currentLastMessage['thread_order']+1;
 
-        ThreadMessage::insert([
+        DB::insert(
+            "INSERT INTO thread_messages (thread_id, thread_order, user_id, message, posted_time, resouce1, resouce2, resouce3) 
+            SELECT ?, id + 1, ?, ?, ?, ?, ?, ? FROM thread_messages where thread_id = $threadId order by thread_order desc limit 1",
+            [$threadId, $user->id, $message, isset($resouceName[0]) ? $resouceName[0] : null, isset($resouceName[1]) ? $resouceName[1] : null, isset($resouceName[2]) ? $resouceName[2] : null]
+        );
+
+        /*ThreadMessage::insert([
             'thread_id' => $threadId,
             'thread_order' => $nextthreadOrder,
             'user_id' => $user->id,
@@ -102,7 +108,7 @@ class ThreadController extends Controller
             'resouce1' => isset($resouceName[0]) ? $resouceName[0] : null,
             'resouce2' => isset($resouceName[1]) ? $resouceName[1] : null,
             'resouce3' => isset($resouceName[2]) ? $resouceName[2] : null,
-        ]);
+        ]);*/
     }
 
     public function reverseReaction(Request $request)
