@@ -23,7 +23,7 @@ class MakeGroupController extends Controller
         $uniq_file_name = "";
         if($file_name !== "") {            
             $uniq_file_name = date("YmdHis") . "_" . $file_name;
-            ResourceService::getInstance()->saveIconResouce($uniq_file_name);
+            ResourceService::getInstance()->saveIconResouce($uniq_file_name, "icon-file", "icon_image");
         }
 
         DB::table('groups')->insert([

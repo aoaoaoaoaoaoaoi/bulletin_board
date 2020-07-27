@@ -15,13 +15,13 @@ class ResourceService
         return $instance;
     }
 
-    public function saveIconResouce($uniq_file_name)
+    public function saveIconResouce($uniq_file_name, string $name, string $uploadFolder)
     {       
         // 仮にファイルがアップロードされている場所のパスを取得
-        $tmp_path = $_FILES['icon-file']['tmp_name'];
+        $tmp_path = $_FILES[$name]['tmp_name'];
         
         // 保存先のパスを設定
-        $upload_path = './icon_image/';
+        $upload_path = './'.$uploadFolder.'/';
         
         if (is_uploaded_file($tmp_path)) {
         // 仮のアップロード場所から保存先にファイルを移動

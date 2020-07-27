@@ -37,23 +37,6 @@ class EditProfileController extends Controller
         return view('edit_profile', ['data' => $data]);
     }
 
-    private function saveIconResouce($uniq_file_name)
-    {       
-        // 仮にファイルがアップロードされている場所のパスを取得
-        $tmp_path = $_FILES['icon-file']['tmp_name'];
-        
-        // 保存先のパスを設定
-        $upload_path = './icon_image/';
-        
-        if (is_uploaded_file($tmp_path)) {
-        // 仮のアップロード場所から保存先にファイルを移動
-            if (move_uploaded_file($tmp_path, $upload_path.$uniq_file_name)) {
-                // ファイルが読出可能になるようにアクセス権限を変更
-                chmod($upload_path . $uniq_file_name, 0644);
-            }
-        }
-    }
-
     public function saveProfile(Request $request)
     {
         $user = Auth::user();
@@ -63,7 +46,7 @@ class EditProfileController extends Controller
         $file_name = $_FILES['icon-file']['name'];
         if($file_name !== "") {            
             $uniq_file_name = date("YmdHis") . "_" . $file_name;
-            ResourceService::getInstance()->saveIconResouce($uniq_file_name);
+            ResourceService::getInstance()->saveIconResouce($uniq_file_name, "icon-file", "icon_image");
             $userData->resource = $uniq_file_name;
         }
 

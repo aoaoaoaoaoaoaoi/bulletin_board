@@ -80,11 +80,11 @@ class ThreadController extends Controller
         $message = $request->input('message');
         
         // ファイル名を取得して、ユニークなファイル名に変更
-        $file_name = $_FILES['message-file']['name'];
-        if($file_name !== "") {            
-            $uniq_file_name = date("YmdHis") . "_" . $file_name;
-            ResourceService::getInstance()->saveIconResouce($uniq_file_name);
-            $userData->resource = $uniq_file_name;
+        foreach ($file_name as $_FILES['message-file']['name']) {
+            if($file_name !== "") {            
+                $uniq_file_name = date("YmdHis") . "_" . $file_name;
+                ResourceService::getInstance()->saveIconResouce($uniq_file_name, "message-file", "message_image");
+            }
         }
 
         //TODO:ロック必要
