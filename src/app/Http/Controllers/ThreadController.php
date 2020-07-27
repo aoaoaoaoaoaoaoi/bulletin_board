@@ -79,6 +79,14 @@ class ThreadController extends Controller
         $threadId = $request->input('threadId');
         $message = $request->input('message');
         
+        // ファイル名を取得して、ユニークなファイル名に変更
+        $file_name = $_FILES['message-file']['name'];
+        if($file_name !== "") {            
+            $uniq_file_name = date("YmdHis") . "_" . $file_name;
+            ResourceService::getInstance()->saveIconResouce($uniq_file_name);
+            $userData->resource = $uniq_file_name;
+        }
+
         //TODO:ロック必要
         $currentLastMessage = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first();
         $nextthreadOrder = $currentLastMessage == null ? 1 : $currentLastMessage['thread_order']+1;
