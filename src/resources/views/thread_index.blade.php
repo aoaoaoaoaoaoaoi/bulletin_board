@@ -57,6 +57,11 @@
                             <div>
                                 {{ $message['message'] }}
                             </div>
+                            <div class="message-image">
+                                <img src="{{ $data['resource1'] }}">
+                                <img src="{{ $data['resource2'] }}">
+                                <img src="{{ $data['resource'3] }}">
+                            </div>
                             <div class="reaction-button">
                             @if($message['is_good_reaction'])
                                 <div class="first-reaction-button"><button type="button" class="good-button good-button-color no-decoration-button" value={{ $message['thread_message_id'] }}>♡{{ $message['good_reaction'] }}</button></div>
@@ -74,7 +79,7 @@
                     @endforeach
                     <div>
                         <textarea rows="4" cols="40" class="message-textarea" type="textarea" name="sendMessage" id = "messageText" placeholder="スレに投稿" ></textarea>
-                        <div id="message-images"><!--<img src="" id="message-image" onClick="$('#message-file').click()">--></div>
+                        <div id="message-images" class="message-image"><!--<img src="" id="message-image" onClick="$('#message-file').click()">--></div>
                         <label for="message-file" class="add-image-button">
                             ＋ファイルを選択
                             <input multiple="multiple" class="add-image-button no-decoration-button" type="file" name="message-file" id="message-file" accept="image/*" style="display:none;">
