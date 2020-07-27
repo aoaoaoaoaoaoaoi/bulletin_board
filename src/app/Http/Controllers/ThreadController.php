@@ -80,10 +80,12 @@ class ThreadController extends Controller
         $message = $request->input('message');
         
         // ファイル名を取得して、ユニークなファイル名に変更
+        $resouceName = [];
         foreach ($file_name as $_FILES['message-file']['name']) {
             if($file_name !== "") {            
                 $uniq_file_name = date("YmdHis") . "_" . $file_name;
                 ResourceService::getInstance()->saveIconResouce($uniq_file_name, "message-file", "message_image");
+                $resouceName[] = $uniq_file_name;
             }
         }
 
@@ -97,6 +99,9 @@ class ThreadController extends Controller
             'user_id' => $user->id,
             'message' => $message,
             'posted_time' => Carbon::now(),
+            'resouce1' => isset($resouceName[0]) ? $resouceName[0] : null,
+            'resouce2' => isset($resouceName[1]) ? $resouceName[1] : null,
+            'resouce3' => isset($resouceName[2]) ? $resouceName[2] : null,
         ]);
     }
 
