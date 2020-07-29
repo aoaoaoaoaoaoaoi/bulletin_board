@@ -58,9 +58,9 @@
                                 {{ $message['message'] }}
                             </div>
                             <div class="message-image">
-                                <img src="{{ $data['resource1'] }}">
-                                <img src="{{ $data['resource2'] }}">
-                                <img src="{{ $data['resource'3] }}">
+                                <img src="{{ $message['resource1'] }}">
+                                <img src="{{ $message['resource2'] }}">
+                                <img src="{{ $message['resource3'] }}">
                             </div>
                             <div class="reaction-button">
                             @if($message['is_good_reaction'])

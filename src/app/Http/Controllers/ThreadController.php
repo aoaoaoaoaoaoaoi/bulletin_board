@@ -51,9 +51,9 @@ class ThreadController extends Controller
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
                 'posted_time' => $message['posted_time'],
-                'resouce1' => $message['resouce1'],
-                'resouce2' => $message['resouce2'],
-                'resouce3' => $message['resouce3'],
+                'resource1' => $message['resource1'],
+                'resource2' => $message['resource2'],
+                'resource3' => $message['resource3'],
                 'good_reaction' => isset($reactionCounts[$message['id']][1]) ? $reactionCounts[$message['id']][1] : null,
                 'great_good_reaction' => isset($reactionCounts[$message['id']][2]) ? $reactionCounts[$message['id']][2] : null,
                 'is_good_reaction' => isset($userReaction[$message['id']][1]),
@@ -83,12 +83,12 @@ class ThreadController extends Controller
         $message = $request->input('message');
         
         // ファイル名を取得して、ユニークなファイル名に変更
-        $resouceName = [];
+        $resourceName = [];
         foreach ($file_name as $_FILES['message-file']['name']) {
             if($file_name !== "") {            
                 $uniq_file_name = date("YmdHis") . "_" . $file_name;
-                ResourceService::getInstance()->saveIconResouce($uniq_file_name, "message-file", "message_image");
-                $resouceName[] = $uniq_file_name;
+                ResourceService::getInstance()->saveIconresource($uniq_file_name, "message-file", "message_image");
+                $resourceName[] = $uniq_file_name;
             }
         }
 
@@ -97,9 +97,9 @@ class ThreadController extends Controller
         //$nextthreadOrder = $currentLastMessage == null ? 1 : $currentLastMessage['thread_order']+1;
 
         DB::insert(
-            "INSERT INTO thread_messages (thread_id, thread_order, user_id, message, posted_time, resouce1, resouce2, resouce3) 
+            "INSERT INTO thread_messages (thread_id, thread_order, user_id, message, posted_time, resource1, resource2, resource3) 
             SELECT ?, id + 1, ?, ?, ?, ?, ?, ? FROM thread_messages where thread_id = $threadId order by thread_order desc limit 1",
-            [$threadId, $user->id, $message, isset($resouceName[0]) ? $resouceName[0] : null, isset($resouceName[1]) ? $resouceName[1] : null, isset($resouceName[2]) ? $resouceName[2] : null]
+            [$threadId, $user->id, $message, isset($resourceName[0]) ? $resourceName[0] : null, isset($resourceName[1]) ? $resourceName[1] : null, isset($resourceName[2]) ? $resourceName[2] : null]
         );
 
         /*ThreadMessage::insert([
@@ -108,9 +108,9 @@ class ThreadController extends Controller
             'user_id' => $user->id,
             'message' => $message,
             'posted_time' => Carbon::now(),
-            'resouce1' => isset($resouceName[0]) ? $resouceName[0] : null,
-            'resouce2' => isset($resouceName[1]) ? $resouceName[1] : null,
-            'resouce3' => isset($resouceName[2]) ? $resouceName[2] : null,
+            'resource1' => isset($resourceName[0]) ? $resourceName[0] : null,
+            'resource2' => isset($resourceName[1]) ? $resourceName[1] : null,
+            'resource3' => isset($resourceName[2]) ? $resourceName[2] : null,
         ]);*/
     }
 
