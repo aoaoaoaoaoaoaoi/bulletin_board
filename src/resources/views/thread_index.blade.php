@@ -57,10 +57,16 @@
                             <div>
                                 {{ $message['message'] }}
                             </div>
-                            <div class="message-image">
-                                <img src="{{ $message['resource1'] }}">
-                                <img src="{{ $message['resource2'] }}">
-                                <img src="{{ $message['resource3'] }}">
+                            <div>
+                                @if($message['resource1'] != null)
+                                    <img class="message-image" src="{{ $message['resource1'] }}">
+                                @endif
+                                @if($message['resource2'] != null)
+                                    <img class="message-image" src="{{ $message['resource2'] }}">
+                                @endif
+                                @if($message['resource3'] != null)
+                                    <img class="message-image" src="{{ $message['resource3'] }}">
+                                @endif
                             </div>
                             <div class="reaction-button">
                             @if($message['is_good_reaction'])
@@ -79,7 +85,7 @@
                     @endforeach
                     <div>
                         <textarea rows="4" cols="40" class="message-textarea" type="textarea" name="sendMessage" id = "messageText" placeholder="スレに投稿" ></textarea>
-                        <div id="message-images" class="message-image"><!--<img src="" id="message-image" onClick="$('#message-file').click()">--></div>
+                        <div id="message-images"></div>
                         <label for="message-file" class="add-image-button">
                             ＋ファイルを選択
                             <input multiple="multiple" class="add-image-button no-decoration-button" type="file" name="message-file" id="message-file" accept="image/*" style="display:none;">

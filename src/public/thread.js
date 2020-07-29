@@ -83,7 +83,7 @@ $('#message-file').change(function(){
     
     let reader = new FileReader();    
     reader.onload = function() {
-      let image = $('<img>').attr('src', reader.result);
+      let image = $('<img>').attr('src', reader.result).addClass("message-image");
       $('#message-images').append(image);
     }
     reader.readAsDataURL(file);
