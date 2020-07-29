@@ -84,11 +84,14 @@ class ThreadController extends Controller
         
         // ファイル名を取得して、ユニークなファイル名に変更
         $resourceName = [];
-        foreach ($file_name as $_FILES['message-file']['name']) {
-            if($file_name !== "") {            
-                $uniq_file_name = date("YmdHis") . "_" . $file_name;
-                ResourceService::getInstance()->saveIconresource($uniq_file_name, "message-file", "message_image");
-                $resourceName[] = $uniq_file_name;
+        for ($i=0; $i < 3; $i++) { 
+            if(!isset($_FILES['message-file']['error'][i]) || !is_int($_FILES['message-file']['error'][i])) {
+                $file_name = $_FILES['message-file']['name'][i];
+                if($file_name != ""){
+                    $uniq_file_name = date("YmdHis") . "_" . $file_name;
+                    ResourceService::getInstance()->saveIconresource($uniq_file_name, "message-file", "message_image");
+                    $resourceName[] = $uniq_file_name;
+                }
             }
         }
 
