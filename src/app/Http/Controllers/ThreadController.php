@@ -81,10 +81,10 @@ class ThreadController extends Controller
         $user = Auth::user();
         $threadId = $request->input('threadId');
         $message = $request->input('message');
-        
+
         // ファイル名を取得して、ユニークなファイル名に変更
         $resourceName = [];
-        for ($i=0; $i < 3; $i++) { 
+        /*for ($i=0; $i < 3; $i++) { 
             if(!isset($_FILES['message-file']['error'][i]) || !is_int($_FILES['message-file']['error'][i])) {
                 $file_name = $_FILES['message-file']['name'][i];
                 if($file_name != ""){
@@ -93,28 +93,15 @@ class ThreadController extends Controller
                     $resourceName[] = $uniq_file_name;
                 }
             }
-        }
+        }*/
 
-        //TODO:ロック必要
-        //$currentLastMessage = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','desc')->first();
-        //$nextthreadOrder = $currentLastMessage == null ? 1 : $currentLastMessage['thread_order']+1;
+        ResourceService::getInstance()->saveResources("message-file");
 
         DB::insert(
             "INSERT INTO thread_messages (thread_id, thread_order, user_id, message, posted_time, resource1, resource2, resource3) 
             SELECT ?, id + 1, ?, ?, ?, ?, ?, ? FROM thread_messages where thread_id = $threadId order by thread_order desc limit 1",
-            [$threadId, $user->id, $message, isset($resourceName[0]) ? $resourceName[0] : null, isset($resourceName[1]) ? $resourceName[1] : null, isset($resourceName[2]) ? $resourceName[2] : null]
+            [$threadId, $user->id, $message, Carbon::now(), isset($resourceName[0]) ? $resourceName[0] : null, isset($resourceName[1]) ? $resourceName[1] : null, isset($resourceName[2]) ? $resourceName[2] : null]
         );
-
-        /*ThreadMessage::insert([
-            'thread_id' => $threadId,
-            'thread_order' => $nextthreadOrder,
-            'user_id' => $user->id,
-            'message' => $message,
-            'posted_time' => Carbon::now(),
-            'resource1' => isset($resourceName[0]) ? $resourceName[0] : null,
-            'resource2' => isset($resourceName[1]) ? $resourceName[1] : null,
-            'resource3' => isset($resourceName[2]) ? $resourceName[2] : null,
-        ]);*/
     }
 
     public function reverseReaction(Request $request)

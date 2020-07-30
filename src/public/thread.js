@@ -2,10 +2,9 @@
 var good = 1;
 var greatGood = 2;
 
-var sendMessage = function(button) {
+function sendMessage(button) {
   var param = location.search;
   var threadId = param.replace("?threadId=", "");
-  console.log(threadId);
   var message = document.getElementById("messageText").value;
   if(message == ""){
     return;
@@ -21,8 +20,8 @@ var sendMessage = function(button) {
       type: 'POST',
       url :'/send_message',
       data:{ 
-        threadId:threadId,
-        message:message,
+        threadId : threadId,
+        message : message,
       }
     }).fail(function(){
 
