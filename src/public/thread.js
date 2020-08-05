@@ -2,7 +2,8 @@
 var good = 1;
 var greatGood = 2;
 
-function sendMessage(button) {
+function send_message() {
+  var formdata = new FormData($('#thread_form').get(0));
   var param = location.search;
   var threadId = param.replace("?threadId=", "");
   var message = document.getElementById("messageText").value;
@@ -19,10 +20,12 @@ function sendMessage(button) {
   $.ajax({
       type: 'POST',
       url :'/send_message',
-      data:{ 
+      data:"formdata"/*{ 
         threadId : threadId,
         message : message,
-      }
+      }*/,
+      processData: false,
+      contentType : false,
     }).fail(function(){
 
     }).done(function(){

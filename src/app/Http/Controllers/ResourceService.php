@@ -32,7 +32,7 @@ class ResourceService
         }
     }
 
-    public function saveResources($resourceName)
+    public function saveResources(string $resourceName)
     {
         \Log::debug('b');
         \Log::debug($_FILES);

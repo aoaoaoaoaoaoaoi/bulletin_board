@@ -90,9 +90,9 @@
                             <div id="message-images"></div>
                             <label for="message-file" class="add-image-button">
                                 ＋ファイルを選択
-                                <input multiple="multiple" class="add-image-button no-decoration-button" type="file" name="message-file" id="message-file" accept="image/*" style="display:none;">
+                                <input class="add-image-button no-decoration-button" type="file" multiple name="message-file[]" id="message-file" accept="image/*" style="display:none;">
                             </label>
-                            <button type='button' class="btn btn-primary send-message-button" onclick="sendMessage(this)">送信</button>   
+                            <button type='button' class="btn btn-primary send-message-button" onclick="send_message()">送信</button>   
                         </div>
                     </div>
                 </div>
