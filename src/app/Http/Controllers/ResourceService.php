@@ -34,14 +34,8 @@ class ResourceService
 
     public function saveResources(string $resourceName)
     {
-        \Log::debug('b');
-        \Log::debug($_FILES);
-        \Log::debug($_FILES[$resourceName]);
-
         if (isset($_FILES[$resourceName]['error']) && is_array($_FILES[$resourceName]['error'])) {
-            
-            \Log::debug('c');
-            
+
             // 各ファイルをチェック
             foreach ($_FILES[$resourceName]['error'] as $k => $error) {
         
@@ -50,7 +44,6 @@ class ResourceService
                     // 更に配列がネストしていれば不正とする
                     if (!is_int($error)) {
                         throw new RuntimeException("[{$k}] パラメータが不正です");
-                        \Log::debug('d');
                     }
         
                     // $_FILES[$resourceName]['error'][$k] の値を確認
@@ -65,8 +58,6 @@ class ResourceService
                         default:
                             throw new RuntimeException("[{$k}] その他のエラーが発生しました");
                     }
-        
-                    \Log::debug('e');
 
                     // $_FILES[$resourceName]['mime']の値はブラウザ側で偽装可能なので
                     // MIMEタイプを自前でチェックする
@@ -76,8 +67,6 @@ class ResourceService
                     if (!in_array($info[2], [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) {
                         throw new RuntimeException("[{$k}] 未対応の画像形式です");
                     }
-        
-                    \Log::debug('f');
 
                     // 画像処理に使う関数名を決定する
                     $create = str_replace('/', 'createfrom', $info['mime']);
@@ -91,8 +80,6 @@ class ResourceService
                         $dst_w = ceil(120 * $info[0] / max($info[1], 1));
                         $dst_h = 120;
                     }
-        
-                    \Log::debug('g');
 
                     // 元画像リソースを生成する
                     if (!$src = @$create($_FILES[$resourceName]['tmp_name'][$k])) {
