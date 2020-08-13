@@ -20,7 +20,7 @@ function send_message() {
   $.ajax({
       type: 'POST',
       url :'/send_message',
-      data:"formdata"/*{ 
+      data: formdata/*{ 
         threadId : threadId,
         message : message,
       }*/,
