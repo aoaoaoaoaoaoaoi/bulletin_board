@@ -32,8 +32,9 @@ class ResourceService
         }
     }
 
-    public function saveResources(string $resourceName)
+    public function saveResources(string $resourceName) : array
     {
+        $filePaths = [];
         if (isset($_FILES[$resourceName]['error']) && is_array($_FILES[$resourceName]['error'])) {
 
             // 各ファイルをチェック
@@ -92,27 +93,20 @@ class ResourceService
                     // getimagesize関数で得られた情報も利用してリサンプリングを行う
                     imagecopyresampled($dst, $src, 0, 0, 0, 0, $dst_w, $dst_h, $info[0], $info[1]);
         
+                    $filePath = sprintf('./resized/%s%s',
+                        sha1_file($_FILES[$resourceName]['tmp_name'][$k]),
+                        image_type_to_extension($info[2])
+                        );
+
                     // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、保存する
-
-                   /*$test = !$output(
-                        $dst,
-                        sprintf('./resized/%s%s',
-                            sha1_file($_FILES[$resourceName]['tmp_name'][$k]),
-                            image_type_to_extension($info[2])
-                        )
-                    );
-\Log::debug($test);*/
-
                     if (!$output(
                         $dst,
-                        sprintf('./resized/%s%s',
-                            sha1_file($_FILES[$resourceName]['tmp_name'][$k]),
-                            image_type_to_extension($info[2])
-                        )
+                        $filePath
                     )) {
                         throw new RuntimeException("[{$k}] ファイル保存時にエラーが発生しました");
                     }
         
+                    $filePaths[] = $filePath;
                     $msgs[] = ['green', "[{$k}] リサイズして保存しました"];
         
                 } catch (RuntimeException $e) {
@@ -132,5 +126,6 @@ class ResourceService
             }
         
         }
+        return $filePaths;
     }
 }

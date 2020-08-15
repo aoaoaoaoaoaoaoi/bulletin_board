@@ -82,28 +82,13 @@ class ThreadController extends Controller
         $threadId = $request->input('threadId');
         $message = $request->input('sendMessage');
 
-        \Log::debug($threadId);
-        \Log::debug($message);
-
         // ファイル名を取得して、ユニークなファイル名に変更
-        $resourceName = [];
-        /*for ($i=0; $i < 3; $i++) { 
-            if(!isset($_FILES['message-file']['error'][i]) || !is_int($_FILES['message-file']['error'][i])) {
-                $file_name = $_FILES['message-file']['name'][i];
-                if($file_name != ""){
-                    $uniq_file_name = date("YmdHis") . "_" . $file_name;
-                    ResourceService::getInstance()->saveIconresource($uniq_file_name, "message-file", "message_image");
-                    $resourceName[] = $uniq_file_name;
-                }
-            }
-        }*/
-
-        ResourceService::getInstance()->saveResources("message-file");
+         $filePaths = ResourceService::getInstance()->saveResources("message-file");
 
         DB::insert(
             "INSERT INTO thread_messages (thread_id, thread_order, user_id, message, posted_time, resource1, resource2, resource3) 
             SELECT ?, id + 1, ?, ?, ?, ?, ?, ? FROM thread_messages where thread_id = $threadId order by thread_order desc limit 1",
-            [$threadId, $user->id, $message, Carbon::now(), isset($resourceName[0]) ? $resourceName[0] : null, isset($resourceName[1]) ? $resourceName[1] : null, isset($resourceName[2]) ? $resourceName[2] : null]
+            [$threadId, $user->id, $message, Carbon::now(), isset($filePaths[0]) ? $filePaths[0] : null, isset($filePaths[1]) ? $filePaths[1] : null, isset($filePaths[2]) ? $filePaths[2] : null]
         );
     }
 
