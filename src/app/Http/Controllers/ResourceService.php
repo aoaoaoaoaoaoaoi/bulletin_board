@@ -94,14 +94,14 @@ class ResourceService
         
                     // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、保存する
 
-                   $test = !$output(
+                   /*$test = !$output(
                         $dst,
                         sprintf('./resized/%s%s',
                             sha1_file($_FILES[$resourceName]['tmp_name'][$k]),
                             image_type_to_extension($info[2])
                         )
                     );
-\Log::debug($test);
+\Log::debug($test);*/
 
                     if (!$output(
                         $dst,

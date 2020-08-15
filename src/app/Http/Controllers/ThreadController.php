@@ -80,7 +80,10 @@ class ThreadController extends Controller
     {
         $user = Auth::user();
         $threadId = $request->input('threadId');
-        $message = $request->input('message');
+        $message = $request->input('sendMessage');
+
+        \Log::debug($threadId);
+        \Log::debug($message);
 
         // ファイル名を取得して、ユニークなファイル名に変更
         $resourceName = [];

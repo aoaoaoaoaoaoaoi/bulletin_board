@@ -6,8 +6,8 @@ function send_message() {
   var formdata = new FormData($('#thread_form').get(0));
   var param = location.search;
   var threadId = param.replace("?threadId=", "");
-  var message = document.getElementById("messageText").value;
-  if(message == ""){
+  formdata.append('threadId', threadId);
+  if(formdata['sendMessage'] == "" && fileCount <= 0){
     return;
   }
   
@@ -20,10 +20,7 @@ function send_message() {
   $.ajax({
       type: 'POST',
       url :'/send_message',
-      data: formdata/*{ 
-        threadId : threadId,
-        message : message,
-      }*/,
+      data: formdata,
       processData: false,
       contentType : false,
     }).fail(function(){
