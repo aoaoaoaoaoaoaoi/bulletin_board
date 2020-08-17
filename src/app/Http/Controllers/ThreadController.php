@@ -81,9 +81,7 @@ class ThreadController extends Controller
         $user = Auth::user();
         $threadId = $request->input('threadId');
         $message = $request->input('sendMessage');
-
-        // ファイル名を取得して、ユニークなファイル名に変更
-         $filePaths = ResourceService::getInstance()->saveResources("message-file");
+        $filePaths = ResourceService::getInstance()->saveResources("message-file");
 
         DB::insert(
             "INSERT INTO thread_messages (thread_id, thread_order, user_id, message, posted_time, resource1, resource2, resource3) 
