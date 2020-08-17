@@ -23,6 +23,7 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/group', 'GroupController@index');
 Route::get('/make_group', 'MakeGroupController@index');
 Route::post('/make_group_complete', 'MakeGroupController@makeGroup');
 
