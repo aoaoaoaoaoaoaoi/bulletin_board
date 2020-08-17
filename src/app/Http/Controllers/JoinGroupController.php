@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\UserGroup;
 use App\Group;
+use App\User;
+use App\UserGroup;
 use DB;
 use Auth;
 
@@ -33,9 +34,9 @@ class JoinGroupController extends Controller
     public function showGroupInfo()
     {
         $groupId = $_POST['key'];
-        $group = DB::table('groups')->where('id', '=', $groupId)->first();
-        $memberIds = UserGroup->where('group_id', '=', $groupId)->get()->pluck('user_id');
-        $members = DB::table('users')->whereIn('id', $memberIds)->get();
+        $group = Group::where('id', '=', $groupId)->first();
+        $memberIds = UserGroup::where('group_id', '=', $groupId)->get()->pluck('user_id');
+        $members = User::whereIn('id', $memberIds)->get();
         $groupData=[
             'name' => $group->name,
             'description' => $group->description,
