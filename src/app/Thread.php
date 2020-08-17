@@ -7,13 +7,21 @@ use Carbon\Carbon;
 
 class Thread extends Model
 {
-    public static function searchThread(?Carbon $startAtFrom, ?Carbon $startAtTo, ?Carbon $endAtFrom, ?Carbon $endAtTo, string $title, ?int $groupId){
-        return self::StartAtFrom($startAtFrom)
+    public static function searchThread(int $userId, bool $isOnlyOwner, ?Carbon $startAtFrom, ?Carbon $startAtTo, ?Carbon $endAtFrom, ?Carbon $endAtTo, string $title, ?int $groupId){
+        return self::OnlyOwner($userId, $isOnlyOwner)
+            ->StartAtFrom($startAtFrom)
             ->StartAtTo($startAtTo)
             ->EndAtFrom($endAtFrom)
             ->EndAtTo($endAtTo)
             ->Title($title)
             ->GroupId($groupId);
+    }
+
+    public function scopeOnlyOwner($query, int $userId, bool $isOnlyOwner){
+        if(empty(!$isOnlyOwner)){
+            return $query;
+        }
+        return $query->where('created_user_id', '=', $userId);
     }
 
     public function scopeStartAtFrom($query, ?Carbon $startAt){

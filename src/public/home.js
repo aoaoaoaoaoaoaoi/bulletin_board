@@ -2,7 +2,7 @@
  * 読み込み時の処理
  */
 window.onload = function(){
-  setThreadData(null, null, null, null, null, null, null);
+  setThreadData(null, null, null, null, null, null, null, false);
 }
 
 /**
@@ -18,8 +18,9 @@ var search = function(button){
   var startDateEnd = document.getElementById('start-date-end').value;
   var endDateStart = document.getElementById('end-date-start').value;
   var endDateEnd = document.getElementById('end-date-end').value;
+  var isOnlyOwner = document.getElementById('is-only-owner').checked;
 
-  setThreadData(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd);
+  setThreadData(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner);
 }
 
 /**
@@ -44,7 +45,7 @@ var setLinkData = function(link, title, threadId){
  * @param {*} endDateStart 
  * @param {*} endDateEnd 
  */
-var setThreadData = function(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd){
+var setThreadData = function(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner){
 
   $.ajaxSetup({
     headers: {
@@ -63,6 +64,7 @@ $.ajax({
       'startDateEnd' : startDateEnd,
       'endDateStart' : endDateStart,
       'endDateEnd' : endDateEnd,
+      'isOnlyOwner' : isOnlyOwner,
     },
   }).fail(function(){
 

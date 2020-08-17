@@ -24,7 +24,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    private function  organizeThreadData(array $threads) : array
+    private function organizeThreadData(array $threads) : array
     {
         $data = [];
         foreach($threads as $thread){
@@ -84,8 +84,10 @@ class HomeController extends Controller
         $endDateFrom = $paramEndFrom != null ? new Carbon($paramEndFrom) : null;
         $paramEndTo = $request->input('startDateEnd');
         $endDateTo = $paramEndTo != null ? new Carbon($paramEndTo) : null;
+        $isOnlyOwner = (bool)$request->input('isOnlyOwner');
 
-        $threads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)
+        $user = Auth::user();
+        $threads = Thread::searchThread($user['id'], $isOnlyOwner, $startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)
                             ->orderBy('id')->get();
 
         $responseThreads = [];

@@ -51,6 +51,14 @@
                             <label class="col-md-4 col-form-label">終了日</label>
                             <div class="col-md-6 parallel"><input type="date" id="end-date-start">～<input type="date" id="end-date-end"></div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" id="is-only-owner" name="isOnlyOwner" class="form-check-input">
+                                    <lable for="isOnlyOwner" class="form-check-label">自分がオーナーのスレッドのみ</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="button" id="searchButton" class="btn btn-primary" onclick="search(this)">
