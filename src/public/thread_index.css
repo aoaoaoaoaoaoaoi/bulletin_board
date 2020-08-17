@@ -34,7 +34,7 @@ table, th, td {
     border-bottom: 1px solid #2080C0;
   }
 
-  .box img {
+  .icon-img {
     max-width: 40%;
     float: left;
   }
@@ -103,7 +103,6 @@ table, th, td {
     border: none;
     background-color: transparent;
     width: 100%;
-    /*resize: none;*/
   }
 
   .message-textarea:focus{

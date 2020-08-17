@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="box">
-                            <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
+                            <img class="icon-img" src="{{ $data['createdUserResource'] }}" id="icon-image-small">
                             <div class="right">
                                 <div class="name">
                                     1 : {{ $data['createdUser'] }}
@@ -51,7 +51,7 @@
                     <div class="card-body">
                         @foreach($data['message'] as $message)
                         <div class="box bottom-line">
-                            <img src="{{ $data['createdUserResource'] }}" id="icon-image-small">
+                            <img class="icon-img" src="{{ $data['createdUserResource'] }}" id="icon-image-small">
                             <div class="right">
                                 <div class="name">
                                     {{ $loop->iteration }} : {{ $message['user_name'] }} {{ $message['posted_time'] }}
