@@ -13,6 +13,17 @@ class GroupController extends Controller
 {
     public function index(Request $request)
     {
-        return view('group_index');
+        $groupId = $request->input('groupId');
+        $group = Group::where('id', '=', $groupId)->first();
+        $userCount = UserGroup::where('group_id', '=', $groupId)->count();
+
+        $data = [
+            'name' => $group->name,
+            'description' => $group->description,
+            'resource' => $group->resource,
+            'member_count' => $userCount,
+        ];
+
+        return view('group_index', ['data' => $data]);
     }
 }
