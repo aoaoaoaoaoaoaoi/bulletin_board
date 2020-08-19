@@ -13,6 +13,6 @@ class GroupController extends Controller
 {
     public function index(Request $request)
     {
-        return view('join_group');
+        return view('group_index');
     }
 }
