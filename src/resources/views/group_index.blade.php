@@ -23,17 +23,19 @@
                         <div class="box">
                             <img class="icon-img" src="{{ $data['resource'] }}" id="icon-image-small">
                             <div class="right">
-                                <div>{{ $data['name'] }}</div>
+                                <div class="name">{{ $data['name'] }}</div>
                                 <div>{{ $data['description'] }}</div>
                             </div>
                         </div>
                             <ul class="group-nav">
-                                <li>基本情報</li><li>スレッド</li><li>メンバー({{ $data['member_count'] }})</li>
+                                <li><a class="tab-menu is-active-btn" href="#item1">基本情報</a></li><li><a class="tab-menu" href="#item2">スレッド</a></li><li><a class="tab-menu" href="#item3">メンバー({{ $data['member_count'] }})</a></li>
                             </ul>
                     </div>
 
                     <div class="card-body">
-                        
+                        <div class="tab-item is-active-item" id="item1">1</div>
+                        <div class="tab-item" id="item2">2</div>
+                        <div class="tab-item" id="item3">3</div>
                     </div>
                 </div>
             </div>
