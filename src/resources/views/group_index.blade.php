@@ -33,9 +33,15 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="tab-item is-active-item" id="item1">1</div>
-                        <div class="tab-item" id="item2">2</div>
-                        <div class="tab-item" id="item3">3</div>
+                        <div class="tab-item is-active-item" id="item1">
+
+                        </div>
+                        <div class="tab-item" id="item2">
+                            
+                        </div>
+                        <div class="tab-item" id="item3">
+
+                        </div>
                     </div>
                 </div>
             </div>
