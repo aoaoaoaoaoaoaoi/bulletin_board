@@ -3,6 +3,8 @@
 @section('jssheet')
 <head>
     <script src="{{ asset('group_index.js') }}" defer></script>
+    <script src="{{ asset('table_list.js') }}" defer></script>
+    <script src="{{ asset('thread_list.js') }}" defer></script>
 </head>
 @endsection
 @section('style')

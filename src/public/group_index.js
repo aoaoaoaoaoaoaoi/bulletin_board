@@ -7,3 +7,12 @@ $(function() {
       $(this).addClass('is-active-btn');
     });
   });
+
+/**
+ * 読み込み時の処理
+ */
+window.onload = function(){
+  let param = location.search;
+  let groupId = param.replace("?groupId=", "");
+  setThreadData(groupId, null, null, null, null, null, null, false);
+}
