@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Group;
+use App\Thread;
 use App\User;
 use App\UserGroup;
 use DB;
@@ -16,7 +17,9 @@ class GroupController extends Controller
         $groupId = $request->input('groupId');
         $group = Group::where('id', '=', $groupId)->first();
         $userCount = UserGroup::where('group_id', '=', $groupId)->count();
-
+        $threads = Thead::GroupId('group_id', '=', $groupId)->orderBy('updated_at', 'desc');
+        $organizedThreads = ThreadService::getInstance()->organizeThreadData($threads);
+        
         $data = [
             'name' => $group->name,
             'description' => $group->description,
@@ -24,6 +27,6 @@ class GroupController extends Controller
             'member_count' => $userCount,
         ];
 
-        return view('group_index', ['data' => $data]);
+        return view('group_index', ['data' => $data, 'thread' => $organizedThreads]);
     }
 }

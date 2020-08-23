@@ -24,28 +24,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    private function organizeThreadData(array $threads) : array
-    {
-        $data = [];
-        foreach($threads as $thread){
-            $messageCount = DB::table('thread_messages')->where('thread_id', $thread['id'])->count();
-            $groupName = Group::where('id', $thread['group_id'])->first()->name;
-            $startAt = new Carbon($thread['start_at']);
-            $updateAt = new Carbon($thread['updated_at']);
-            $diffMinites = $startAt->diffInSeconds($updateAt) / 60;
-            $wave = round($messageCount / max(1, $diffMinites) * 60, 2);
-            $threadData = [
-                'id' => $thread['id'],
-                'title' => $thread['title'],
-                'updatedAt' => $updateAt->year . "年" . $updateAt->month . "月" . $updateAt->day . "日",
-                'wave' => $wave,
-                'groupName' => $groupName,
-            ];
-            $data[] = $threadData;
-        }
-        return $data;
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -114,7 +92,7 @@ class HomeController extends Controller
         if(!$isExistTag){
             $responseThreads = $threads->toArray();
         }
-        $data = self::organizeThreadData($responseThreads);  
+        $data = ThreadService::getInstance()->organizeThreadData($responseThreads);  
         return json_encode($data);
     }
 }
