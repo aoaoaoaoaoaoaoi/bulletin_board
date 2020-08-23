@@ -37,9 +37,7 @@
 
                         </div>
                         <div class="tab-item" id="item2">
-                            @foreach($threads as $thread)
-
-                            @endforeach
+                            @include('partials.thread_list')
                         </div>
                         <div class="tab-item" id="item3">
 

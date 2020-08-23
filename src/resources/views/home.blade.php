@@ -91,7 +91,7 @@
     <div class="dummy">blank </div>
     
     <!-- ページャーコピー用 -->
-    <!--<a id="pager-table-th-clone" class="pager_table_th" href="#" onclick="goNextPage(this);">0</a>-->
+    <a id="pager-table-th-clone" class="pager_table_th" href="#">0</a>
     
     <table id="pager_table" class="pager_table cell-link" align="center">
     </table>
