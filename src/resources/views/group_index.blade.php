@@ -37,7 +37,9 @@
 
                         </div>
                         <div class="tab-item" id="item2">
-                            
+                            @foreach($threads as $thread)
+
+                            @endforeach
                         </div>
                         <div class="tab-item" id="item3">
 

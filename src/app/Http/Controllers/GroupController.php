@@ -17,7 +17,7 @@ class GroupController extends Controller
         $groupId = $request->input('groupId');
         $group = Group::where('id', '=', $groupId)->first();
         $userCount = UserGroup::where('group_id', '=', $groupId)->count();
-        $threads = Thead::GroupId('group_id', '=', $groupId)->orderBy('updated_at', 'desc');
+        $threads = Thread::GroupId($groupId)->orderBy('updated_at', 'desc')->get()->toArray();
         $organizedThreads = ThreadService::getInstance()->organizeThreadData($threads);
         
         $data = [
@@ -27,6 +27,6 @@ class GroupController extends Controller
             'member_count' => $userCount,
         ];
 
-        return view('group_index', ['data' => $data, 'thread' => $organizedThreads]);
+        return view('group_index', ['data' => $data, 'threads' => $organizedThreads]);
     }
 }
