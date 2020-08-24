@@ -1,16 +1,16 @@
-<table id="thread_table" class="list_table" align="center">
+<table id="user_table" class="list_table" align="center">
     <tr>
         <th class="width-little-bigger" align="center">
-            更新日
+            アイコン
         </th>
         <th class="width-bigger" align="center">
-            タイトル
+            ユーザー名
         </th>
         <th class="width-little-little-bigger" align="center">
-            波
+            自己紹介
         </th>
         <th class="width-little-little-bigger" align="center">
-            グループ
+            最終ログイン
         </th>
     </tr>
 </table>

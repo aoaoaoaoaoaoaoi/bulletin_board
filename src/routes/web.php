@@ -47,3 +47,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/search_thread', 'HomeController@searchThread');
+
+Route::post('/search_user', 'GroupController@searchUser');

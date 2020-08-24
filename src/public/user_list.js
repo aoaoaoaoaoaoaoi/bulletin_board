@@ -23,15 +23,15 @@ var getCurrentList = function(){
  * @param {*} title 
  * @param {*} threadId 
  */
-/*var setLinkData = function(link, title, threadId){
+var setLinkData = function(link, title/*, threadId*/){
   link.textContent = title;
-  var newLink = "./thread?threadId=" + threadId;
-  link.href = newLink;
+  //var newLink = "./thread?threadId=" + threadId;
+  //link.href = newLink;
   return link;
-}*/
+}
 
 
-var setThreadData = function(){
+var setUserData = function(groupId){
 
   $.ajaxSetup({
     headers: {
@@ -58,8 +58,8 @@ $.ajax({
     makePager(pageCount);
 
     //スレッド
-    var newThreadData = getCurrentList();
-    setThreads(newThreadData);
+    var newUserData = getCurrentList();
+    setUsers(newUserData);
   });
 }
 
@@ -72,9 +72,9 @@ var goNextPage = function(link){
   if(currentPage == nextPage){
     return;
   }
-  var newThreadData = getCurrentList();
+  var newUserData = getCurrentList();
   //データを入れる
-  setThreads(newThreadData);
+  setUsers(newUserData);
   currentPage = nextPage;
 }
 
@@ -82,45 +82,48 @@ var goNextPage = function(link){
  * スレッドをセットする
  * @param {*} threads 
  */
-var setThreads = function(threads){
+var setUsers = function(users){
   var table = document.getElementById("user_table");
 
   var rowCount = table.rows.length - 1;
   var columnCount = table.rows[0].cells.length;
   
-  var loopCount = Math.min(rowCount, threads.length);
+  var loopCount = Math.min(rowCount, users.length);
   for(let i = 1; i <= loopCount; ++i){
-      table.rows[i].cells[0].innerHTML = threads[i - 1]['updatedAt'];
-      table.rows[i].cells[2].innerHTML = threads[i - 1]['wave'];
-      table.rows[i].cells[3].innerHTML = threads[i - 1]['groupName'];
+      //table.rows[i].cells[0].innerHTML = users[i - 1]['resource'];
+      table.rows[i].cells[2].innerHTML = users[i - 1]['name'];
+      table.rows[i].cells[3].innerHTML = users[i - 1]['profile'];
 
       var link = table.rows[i].cells[1].children[0];
-      setLinkData(link, threads[i-1]['title'], threads[i - 1]['id']);
+      setLinkData(link, users[i-1]['name'], users[i - 1]['id']);
       table.rows[i].cells[1].appendChild(link);
   }
 
   //行の追加
-  if(rowCount < threads.length){
-    for(let i = rowCount; i < threads.length; ++i){
+  if(rowCount < users.length){
+    for(let i = rowCount; i < users.length; ++i){
       var row = table.insertRow(-1);
       var cell = row.insertCell(0);
-      cell.innerHTML = threads[i]['updatedAt'];
+      var image = document.createElement('img');
+      image.src = users[i]['resource'];
+      image.setAttribute("id", "icon-image");
+      cell.appendChild(image);
       
       var cell = row.insertCell(1);
       var link = document.createElement('a');
-      setLinkData(link, threads[i]['title'], threads[i]['id']);
+      setLinkData(link, users[i]['name']/*, users[i]['id']*/);
       cell.classList.add("cell-link");
       cell.appendChild(link);
 
       var cell = row.insertCell(2);
-      cell.innerHTML = threads[i]['wave'];
-      var cell = row.insertCell(3);
-      cell.innerHTML = threads[i]['groupName'];
+      cell.innerHTML = users[i]['profile'];
+      /*var cell = row.insertCell(3);
+      cell.innerHTML = users[i]['groupName'];*/
     }
   }
   //行の削除
-  else if(threads.length < rowCount){
-    for(let i = rowCount; threads.length < i; --i){
+  else if(users.length < rowCount){
+    for(let i = rowCount; users.length < i; --i){
       table.deleteRow(i);
     }
   }

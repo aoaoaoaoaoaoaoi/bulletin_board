@@ -29,4 +29,21 @@ class GroupController extends Controller
 
         return view('group_index', ['data' => $data, 'threads' => $organizedThreads]);
     }
+
+    public function searchUser(Request $request)
+    {
+        $groupId = (int)$request->input('groupId');
+        $userIds = UserGroup::Group($groupId)->select('user_id')->get();
+        $users = User::whereIn('id', $userIds)->get();
+        $data = [];
+        foreach($users as $user){
+            $userData = [
+                'resource' => $user['resource'],
+                'name' => $user['name'],
+                'profile' => $user['profile'],
+            ];
+            $data[] = $userData;
+        }
+        return json_encode($data);
+    }
 }

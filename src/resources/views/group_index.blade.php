@@ -5,6 +5,7 @@
     <script src="{{ asset('group_index.js') }}" defer></script>
     <script src="{{ asset('table_list.js') }}" defer></script>
     <script src="{{ asset('thread_list.js') }}" defer></script>
+    <script src="{{ asset('user_list.js') }}" defer></script>
 </head>
 @endsection
 @section('style')
@@ -42,7 +43,7 @@
                             @include('partials.thread_list')
                         </div>
                         <div class="tab-item" id="item3">
-
+                            @include('partials.user_list')
                         </div>
                     </div>
                 </div>
