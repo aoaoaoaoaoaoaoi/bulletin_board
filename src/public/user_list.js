@@ -23,23 +23,15 @@ var getCurrentList = function(){
  * @param {*} title 
  * @param {*} threadId 
  */
-var setLinkData = function(link, title, threadId){
+/*var setLinkData = function(link, title, threadId){
   link.textContent = title;
   var newLink = "./thread?threadId=" + threadId;
   link.href = newLink;
   return link;
-}
+}*/
 
-/**
- * スレッドのデータを取得する
- * @param {*} title 
- * @param {*} tag 
- * @param {*} startDateStart 
- * @param {*} startDateEnd 
- * @param {*} endDateStart 
- * @param {*} endDateEnd 
- */
-var setThreadData = function(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner){
+
+var setThreadData = function(){
 
   $.ajaxSetup({
     headers: {
@@ -49,16 +41,9 @@ var setThreadData = function(groupId, title, tag, startDateStart, startDateEnd, 
   
 $.ajax({
     type: 'POST',
-    url : '/search_thread',
+    url : '/search_user',
     data: {
       'groupId' : groupId,
-      'title' : title,
-      'tag' : tag,
-      'startDateStart' : startDateStart,
-      'startDateEnd' : startDateEnd,
-      'endDateStart' : endDateStart,
-      'endDateEnd' : endDateEnd,
-      'isOnlyOwner' : isOnlyOwner,
     },
   }).fail(function(){
 
@@ -98,7 +83,7 @@ var goNextPage = function(link){
  * @param {*} threads 
  */
 var setThreads = function(threads){
-  var table = document.getElementById("thread_table");
+  var table = document.getElementById("user_table");
 
   var rowCount = table.rows.length - 1;
   var columnCount = table.rows[0].cells.length;

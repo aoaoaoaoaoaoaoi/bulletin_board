@@ -1,5 +1,21 @@
 //グローバル変数
 var currentPage = 1;
+var listData;
+
+  /**
+ * 表示するリストを取り出す
+ */
+var getCurrentList = function(){
+  var startIndex = (currentPage - 1) * 20;
+  var newListData = [];
+  for(let i = startIndex; i < startIndex + 20; ++i){
+    if(listData.length <= i){
+      break;
+    }
+    newListData.push(listData[i]);
+  }
+  return newListData;
+}
 
 /**
  * 読み込み時の処理
