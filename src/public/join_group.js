@@ -57,7 +57,7 @@ $.ajax({
 
     //ページ数
     var pageCount = Math.floor((result.length + 19) / 20);
-    makePager(pageCount);
+    makePager(pageCount, 'pager_table');
 
     //グループ
     var newgroupData = getCurrentList();

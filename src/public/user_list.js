@@ -55,7 +55,7 @@ $.ajax({
 
     //ページ数
     var pageCount = Math.floor((result.length + 19) / 20);
-    makePager(pageCount);
+    makePager(pageCount, 'pager_table_user');
 
     //スレッド
     var newUserData = getCurrentList();
@@ -90,7 +90,7 @@ var setUsers = function(users){
   
   var loopCount = Math.min(rowCount, users.length);
   for(let i = 1; i <= loopCount; ++i){
-      //table.rows[i].cells[0].innerHTML = users[i - 1]['resource'];
+      table.rows[i].cells[0].children('img').src = users[i - 1]['resource'];
       table.rows[i].cells[2].innerHTML = users[i - 1]['name'];
       table.rows[i].cells[3].innerHTML = users[i - 1]['profile'];
 
@@ -117,8 +117,8 @@ var setUsers = function(users){
 
       var cell = row.insertCell(2);
       cell.innerHTML = users[i]['profile'];
-      /*var cell = row.insertCell(3);
-      cell.innerHTML = users[i]['groupName'];*/
+      var cell = row.insertCell(3);
+      cell.innerHTML = users[i]['lastLoginAt'];
     }
   }
   //行の削除
@@ -128,6 +128,6 @@ var setUsers = function(users){
     }
   }
 
-  var obj = document.getElementById('loading-message');
+  var obj = document.getElementById('loading-message-user');
   obj.style.display = "none";
 }

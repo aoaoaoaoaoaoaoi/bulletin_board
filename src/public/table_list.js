@@ -1,9 +1,13 @@
+let idName = "";
+let idNameValue = "";
+
 /**
  * ページャーを作成する
  * @param {*} pageCount 
  */
-var makePager = function(pageCount){
-    var table = document.getElementById("pager_table");
+var makePager = function(pageCount, idName){
+    idNameValue = '#' + idName;
+    var table = document.getElementById(idName);
   
     var rowCount = table.rows.length
     if(rowCount < 1){
@@ -31,6 +35,6 @@ var makePager = function(pageCount){
   /**
    * pagerのボタンを押した際の動作
    */
-  $('#pager_table').on('click', 'button', function(){
+  $(idNameValue).on('click', 'button', function(){
     goNextPage($(this));
   });

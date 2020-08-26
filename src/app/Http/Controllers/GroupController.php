@@ -18,7 +18,6 @@ class GroupController extends Controller
         $group = Group::where('id', '=', $groupId)->first();
         $userCount = UserGroup::where('group_id', '=', $groupId)->count();
         $threads = Thread::GroupId($groupId)->orderBy('updated_at', 'desc')->get()->toArray();
-        $organizedThreads = ThreadService::getInstance()->organizeThreadData($threads);
         
         $data = [
             'name' => $group->name,
@@ -27,11 +26,13 @@ class GroupController extends Controller
             'member_count' => $userCount,
         ];
 
-        return view('group_index', ['data' => $data, 'threads' => $organizedThreads]);
+        return view('group_index', ['data' => $data]);
     }
 
     public function searchUser(Request $request)
     {
+        $lastLoginAtData = Auth::user()->lastLoginAt;
+        $lastLoginAt = $lastLoginAtData != null ? new Carbon($lastLoginAtData) : null;
         $groupId = (int)$request->input('groupId');
         $userIds = UserGroup::Group($groupId)->select('user_id')->get();
         $users = User::whereIn('id', $userIds)->get();
@@ -41,6 +42,7 @@ class GroupController extends Controller
                 'resource' => $user['resource'],
                 'name' => $user['name'],
                 'profile' => $user['profile'],
+                'lastLoginAt' => $lastLoginAt,
             ];
             $data[] = $userData;
         }
