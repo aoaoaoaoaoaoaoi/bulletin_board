@@ -7,6 +7,7 @@ use App\Group;
 use App\Thread;
 use App\User;
 use App\UserGroup;
+use Carbon\Carbon;
 use DB;
 use Auth;
 
@@ -31,18 +32,17 @@ class GroupController extends Controller
 
     public function searchUser(Request $request)
     {
-        $lastLoginAtData = Auth::user()->lastLoginAt;
-        $lastLoginAt = $lastLoginAtData != null ? new Carbon($lastLoginAtData) : null;
         $groupId = (int)$request->input('groupId');
         $userIds = UserGroup::Group($groupId)->select('user_id')->get();
         $users = User::whereIn('id', $userIds)->get();
         $data = [];
         foreach($users as $user){
+            $lastLoginAt = $user['last_login_at'] != null ? new Carbon($user['last_login_at']) : null;
             $userData = [
                 'resource' => $user['resource'],
                 'name' => $user['name'],
                 'profile' => $user['profile'],
-                'lastLoginAt' => $lastLoginAt,
+                'lastLoginAt' => $lastLoginAt->year . "年" . $lastLoginAt->month . "月" . $lastLoginAt->day . "日",
             ];
             $data[] = $userData;
         }
