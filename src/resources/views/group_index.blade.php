@@ -27,7 +27,6 @@
                             <img class="icon-img" src="{{ $data['resource'] }}" id="icon-image-small">
                             <div class="right">
                                 <div class="name">{{ $data['name'] }}</div>
-                                <div>{{ $data['description'] }}</div>
                             </div>
                         </div>
                             <ul class="group-nav">
@@ -37,7 +36,7 @@
 
                     <div class="card-body">
                         <div class="tab-item is-active-item" id="item1">
-
+                            {{ $data['description'] }}
                         </div>
                         <div class="tab-item" id="item2">
                             @include('partials.thread_list')
