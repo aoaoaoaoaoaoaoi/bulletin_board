@@ -65,4 +65,11 @@ class Thread extends Model
         }
         return $query->where('group_id', '=', $groupId);
     }
+
+    public function scopeOwner($query, ?int $userId){
+        if(empty($userId)){
+            return $query;
+        }
+        return $query->where('created_user_id', '=', $userId);
+    }
 }
