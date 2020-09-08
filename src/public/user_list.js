@@ -25,8 +25,8 @@ var getCurrentList = function(){
  */
 var setLinkData = function(link, title/*, threadId*/){
   link.textContent = title;
-  //var newLink = "./thread?threadId=" + threadId;
-  //link.href = newLink;
+  var newLink = "./user?userId=" + threadId;
+  link.href = newLink;
   return link;
 }
 
