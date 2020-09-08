@@ -39,6 +39,7 @@ class GroupController extends Controller
         foreach($users as $user){
             $lastLoginAt = $user['last_login_at'] != null ? new Carbon($user['last_login_at']) : null;
             $userData = [
+                'id' => $user['id'],
                 'resource' => $user['resource'],
                 'name' => $user['name'],
                 'profile' => $user['profile'],

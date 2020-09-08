@@ -15,14 +15,14 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $userId = $request->input('userId');
+        $userId = (int)$request->input('userId');
         $user = User::where('id', '=', $userId)->first();
         $threads = Thread::Owner($userId)->orderBy('updated_at', 'desc')->get()->toArray();
         
         $data = [
-            'name' => $user->name,
-            'profile' => $user->profile,
-            'resource' => $user->resource,
+            'name' => $user['name'],
+            'profile' => $user['profile'],
+            'resource' => $user['resource'],
             'thread_count' => count($threads),
         ];
 

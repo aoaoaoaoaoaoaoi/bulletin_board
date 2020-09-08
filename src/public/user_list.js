@@ -23,9 +23,9 @@ var getCurrentList = function(){
  * @param {*} title 
  * @param {*} threadId 
  */
-var setLinkData = function(link, title/*, threadId*/){
+var setLinkData = function(link, title, userId){
   link.textContent = title;
-  var newLink = "./user?userId=" + threadId;
+  var newLink = "./user?userId=" + userId;
   link.href = newLink;
   return link;
 }
@@ -111,7 +111,7 @@ var setUsers = function(users){
       
       var cell = row.insertCell(1);
       var link = document.createElement('a');
-      setLinkData(link, users[i]['name']/*, users[i]['id']*/);
+      setLinkData(link, users[i]['name'], users[i]['id']);
       cell.classList.add("cell-link");
       cell.appendChild(link);
 

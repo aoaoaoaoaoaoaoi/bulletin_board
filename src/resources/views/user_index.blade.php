@@ -2,7 +2,7 @@
 
 @section('jssheet')
 <head>
-    <script src="{{ asset('group_index.js') }}" defer></script>
+    <script src="{{ asset('join_group.js') }}" defer></script>
     <script src="{{ asset('table_list.js') }}" defer></script>
     <script src="{{ asset('thread_list.js') }}" defer></script>
 </head>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                             <ul class="group-nav">
-                                <li><a class="tab-menu is-active-btn" href="#item1">基本情報</a></li><li><a class="tab-menu" href="#item2">オーナースレッド</a></li>
+                                <li><a class="tab-menu is-active-btn" href="#item1">基本情報</a></li><li><a class="tab-menu" href="#item2">オーナースレッド</a></li><li><a class="tab-menu" href="#item3">参加グループ</a></li>
                             </ul>
                     </div>
 
@@ -39,6 +39,9 @@
                         </div>
                         <div class="tab-item" id="item2">
                             @include('partials.thread_list')
+                        </div>
+                        <div class="tab-item" id="item3">
+                            @include('partials.group_list')
                         </div>
                     </div>
                 </div>
