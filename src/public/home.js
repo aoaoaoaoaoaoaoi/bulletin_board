@@ -2,7 +2,7 @@
  * 読み込み時の処理
  */
 window.onload = function(){
-  setThreadData(null, null, null, null, null, null, null, false);
+  setThreadData(null, null, null, null, null, null, null, false, null);
 }
 
 /**
@@ -20,5 +20,5 @@ var search = function(button){
   var endDateEnd = document.getElementById('end-date-end').value;
   var isOnlyOwner = document.getElementById('is-only-owner').checked;
 
-  setThreadData(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner);
+  setThreadData(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner, null);
 }

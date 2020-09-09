@@ -39,7 +39,7 @@ var setLinkData = function(link, title, threadId){
  * @param {*} endDateStart 
  * @param {*} endDateEnd 
  */
-var setThreadData = function(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner){
+var setThreadData = function(groupId, title, tag, startDateStart, startDateEnd, endDateStart, endDateEnd, isOnlyOwner, involvedUserId){
 
   $.ajaxSetup({
     headers: {
@@ -59,6 +59,7 @@ $.ajax({
       'endDateStart' : endDateStart,
       'endDateEnd' : endDateEnd,
       'isOnlyOwner' : isOnlyOwner,
+      'involvedUserId' : involvedUserId,
     },
   }).fail(function(){
 

@@ -63,6 +63,8 @@ class HomeController extends Controller
         $paramEndTo = $request->input('startDateEnd');
         $endDateTo = $paramEndTo != null ? new Carbon($paramEndTo) : null;
         $isOnlyOwner = (bool)$request->input('isOnlyOwner');
+        $paramInvolvedUserId = $request->input('involvedUserId');
+        $involvedUserId = $paramInvolvedUserId != null ? (int)$paramInvolvedUserId : null;
 
         $user = Auth::user();
         $threads = Thread::searchThread($user['id'], $isOnlyOwner, $startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)
