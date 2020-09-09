@@ -5,6 +5,7 @@
     <script src="{{ asset('join_group.js') }}" defer></script>
     <script src="{{ asset('table_list.js') }}" defer></script>
     <script src="{{ asset('thread_list.js') }}" defer></script>
+    <script src="{{ asset('user_index.js') }}" defer></script>
 </head>
 @endsection
 @section('style')
