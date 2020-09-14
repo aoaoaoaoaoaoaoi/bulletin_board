@@ -58,7 +58,7 @@ $.ajax({
 
     //ページ数
     var pageCount = Math.floor((result.length + 19) / 20);
-    makePager(pageCount, 'pager_table');
+    makePager(pageCount, 'pager_table_group');
 
     //グループ
     var newgroupData = getCurrentList();
@@ -139,7 +139,7 @@ var setGroups = function(groups){
     }
   }
 
-  var obj = document.getElementById('loading-message');
+  var obj = document.getElementById('loading-message-group');
   obj.style.display = "none";
 }
 

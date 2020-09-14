@@ -49,15 +49,14 @@ class JoinGroupController extends Controller
     {
         $groupName = (string)$request->input('groupName');
         $userIdParam = $request->input('userId');
-        $userId = ($userIdParam == null) ? (int)$userIdParam : null;
+        $userId = ($userIdParam == null) ? null : (int)$userIdParam;
 
-        \Illuminate\Support\Collection $groups;
         if($userId != null){
             $groupIds = UserGroup::where('user_id', '=', $userId)->get('group_id');
-            $groups = Group::whereIn('group_id', $groupIds)->get();
-        }else[
+            $groups = Group::whereIn('id', $groupIds)->get();
+        }else{
             $groups = Group::GroupName($groupName);
-        ]
+        }
        
         $data = self::organizeGroupData($groups);
         return json_encode($data);
