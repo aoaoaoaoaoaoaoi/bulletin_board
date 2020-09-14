@@ -21,7 +21,7 @@ var getCurrentList = function(){
  * 読み込み時の処理
  */
 window.onload = function(){
-  setgroupData(null);
+  setGroupData(null, null);
 }
 
 /**
@@ -33,7 +33,7 @@ window.onload = function(){
  * @param {*} endDateStart 
  * @param {*} endDateEnd 
  */
-var setgroupData = function(groupName, userId){
+var setGroupData = function(groupName, userId){
 
   $.ajaxSetup({
     headers: {
