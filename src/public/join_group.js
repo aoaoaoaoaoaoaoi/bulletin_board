@@ -33,7 +33,7 @@ window.onload = function(){
  * @param {*} endDateStart 
  * @param {*} endDateEnd 
  */
-var setgroupData = function(groupName){
+var setgroupData = function(groupName, userId){
 
   $.ajaxSetup({
     headers: {
@@ -46,6 +46,7 @@ $.ajax({
     url : '/search_group',
     data: {
       'groupName' : groupName,
+      'userId' : userId,
     },
   }).fail(function(){
 
