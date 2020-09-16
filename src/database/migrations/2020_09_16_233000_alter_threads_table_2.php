@@ -15,6 +15,7 @@ class AlterThreadsTable2 extends Migration
     {
         Schema::table('threads', function (Blueprint $table) {
 
+            $table->dropForeign('threads_created_user_id_foreign');
             $table->dropColumn('created_user_id');
             $table->dropColumn('overview');
         });
@@ -29,6 +30,7 @@ class AlterThreadsTable2 extends Migration
     {
         Schema::table('threads', function (Blueprint $table) {
         
+            $table->foreign('created_user_id')->references('id')->on('users');
             $table->bigInteger('created_user_id')->unsigned();
             $table->text('overview');
         });
