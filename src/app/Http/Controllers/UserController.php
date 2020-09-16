@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Group;
 use App\Thread;
+use App\ThreadMessage;
 use App\User;
 use App\UserGroup;
 use Carbon\Carbon;
@@ -17,7 +18,8 @@ class UserController extends Controller
     {
         $userId = (int)$request->input('userId');
         $user = User::where('id', '=', $userId)->first();
-        $threads = Thread::Owner($userId)->orderBy('updated_at', 'desc')->get()->toArray();
+        $ownerThreadIds = ThreadMessage::getOwnedThreadIds($userId);
+        $threads = Thread::whereIn('id', $ownerThreadIds)->orderBy('updated_at', 'desc')->get()->toArray();
         
         $data = [
             'name' => $user['name'],

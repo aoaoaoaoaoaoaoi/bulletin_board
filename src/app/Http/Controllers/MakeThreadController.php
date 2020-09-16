@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Group;
 use App\UserGroup;
+use App\Thread;
+use App\ThreadMessage;
+use Carbon\Carbon;
 use DB;
 use Auth;
 use \App\Http\Controllers\TagService;
@@ -43,15 +46,25 @@ class MakeThreadController extends Controller
             $threadEndAt = $request->input('endAt');
         }
 
-        $insertResult = DB::table('threads')->insert([
-            'created_user_id' => $user->id,
+        $insertResult = Thread::insert([
             'group_id' => $group,
             'title' => $title,
-            'overview' => $overview,
             'start_at' => $startAt,
             'end_at' => $endAt,
         ]);
+
         $insertId = DB::table('threads')->orderBy('id','Desc')->first();
+
+        $insertResult = ThreadMessage::insert([
+            'thread_id' => $insertId,
+            'thread_order' => 1,
+            'user_id' => $user->id,
+            'message' => $overview,
+            'posted_time' => Carbon::now(),
+            'resource1' => null,
+            'resource2' => null,
+            'resource3' => null,
+        ]);
 
         $tags = TagService::getInstance()->insertTag($threadTags);
         $tagIds = DB::table('tags')->whereIn('name', $tags)->get()->pluck('id');

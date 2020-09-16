@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use App\Thread;
 use App\ThreadMessage;
 use App\User;
 use App\UserThreadMessageReaction;
@@ -17,9 +18,7 @@ class ThreadController extends Controller
         $user = Auth::user();
 
         $threadId = $request->input('threadId');
-        $thread = DB::table('threads')->where('id','=',$threadId)->first();
-        $createdUserId = $thread->created_user_id;
-        $createdUser = User::where('id','=',$createdUserId)->first();
+        $thread = Thread::where('id','=',$threadId)->first();
         $tags = DB::table('thread_tags')->where('thread_id','=',$threadId)->get()->pluck('tag_id');
         $tagName=[];
         foreach($tags as $tag){
@@ -48,6 +47,7 @@ class ThreadController extends Controller
             $message=[
                 'thread_message_id' => $message['id'],
                 'user_name' => $userName,
+                'user_resource' => $user['resource'],
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
                 'posted_time' => $message['posted_time'],
@@ -62,12 +62,13 @@ class ThreadController extends Controller
             $messages[] = $message;
         }
 
+        $createdUserMessage = array_shift($messages);
         $data=[
             'title' => $thread->title,
-            'createdUser' => $createdUser->name,
-            'createdUserResource' => $createdUser->resource,
+            'createdUser' => $createdUserMessage['user_name'],
+            'createdUserResource' => $createdUserMessage['user_resource'],
             'startAt' => $thread->start_at,
-            'overview' => $thread->overview,
+            'overview' => $createdUserMessage['message'],
             'tags' => $tagName,
             'endAt' => $thread->end_at, 
             'threadId' => $threadId,  
