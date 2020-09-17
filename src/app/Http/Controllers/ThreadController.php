@@ -40,9 +40,7 @@ class ThreadController extends Controller
             $userReaction[$reaction->thread_message_id][$reaction->reaction_type] = true;
         }
 
-        \Log::debug($currentMessages);
         $messages=[];
-        $index = 0;
         foreach($currentMessages as $message){
             $message=[
                 'thread_message_id' => $message['id'],
@@ -60,7 +58,6 @@ class ThreadController extends Controller
                 'is_great_good_reaction' => isset($userReaction[$message['id']][2]),
             ];
             $messages[] = $message;
-            ++$index;
         }
 
         $createdUserMessage = array_shift($messages);
