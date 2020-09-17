@@ -25,10 +25,8 @@ class ThreadController extends Controller
             $tagName[]=$tag->name;
         }
 
-        $currentMessages = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','asc')->get();
-        $userIds = $currentMessages->pluck('user_id');
-        $user_ids_order = implode(',', $userIds);
-        $users = User::whereIn('id', $userIds)->orderByRaw("FIELD(id, $user_ids_order)")->get();
+        $currentMessages = ThreadMessage::where('thread_id', '=', $threadId)->orderBy('thread_order', 'asc')->get();
+        $currentMessages->load('user');
         $messageIds = $currentMessages->pluck('id');
         $reactionCounts = [];
         $reactionCountData = UserThreadMessageReaction::whereIn('thread_message_id', $messageIds)->select(DB::raw('count(*) as number_of_people'))->groupBy('thread_message_id', 'reaction_type')->get();
@@ -42,14 +40,14 @@ class ThreadController extends Controller
             $userReaction[$reaction->thread_message_id][$reaction->reaction_type] = true;
         }
 
+        \Log::debug($currentMessages);
         $messages=[];
         $index = 0;
         foreach($currentMessages as $message){
-            $user = $users[$index];
             $message=[
                 'thread_message_id' => $message['id'],
-                'user_name' => $user['name'],
-                'user_resource' => $user['resource'],
+                'user_name' => $message['user']['name'],
+                'user_resource' => $message['user']['resource'],
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
                 'posted_time' => $message['posted_time'],
