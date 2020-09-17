@@ -67,12 +67,17 @@ class HomeController extends Controller
         $paramInvolvedUserId = $request->input('involvedUserId');
         $involvedUserId = $paramInvolvedUserId != null ? (int)$paramInvolvedUserId : null;
 
-        $user = Auth::user();
-        $ownerThreadIds = ThreadMessage::getOwnedThreadIds($user['id']);
-        $threads = Thread::whereIn('id', $ownerThreadIds)->get();
-        if(!$isOnlyOwner){
-            $otherThreads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)->get();
-            $threads = $threads->merge($otherThreads);
+        if($involvedUserId != null){
+            $ownerThreadIds = ThreadMessage::getInvolvedThreadIds($involvedUserId);
+            $threads = Thread::whereIn('id', $ownerThreadIds)->get();
+        }else{
+            $user = Auth::user();
+            $ownerThreadIds = ThreadMessage::getOwnedThreadIds($user['id']);
+            $threads = Thread::whereIn('id', $ownerThreadIds)->get();
+            if(!$isOnlyOwner){
+                $otherThreads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)->get();
+                $threads = $threads->merge($otherThreads);
+            }
         }
         $threads->sortBy('id');
 

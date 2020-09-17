@@ -30,7 +30,7 @@
                             </div>
                         </div>
                             <ul class="group-nav">
-                                <li><a class="tab-menu is-active-btn" href="#item1">基本情報</a></li><li><a class="tab-menu" href="#item2">オーナースレッド</a></li><li><a class="tab-menu" href="#item3">参加グループ</a></li>
+                                <li><a class="tab-menu is-active-btn" href="#item1">基本情報</a></li><li><a class="tab-menu" href="#item2">スレッド</a></li><li><a class="tab-menu" href="#item3">参加グループ</a></li>
                             </ul>
                     </div>
 

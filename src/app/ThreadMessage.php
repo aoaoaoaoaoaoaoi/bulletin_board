@@ -10,4 +10,9 @@ class ThreadMessage extends Model
     {
         return self::where('user_id', '=', $userId)->where('thread_order', '=', 1)->get('thread_id');
     }
+
+    public static function getInvolvedThreadIds(int $userId)
+    {
+        return self::where('user_id', '=', $userId)->get('thread_id');
+    }
 }
