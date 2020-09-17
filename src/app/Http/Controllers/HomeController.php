@@ -7,6 +7,7 @@ use DB;
 use Auth;
 use Carbon\Carbon;
 use App\Thread;
+use App\ThreadMessage;
 use App\Tag;
 use App\ThreadTag;
 use App\Group;
@@ -62,20 +63,18 @@ class HomeController extends Controller
         $endDateFrom = $paramEndFrom != null ? new Carbon($paramEndFrom) : null;
         $paramEndTo = $request->input('startDateEnd');
         $endDateTo = $paramEndTo != null ? new Carbon($paramEndTo) : null;
-        $isOnlyOwner = (bool)$request->input('isOnlyOwner');
+        $isOnlyOwner = (bool)(($request->input('isOnlyOwner')) == "True");
         $paramInvolvedUserId = $request->input('involvedUserId');
         $involvedUserId = $paramInvolvedUserId != null ? (int)$paramInvolvedUserId : null;
 
         $user = Auth::user();
-        $threads;
         $ownerThreadIds = ThreadMessage::getOwnedThreadIds($user['id']);
-        $ownerThreads = Thread::whereIn('id', $ownerThreadIds)->get();
-        $threads->merge($ownerThreads);
+        $threads = Thread::whereIn('id', $ownerThreadIds)->get();
         if(!$isOnlyOwner){
             $otherThreads = Thread::searchThread($startDateFrom, $startDateTo, $endDateFrom, $endDateTo, $title, $groupId)->get();
-            $threads->merge($otherThreads);
+            $threads = $threads->merge($otherThreads);
         }
-        $thread->sortBy('id');
+        $threads->sortBy('id');
 
         $responseThreads = [];
         $isExistTag = false;
