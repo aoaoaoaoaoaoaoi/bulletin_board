@@ -26,6 +26,9 @@ class ThreadController extends Controller
         }
 
         $currentMessages = ThreadMessage::where('thread_id','=',$threadId)->orderBy('thread_order','asc')->get();
+        $userIds = $currentMessages->pluck('user_id');
+        $user_ids_order = implode(',', $userIds);
+        $users = User::whereIn('id', $userIds)->orderByRaw("FIELD(id, $user_ids_order)")->get();
         $messageIds = $currentMessages->pluck('id');
         $reactionCounts = [];
         $reactionCountData = UserThreadMessageReaction::whereIn('thread_message_id', $messageIds)->select(DB::raw('count(*) as number_of_people'))->groupBy('thread_message_id', 'reaction_type')->get();
@@ -40,13 +43,12 @@ class ThreadController extends Controller
         }
 
         $messages=[];
+        $index = 0;
         foreach($currentMessages as $message){
-            //TODO:処理はループの外でする
-            $user = User::where('id','=',$message['user_id'])->first();
-            $userName = $user['name'];
+            $user = $users[$index];
             $message=[
                 'thread_message_id' => $message['id'],
-                'user_name' => $userName,
+                'user_name' => $user['name'],
                 'user_resource' => $user['resource'],
                 'thread_order' => $message['thread_order'],
                 'message' => $message['message'],
@@ -60,6 +62,7 @@ class ThreadController extends Controller
                 'is_great_good_reaction' => isset($userReaction[$message['id']][2]),
             ];
             $messages[] = $message;
+            ++$index;
         }
 
         $createdUserMessage = array_shift($messages);
