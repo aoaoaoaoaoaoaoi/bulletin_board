@@ -23,7 +23,7 @@ var getCurrentList = function(){
  * @param {*} title 
  * @param {*} threadId 
  */
-var setLinkData = function(link, title, threadId){
+var setThreadLinkData = function(link, title, threadId){
   link.textContent = title;
   var newLink = "./thread?threadId=" + threadId;
   link.href = newLink;
@@ -111,7 +111,7 @@ var setThreads = function(threads){
       table.rows[i].cells[3].innerHTML = threads[i - 1]['groupName'];
 
       var link = table.rows[i].cells[1].children[0];
-      setLinkData(link, threads[i-1]['title'], threads[i - 1]['id']);
+      setThreadLinkData(link, threads[i-1]['title'], threads[i - 1]['id']);
       table.rows[i].cells[1].appendChild(link);
   }
 
@@ -124,7 +124,7 @@ var setThreads = function(threads){
       
       var cell = row.insertCell(1);
       var link = document.createElement('a');
-      setLinkData(link, threads[i]['title'], threads[i]['id']);
+      setThreadLinkData(link, threads[i]['title'], threads[i]['id']);
       cell.classList.add("cell-link");
       cell.appendChild(link);
 

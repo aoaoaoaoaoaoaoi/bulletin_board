@@ -23,7 +23,7 @@ var getCurrentList = function(){
  * @param {*} title 
  * @param {*} threadId 
  */
-var setLinkData = function(link, title, userId){
+var setUserLinkData = function(link, title, userId){
   link.textContent = title;
   var newLink = "./user?userId=" + userId;
   link.href = newLink;
@@ -95,7 +95,7 @@ var setUsers = function(users){
       table.rows[i].cells[3].innerHTML = users[i - 1]['profile'];
 
       var link = table.rows[i].cells[1].children[0];
-      setLinkData(link, users[i-1]['name'], users[i - 1]['id']);
+      setUserLinkData(link, users[i-1]['name'], users[i - 1]['id']);
       table.rows[i].cells[1].appendChild(link);
   }
 
@@ -111,7 +111,7 @@ var setUsers = function(users){
       
       var cell = row.insertCell(1);
       var link = document.createElement('a');
-      setLinkData(link, users[i]['name'], users[i]['id']);
+      setUserLinkData(link, users[i]['name'], users[i]['id']);
       cell.classList.add("cell-link");
       cell.appendChild(link);
 
