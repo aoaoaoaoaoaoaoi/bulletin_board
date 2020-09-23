@@ -31,7 +31,7 @@ var setUserLinkData = function(link, title, userId){
 }
 
 
-var setUserData = function(groupId){
+var searchUserData = function(groupId, userName, tag){
 
   $.ajaxSetup({
     headers: {
@@ -44,6 +44,8 @@ $.ajax({
     url : '/search_user',
     data: {
       'groupId' : groupId,
+      'userName' : userName,
+      'tag' : tag,
     },
   }).fail(function(){
 

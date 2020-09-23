@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label">タイトル</label>
+                            <label class="col-md-4 col-form-label">ユーザー名</label>
                             <div class="col-md-6"><input type="text" id="title"></div>
                         </div>
                         <div class="form-group row">

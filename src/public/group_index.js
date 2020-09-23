@@ -16,5 +16,5 @@ window.onload = function(){
   let param = location.search;
   let groupId = param.replace("?groupId=", "");
   setThreadData(groupId, null, null, null, null, null, null, false, null);
-  setUserData(groupId);
+  searchUserData(groupId, null, null);
 }

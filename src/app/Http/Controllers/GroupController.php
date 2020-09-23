@@ -29,24 +29,4 @@ class GroupController extends Controller
 
         return view('group_index', ['data' => $data]);
     }
-
-    public function searchUser(Request $request)
-    {
-        $groupId = (int)$request->input('groupId');
-        $userIds = UserGroup::Group($groupId)->select('user_id')->get();
-        $users = User::whereIn('id', $userIds)->get();
-        $data = [];
-        foreach($users as $user){
-            $lastLoginAt = $user['last_login_at'] != null ? new Carbon($user['last_login_at']) : null;
-            $userData = [
-                'id' => $user['id'],
-                'resource' => $user['resource'],
-                'name' => $user['name'],
-                'profile' => $user['profile'],
-                'lastLoginAt' => $lastLoginAt->year . "年" . $lastLoginAt->month . "月" . $lastLoginAt->day . "日",
-            ];
-            $data[] = $userData;
-        }
-        return json_encode($data);
-    }
 }
