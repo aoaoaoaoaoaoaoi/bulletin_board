@@ -102,6 +102,17 @@
                                     </a>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    ユーザー <span class="caret"></span>
+                                </a>
+
+                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="./search_user_index">
+                                        ユーザーを検索する
+                                    </a>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>

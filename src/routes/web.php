@@ -49,4 +49,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/search_thread', 'HomeController@searchThread');
 
 Route::get('/user', 'UserController@index');
+Route::get('/search_user_index', 'SearchUserController@index');
 Route::post('/search_user', 'GroupController@searchUser');
