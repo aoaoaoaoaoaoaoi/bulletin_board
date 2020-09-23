@@ -39,8 +39,13 @@ class SearchUserController extends Controller
     public function searchUser(Request $request)
     {
         $groupId = (int)$request->input('groupId');
-        $userIds = UserGroup::Group($groupId)->select('user_id')->get();
-        $users = User::whereIn('id', $userIds)->get();
+        $userName = (string)$request->input('userName');
+        $tag = (string)$request->input('tag');
+        $userIds = [];
+        if(!empty($groupId)){
+            $userIds = UserGroup::Group($groupId)->select('user_id')->get()->toArray();
+        }        
+        $users = User::searchUser($userIds, $userName)->get();
         $data = [];
         foreach($users as $user){
             $lastLoginAt = $user['last_login_at'] != null ? new Carbon($user['last_login_at']) : null;

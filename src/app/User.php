@@ -42,4 +42,24 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\ThreadMessage');
     }
+
+
+    public static function searchUser(Array $userIds, string $userName){
+        return self::Ids($userIds)
+            ->UserName($userName);
+    }
+
+    public function scopeIds($query, Array $userIds){
+        if(empty($userId) || count($userIds) < 1){
+            return $query;
+        }
+        return $query->whereIn('id', $userIds);
+    }
+
+    public function scopeUserName($query, String $userName){
+        if(empty($userName)){
+            return $query;
+        }
+        return $query->where('name', 'LIKE', "%$userName%");
+    }
 }
