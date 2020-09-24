@@ -54,7 +54,7 @@ class HomeController extends Controller
         $paramGroupId = $request->input('groupId');
         $groupId = $paramGroupId != null ? (int)$paramGroupId : null;
         $title = (string)$request->input('title');
-        $tag = (string)$request->input('tag');
+        $tagName = (string)$request->input('tag');
         $paramStartFrom = $request->input('startDateStart');
         $startDateFrom = $paramStartFrom != null ? new Carbon($paramStartFrom) : null;
         $paramStartTo = $request->input('startDateEnd');
@@ -83,10 +83,10 @@ class HomeController extends Controller
 
         $responseThreads = [];
         $isExistTag = false;
-        if(!empty($tag)){
+        if(!empty($tagName)){
 
             $isExistTag = true;
-            $tag = Tag::where('name', '=', $tag)->first();
+            $tag = Tag::where('name', '=', $tagName)->first();
             if(!empty($tag)){
 
                 $threadIdByTags = ThreadTag::where('tag_id', '=', $tag->id)->orderBy('thread_id')->get()->pluck('thread_id');

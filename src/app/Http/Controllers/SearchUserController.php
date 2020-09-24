@@ -40,14 +40,38 @@ class SearchUserController extends Controller
     {
         $groupId = (int)$request->input('groupId');
         $userName = (string)$request->input('userName');
-        $tag = (string)$request->input('tag');
+        $tagName = (string)$request->input('tag');
         $userIds = [];
         if(!empty($groupId)){
             $userIds = UserGroup::Group($groupId)->select('user_id')->get()->toArray();
         }        
         $users = User::searchUser($userIds, $userName)->get();
+        
+        $responseUsers = [];
+        $isExistTag = false;
+        if(!empty($tagName)){
+            $tag = Tag::where('name', '=', $tagName)->first();
+            if(!empty($tag)){
+                $isExistTag = true;
+                $userIdsByTag = UserTag::where('tag_id', '=', $tag->id)->orderBy('user_id')->select('user_id')->get();
+                $userIdByTagMap = [];
+                foreach($userIdsByTag as $userId){
+                    $userIdByTagMap[$userId] = true;
+                }
+        
+                foreach($users as $user){
+                    if(isset($userIdByTagMap[$user->id])){
+                        $responseUsers[] = $thread;
+                    }
+                }
+            }
+        }
+        if(!$isExistTag){
+            $responseUsers = $users->toArray();
+        }
+
         $data = [];
-        foreach($users as $user){
+        foreach($responseUsers as $user){
             $lastLoginAt = $user['last_login_at'] != null ? new Carbon($user['last_login_at']) : null;
             $userData = [
                 'id' => $user['id'],
